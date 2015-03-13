@@ -5,7 +5,9 @@
  */
 package algoritmi;
 
+import algoritmi.bandiera.Bandiera;
 import algoritmi.ssm3.ssm3;
+import java.util.Arrays;
 
 /**
  *
@@ -17,11 +19,12 @@ public class Algoritmi {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-            ExecuteSSM3();
+//            ExecuteSSM3();
+        Bandiera();
     }
     
     /**
-     * Esegue un fax simile della classe ssm3, con dei dati di prova già preimpostati
+     * Esegue un fac simile della classe ssm3, con dei dati di prova già preimpostati
      */
     public static void ExecuteSSM3()
     {
@@ -39,6 +42,19 @@ public class Algoritmi {
         }
         System.out.println("}");
     }
+    
+    
+    /**
+     * Esegue un Fac Simile della Bandiera, con dei dati già preimpostati
+     */
+    public static void Bandiera()
+    {
+        Integer[] ar = new Integer[]{2,3,5,6,7,9,12,43,4,1,7,5,3};
+        System.out.println("OLD:\n"+Arrays.deepToString(ar));
+        Bandiera.Bandiera(ar);
+        System.out.println("NEW:\n"+Arrays.deepToString(ar));
+    }
+    
     
     /**
      * Trasforma un intero affinchè si possa scrivere in rosso sulla console
