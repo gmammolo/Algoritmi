@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package algoritmi;
+package Lezione.Java;
 
-import algoritmi.bandiera.Bandiera;
-import algoritmi.ssm3.ssm3;
+import Lezione.Java.bandiera.Bandiera;
+import Lezione.Java.ssm3.ssm3;
 import java.util.Arrays;
 
 /**

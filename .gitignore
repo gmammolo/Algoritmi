@@ -20,3 +20,5 @@ hs_err_pid*
 /build*/
 *.o
 Makefile
+/src/Lezione/LezC/build/
+/src/Lezione/LezC/dist/
