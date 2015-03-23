@@ -5,8 +5,10 @@
  */
 package Lezione.Java;
 
+import Laboratorio.Java.ricerca_binaria.IntSortedArray;
 import Lezione.Java.bandiera.Bandiera;
 import Lezione.Java.ssm3.ssm3;
+import Lezione.Java.tipi_generici.Pair;
 import java.util.Arrays;
 
 /**
@@ -20,7 +22,11 @@ public class Algoritmi {
      */
     public static void main(String[] args) {
 //            ExecuteSSM3();
-        Bandiera();
+//        Bandiera();
+//        GenericType();
+        IntSortedArray instance = new IntSortedArray();
+        instance.insert(0);instance.insert(1);instance.insert(2);
+        System.out.println(instance.get(1));
     }
     
     /**
@@ -80,4 +86,11 @@ public class Algoritmi {
         return red+value+endRed;
     }
     
+    
+    private static void GenericType()
+    {
+        System.out.println("Hello");
+        Pair<Integer,String> coppia = new Pair<Integer,String>(1,"Hello");
+        Pair<Integer,Boolean> p = new Pair<>(1,true);
+    }
 }
