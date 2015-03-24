@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Laboratorio.Java.binarysearch;
+package granatamammolo.Java.granatamammolo.binarysearch;
 
+import granatamammolo.Java.granatamammolo.binarysearch.SortedArrayList;
 import java.util.ArrayList;
 import org.junit.Test;
 import static org.junit.Assert.*;

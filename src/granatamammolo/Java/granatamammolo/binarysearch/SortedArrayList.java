@@ -3,16 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Laboratorio.Java.binarysearch;
+package granatamammolo.Java.granatamammolo.binarysearch;
+
+import java.util.ArrayList;
 
 /**
- *
- * @author giuseppe
+ * 
+ * @author Giuseppe
+ * @param <E> Generic Type Comparable
  */
-public class IntSortedArray {
-
-    protected Integer[] elements;
-    protected int size;
+public class SortedArrayList<E extends Comparable<E>> {
+    
+    protected ArrayList<E> elements;
     
     /**
      * Indica se utilizzare il metodo Ricorsivo o iterativo per la Ricerca Binaria
@@ -22,7 +24,7 @@ public class IntSortedArray {
     /**
      * Crea un Array  con capacità 16 elementi con valori inizializzati a 0 
      */
-    public IntSortedArray() {
+    public SortedArrayList() {
         this(16);
     }
 
@@ -32,13 +34,12 @@ public class IntSortedArray {
      * @throws IllegalArgumentException Lancia l'eccezione se il valore iniziale
      * inserito è negativo
      */
-    public IntSortedArray(int initialCapacity) {
+    public SortedArrayList(int initialCapacity) {
         if (initialCapacity < 0) {
             throw new IllegalArgumentException("Non può essere negativo");
         }
 
-        elements = new Integer[initialCapacity];
-        size = 0;
+        elements = new ArrayList<>(initialCapacity);
     }
 
     /**
@@ -46,10 +47,10 @@ public class IntSortedArray {
      * suo interno gli elementi dell' array a
      * @param a array di int non necessariamente ordinato di valori iniziali
      */
-    public IntSortedArray(int[] a) {
-        this(a.length + 16);
-        for(int i=0; i< a.length;i++)
-            this.insert(a[i]);
+    public SortedArrayList(ArrayList<E> a) {
+        this(a.size() + 16);
+        for(int i=0; i< a.size();i++)
+            this.insert(a.get(i));
     }
     
     /**
@@ -57,13 +58,13 @@ public class IntSortedArray {
      * con il metodo Ricorsivo o Iterativo in base al valore settato in 
      * <code>static boolean recursive </code></p>
      * <p>di default usa la ricerca iterativa, in quanto è quella specificata nel pdf</p>
-     * @see  iterativeBinarySearch e recursiveBinarySearch per maggiori 
-     * informazioni
+     * @see recursiveBinarySearch 
+     * @see iterativeBinarySearch 
      * @param search valore da cercare
      * @return l'index dell' elemento cercato oppure la posizione dove inserirlo 
      * nel caso non sia presente nell' array nella forma -(index -1)
      */
-    protected int binarySearch(int search)
+    protected int binarySearch(E search)
     {
         if(IntSortedArray.recursive)
             return recursiveBinarySearch(search);
@@ -77,17 +78,17 @@ public class IntSortedArray {
      * @return la posizione dell' elemento <code>search</code> oppure la 
      * posizione dove inserirlo: <code>-(pos+1)</code>
      */
-    protected int iterativeBinarySearch(int search) {
-        int ini = 0, fin = size - 1;
-        if (fin == -1 || search < elements[0]) 
+    protected int iterativeBinarySearch(E search) {
+        int ini = 0, fin = size() - 1;
+        if (fin == -1 || search.compareTo(elements.get(0)) < 0 ) 
             return -1;
-        if (search > elements[fin])
-            return -(size + 1);
+        if (search.compareTo(elements.get(fin)) > 0)
+            return -(size() + 1);
         while (ini <= fin) {
             int i = (ini + fin) >>> 1;
-            if (search < elements[i]) {
+            if (search.compareTo(elements.get(i)) < 0) {
                 fin = i - 1;
-            } else if (search > elements[i]) {
+            } else if (search.compareTo( elements.get(i)) >0 ) {
                 ini = i + 1;
             } else {
                 return i;
@@ -102,7 +103,7 @@ public class IntSortedArray {
      */
     public int size()
     {
-        return size;
+        return elements.size();
     }
     
     /**
@@ -111,24 +112,24 @@ public class IntSortedArray {
      * @return la posizione dell' elemento <code>search</code> oppure la 
      * posizione dove inserirlo: <code>-(pos+1)</code>
      */
-    protected int recursiveBinarySearch(int search) {
-        if (size == 0 || search < elements[0]) 
+    protected int recursiveBinarySearch(E search) {
+        if (size() == 0 || search.compareTo( elements.get(0)) < 0) 
             return -1;
-        if (search > elements[size-1])
-            return -(size + 1);
-        return recursiveBinarySearch(search, 0, size-1);
+        if (search.compareTo(elements.get(size() - 1)) > 0)
+            return -(size() + 1);
+        return recursiveBinarySearch(search, 0, size()-1);
     }
     
-    private int recursiveBinarySearch(int search, int start, int end) {
+    private int recursiveBinarySearch(E search, int start, int end) {
         
         if (start > end)
            return -(start + 1);
         int i = (start + end) >>> 1;
-        if (search == elements[i]) {
+        if (search.compareTo(elements.get(i)) == 0) {
             return i;
         } else if (start > end) {
             return -(end + 1);
-        } else if (search < elements[i]) {
+        } else if (search.compareTo( elements.get(i)) < 0) {
             return recursiveBinarySearch(search, start, i - 1);
         } else { //if(search > elements[i])
         
@@ -138,17 +139,6 @@ public class IntSortedArray {
     }
 
     /**
-     * Rialloca l'array elements  in un array di dimensione doppia.
-     * <p>Viene richiamato da insert()</p>
-     */
-    private void reallocate() {
-        Integer[] t = new Integer[size*2];
-        for(int i=0; i<size; i++)
-            t[i]=elements[i];
-        elements=t;
-    }
-    
-    /**
      * inserisce l'elemento nell' array mantenendolo Ordinato <br>
      * Lo Inserisce Anche se è già presente (ripetendolo più volte). <br>
      * Se l'array è già pieno lo rialloca in un array di dimensione doppia 
@@ -156,20 +146,13 @@ public class IntSortedArray {
      * @param element elemento da inserire
      * @return int ritorna l'indice in cui è stato inserito l'elemento
      */
-    public int insert(int element) {
+    public int insert(E element) {
         int index = binarySearch(element);
-        if(size >=elements.length)
-            reallocate();
+        if(size() >=elements.size())
+            elements.ensureCapacity(size()*2+16);
         if (index < 0) 
             index=-index - 1;
-        if(index < size) {
-            for(int i=size; i>index; i--)
-            {
-                elements[i] = elements[i-1];
-            }
-        }
-        elements[index] = element;
-        size++;
+        elements.add(index, element);
         return index;
     }
    
@@ -181,11 +164,11 @@ public class IntSortedArray {
      * @throws ArrayIndexOutOfBoundsException Nel caso in cui l'indice non è
      * accettabile
      */
-    public int get(int index) throws ArrayIndexOutOfBoundsException
+    public E get(int index) throws ArrayIndexOutOfBoundsException
     {    
-        if(index< 0 || index >= size)
+        if(index< 0 || index >= size())
             throw  new ArrayIndexOutOfBoundsException("Elemento non trovato");
-        return elements[index];
+        return elements.get(index);
     }
     
     /**
@@ -193,10 +176,12 @@ public class IntSortedArray {
      * @param element elemento da cercare
      * @return index dell' elemento o -1 in caso non venga trovato
      */
-    public int indexOf(int element) {
+    public int indexOf(E element) {
             int index = binarySearch(element);
             return ( index >= 0 ) ? index : -1;
     }
+
+
     
     /**
      * restituisce una versione stampabile dell' array
@@ -204,15 +189,14 @@ public class IntSortedArray {
      */
     public String toString() {
         String s= "[";
-        for(int i=0; i< size-1; i++)
+        for(int i=0; i< size()-1; i++)
         {
-           s += elements[i] + ", ";
+           s += elements.get(i) + ", ";
         }
-        if(size > 0)
-            s+= elements[size-1];
+        if(size() > 0)
+            s+= elements.get(size()-1);
         s+= "]";
        return s;
     }
     
-
 }

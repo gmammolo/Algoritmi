@@ -3,6 +3,7 @@
     - Granata Federica
     - Mammolo Giuseppe
   esercizi:
-    - binarysearch:
-        punti: 3
+      - granatamammolo:
+        - binarysearch:
+            punti: 3
   somma-punti: 3

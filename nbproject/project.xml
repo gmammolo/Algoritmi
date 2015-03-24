@@ -12,18 +12,4 @@
             </test-roots>
         </data>
     </configuration>
-    
-    <action name="test.single">
-        <script>build.xml</script>
-        <target>test-single</target>
-        <context>
-            <property>test.class</property>
-            <folder>src/Laboratorio/java</folder>
-            <pattern>\.java$</pattern>
-            <format>java-name</format>
-            <arity>
-                <one-file-only/>
-            </arity>
-    </context>
-</action>
 </project>
