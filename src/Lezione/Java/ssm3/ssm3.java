@@ -17,9 +17,9 @@ public class ssm3 {
      * Dato un array di interi trovare la  sequenza di interi consecutivi con 
      * la somma maggiore che si possa ottenere nell' array 
      * @param a array dentro il quale cercare il segmento di somma massima
-     * @return <code>a[0] = maxSom</code>: somma massima  <br />
-     * <code>a[1] = iniMax</code>: indice di inizio della sequenza <br />
-     * <code>a[2] = finMax</code>: indice di fine della sequenza <br />
+     * @return <code>a[0] = maxSom</code>: somma massima  <br>
+     * <code>a[1] = iniMax</code>: indice di inizio della sequenza <br>
+     * <code>a[2] = finMax</code>: indice di fine della sequenza <br>
      */
     public static int[] ssm3(int[] a) {
         int n = a.length;

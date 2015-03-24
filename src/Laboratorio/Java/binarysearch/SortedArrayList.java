@@ -10,7 +10,7 @@ import java.util.ArrayList;
 /**
  * 
  * @author Giuseppe
- * @param <E> 
+ * @param <E> Generic Type Comparable
  */
 public class SortedArrayList<E extends Comparable<E>> {
     
@@ -58,8 +58,8 @@ public class SortedArrayList<E extends Comparable<E>> {
      * con il metodo Ricorsivo o Iterativo in base al valore settato in 
      * <code>static boolean recursive </code></p>
      * <p>di default usa la ricerca iterativa, in quanto è quella specificata nel pdf</p>
-     * @see RecursiveRicercaBinaria#recursiveRicercaBinaria e IterativeRicercaBinaria per maggiori 
-     * informazioni
+     * @see recursiveBinarySearch 
+     * @see iterativeBinarySearch 
      * @param search valore da cercare
      * @return l'index dell' elemento cercato oppure la posizione dove inserirlo 
      * nel caso non sia presente nell' array nella forma -(index -1)
@@ -185,7 +185,7 @@ public class SortedArrayList<E extends Comparable<E>> {
     
     /**
      * restituisce una versione stampabile dell' array
-     * @return 
+     * @return String
      */
     public String toString() {
         String s= "[";

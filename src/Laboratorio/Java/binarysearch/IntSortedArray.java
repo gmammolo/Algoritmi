@@ -57,7 +57,7 @@ public class IntSortedArray {
      * con il metodo Ricorsivo o Iterativo in base al valore settato in 
      * <code>static boolean recursive </code></p>
      * <p>di default usa la ricerca iterativa, in quanto è quella specificata nel pdf</p>
-     * @see RecursiveRicercaBinaria#recursiveRicercaBinaria e IterativeRicercaBinaria per maggiori 
+     * @see  iterativeBinarySearch e recursiveBinarySearch per maggiori 
      * informazioni
      * @param search valore da cercare
      * @return l'index dell' elemento cercato oppure la posizione dove inserirlo 
@@ -200,7 +200,7 @@ public class IntSortedArray {
     
     /**
      * restituisce una versione stampabile dell' array
-     * @return 
+     * @return String
      */
     public String toString() {
         String s= "[";
