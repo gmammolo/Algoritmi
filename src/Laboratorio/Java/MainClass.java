@@ -5,7 +5,7 @@
  */
 package Laboratorio.Java;
 
-import Laboratorio.Java.ricerca_binaria.IntSortedArray;
+import Laboratorio.Java.binarysearch.IntSortedArray;
 
 
 /**
@@ -14,17 +14,17 @@ import Laboratorio.Java.ricerca_binaria.IntSortedArray;
  */
 public class MainClass {
     
-    
-    public static void main(String[] args) {
-        IntSortedArray array = new IntSortedArray(3);
-        array.insert(2);
-        array.insert(4);
-        array.insert(6);
-        array.insert(3);
-        array.insert(1);
-//        IntSortedArray array = new IntSortedArray(new int[]{3,4,7,6,2,4,5,4,2,12,4,9});
-        System.out.println(array.toString());
-        
-    }
+//    
+//    public static void main(String[] args) {
+//        IntSortedArray array = new IntSortedArray(3);
+//        array.insert(2);
+//        array.insert(4);
+//        array.insert(6);
+//        array.insert(3);
+//        array.insert(1);
+////        IntSortedArray array = new IntSortedArray(new int[]{3,4,7,6,2,4,5,4,2,12,4,9});
+//        System.out.println(array.toString());
+//        
+//    }
      
 }

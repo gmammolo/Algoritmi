@@ -5,11 +5,25 @@
         <data xmlns="http://www.netbeans.org/ns/j2se-project/3">
             <name>Algoritmi</name>
             <source-roots>
-                <root id="src.dir"/>
+                <root id="src.src.dir" name="Source Packages"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>
             </test-roots>
         </data>
     </configuration>
+    
+    <action name="test.single">
+        <script>build.xml</script>
+        <target>test-single</target>
+        <context>
+            <property>test.class</property>
+            <folder>src/Laboratorio/java</folder>
+            <pattern>\.java$</pattern>
+            <format>java-name</format>
+            <arity>
+                <one-file-only/>
+            </arity>
+    </context>
+</action>
 </project>

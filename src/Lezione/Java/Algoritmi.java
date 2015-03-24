@@ -15,13 +15,13 @@ import java.util.Arrays;
  */
 public class Algoritmi {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-//            ExecuteSSM3();
-        Bandiera();
-    }
+//    /**
+//     * @param args the command line arguments
+//     */
+//    public static void main(String[] args) {
+////            ExecuteSSM3();
+//        Bandiera();
+//    }
     
     /**
      * Esegue un fac simile della classe ssm3, con dei dati di prova già preimpostati

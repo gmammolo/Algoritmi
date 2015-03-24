@@ -70,4 +70,24 @@
     nbproject/build-impl.xml file. 
 
     -->
+
+    <target name="test-single" description="Run individual Unit tests" depends="compile, compile-test" >  
+        <junit
+            printsummary="yes"
+            errorProperty="test.failed"
+            failureproperty="test.failed"
+            haltonfailure="yes" 
+            fork="yes"
+            showoutput="yes">
+            <formatter type="plain" usefile="false"/>
+            <classpath>
+                <pathelement location="${build.base.classes.dir}" />
+                <pathelement location="${unit.test.classes.dir}" />
+                <pathelement location="${junit.dir}" />
+            </classpath>
+            <test name="${test.class}Test" todir="${results}">
+            </test>
+        </junit>
+        <fail message="Tests failed!" if="test.failed"/>
+    </target>
 </project>

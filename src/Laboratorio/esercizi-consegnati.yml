@@ -1,0 +1,8 @@
+---
+  componenti-gruppo:
+    - Granata Federica
+    - Mammolo Giuseppe
+  esercizi:
+    - binarysearch:
+        punti: 3
+  somma-punti: 3
