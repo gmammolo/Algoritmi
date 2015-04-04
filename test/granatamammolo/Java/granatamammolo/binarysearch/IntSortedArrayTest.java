@@ -420,18 +420,18 @@ public class IntSortedArrayTest {
     assertTrue(bool);
   }
   
-//  @Test         // TOSEE da errore nella classe
-//  public void testToStringClassicArray() {
-//    System.out.println("toString");
-//    IntSortedArray instance = new IntSortedArray(4);
-//    instance.insert(5);
-//    instance.insert(9);
-//    instance.insert(6);
-//    String result = instance.toString();    
-//    String expResult = "[5, 6, 9]";
-//    System.out.println(result  + " result \nexp:" + expResult);
-//    boolean bool = expResult.equals(result);
-//    assertTrue(bool);
-//  }
+  @Test         
+  public void testToStringClassicArray() {
+    System.out.println("toString");
+    IntSortedArray instance = new IntSortedArray(4);
+    instance.insert(5);
+    instance.insert(9);
+    instance.insert(6);
+    String result = instance.toString();    
+    String expResult = "[5, 6, 9]";
+    System.out.println(result  + " result \nexp:" + expResult);
+    boolean bool = expResult.equals(result);
+    assertTrue(bool);
+  }
   
 }

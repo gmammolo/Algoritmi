@@ -11,17 +11,11 @@ public class SortedArrayList<E extends Comparable<E>> {
     
     protected ArrayList<E> elements;
     
-//    /**
-//     * Indica se utilizzare il metodo Ricorsivo o iterativo per la Ricerca Binaria
-//     */
-//    public static boolean recursive = false;
-
     /**
      * Costruttore: crea un Array contenente 16 elementi con valori inizializzati a 0 
      */
-    public SortedArrayList() {    // TOSEE dovrebbe essere SortedArrayList<E>()
-        //this(16);
-      this.elements = new ArrayList<E>(16);
+    public SortedArrayList() {  
+      this(16);
     }
 
     /**
@@ -43,37 +37,11 @@ public class SortedArrayList<E extends Comparable<E>> {
      * @param a array di elementi di tipo E non necessariamente ordinato 
      */
     public SortedArrayList(E[] a) {
-      //        this(a.size() + 16);
-      this.elements = new ArrayList<E>(a.length + 16);
+      this(a.length + 16);
       for(int i = 0; i < a.length; i++)
             this.insert(a[i]);
     }
     
-//    /**
-//     * <p>Metodo per la Ricerca Binaria. Richiama la ricerca binaria
-//     * con il metodo Ricorsivo o Iterativo in base al valore settato in 
-//     * <code>static boolean recursive </code></p>
-//     * <p>di default usa la ricerca iterativa, in quanto è quella specificata nel pdf</p>
-//     * @see recursiveBinarySearch 
-//     * @see iterativeBinarySearch 
-//     * @param x valore da cercare
-//     * @return l'index dell' elemento cercato oppure la posizione dove inserirlo 
-//     * nel caso non sia presente nell' array nella forma -(index -1)
-//     */
-//    protected int binarySearch(E x) {
-//      if(IntSortedArray.recursive)
-//        return recursiveBinarySearch(x);
-//      else
-//        return iterativeBinarySearch(x);
-//    }
-    
-//    /**
-//     * Esegue la ricerca binaria raffinata  in modo iterativo 
-//     * @param search intero da cercare dentro l'array
-//     * @return la posizione dell' elemento <code>search</code> oppure la 
-//     * posizione dove inserirlo: <code>-(pos+1)</code>
-//     */
-//    protected int iterativeBinarySearch(E search) {
     /**
      * Esegue la ricerca binaria con le varie ottimizzazioni.
      * @param x Elemento da ricercare.
@@ -106,37 +74,7 @@ public class SortedArrayList<E extends Comparable<E>> {
       return this.elements.size();
     }
     
-//    /**
-//     * Esegue la ricerca binaria raffinata  in modo ricorsivo 
-//     * @param search intero da cercare dentro l'array
-//     * @return la posizione dell' elemento <code>search</code> oppure la 
-//     * posizione dove inserirlo: <code>-(pos+1)</code>
-//     */
-//    protected int recursiveBinarySearch(E search) {
-//        if (size() == 0 || search.compareTo( elements.get(0)) < 0) 
-//            return -1;
-//        if (search.compareTo(elements.get(size() - 1)) > 0)
-//            return -(size() + 1);
-//        return recursiveBinarySearch(search, 0, size()-1);
-//    }
-    
-    private int recursiveBinarySearch(E search, int start, int end) {
-        
-        if (start > end)
-           return -(start + 1);
-        int i = (start + end) >>> 1;
-        if (search.compareTo(elements.get(i)) == 0) {
-            return i;
-        } else if (start > end) {
-            return -(end + 1);
-        } else if (search.compareTo( elements.get(i)) < 0) {
-            return recursiveBinarySearch(search, start, i - 1);
-        } else { //if(search > elements[i])
-        
-            return recursiveBinarySearch(search, i + 1, end);
-        }
-
-    }
+   
 
     /**
      * Inserisce l'elemento nell'array mantenendolo ordinato <br>
@@ -187,14 +125,13 @@ public class SortedArrayList<E extends Comparable<E>> {
      * @return Stringa rappresentante gli elementi dell'array.
      */
     public String toString() {
-      return this.elements.toString();
-//      String s= "[";                  TOSEE vuole solo che richiami toString
-//      for(int i=0; i< size()-1; i++) 
-//         s += elements.get(i) + ", ";
-//      if(size() > 0)
-//        s+= elements.get(size()-1);
-//      s+= "]";
-//      return s;
+      String s= "[";                  
+      for(int i=0; i< size()-1; i++) 
+         s += elements.get(i).toString() + ", ";
+      if(size() > 0)
+        s+= elements.get(size()-1).toString();
+      s+= "]";
+      return s;
     }
     
 }

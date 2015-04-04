@@ -70,7 +70,7 @@
     nbproject/build-impl.xml file. 
 
     -->
-
+<!--
     <target name="test-single" description="Run individual Unit tests" depends="compile, compile-test" >  
         <junit
             printsummary="yes"
@@ -90,4 +90,6 @@
         </junit>
         <fail message="Tests failed!" if="test.failed"/>
     </target>
+    
+    -->
 </project>
