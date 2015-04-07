@@ -75,8 +75,6 @@ public class SortedArrayList<E extends Comparable<E>> {
       return this.elements.size();
     }
     
-   
-
     /**
      * Inserisce l'elemento nell'array mantenendolo ordinato <br>
      * Lo inserisce anche se è già presente (ripetendolo più volte). <br>

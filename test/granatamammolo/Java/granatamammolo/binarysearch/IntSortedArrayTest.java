@@ -227,11 +227,11 @@ public class IntSortedArrayTest {
     instance.insert(9);
     instance.insert(6);
     int x = 4;
-    int resultPosizion = instance.insert(x);
+    int resultPosition = instance.insert(x);
     // test della size di instance
     assertEquals(4, instance.size);
     // test della posizione di inserimento
-    assertEquals(0, resultPosizion);
+    assertEquals(0, resultPosition);
   }
   
   @Test
@@ -283,11 +283,11 @@ public class IntSortedArrayTest {
     instance.insert(9);
     instance.insert(6);
     int x = 6;
-    int resultPosizion = instance.insert(x);
+    int resultPosition = instance.insert(x);
     // test della size di instance
     assertEquals(4, instance.size);
     // test della posizione di inserimento
-    assertEquals(1, resultPosizion);
+    assertEquals(1, resultPosition);
   }
   
   @Test
@@ -298,11 +298,11 @@ public class IntSortedArrayTest {
     instance.insert(9);
     instance.insert(6);
     int x = 7;
-    int resultPosizion = instance.insert(x);
+    int resultPosition = instance.insert(x);
     // test della size di instance
     assertEquals(4, instance.size);
     // test della posizione di inserimento
-    assertEquals(2, resultPosizion);
+    assertEquals(2, resultPosition);
   }
   
 /******************************************************************************/
