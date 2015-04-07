@@ -187,7 +187,7 @@ public class IntSortedArrayTest {
     System.out.println("reallocate: array vuoto");
     IntSortedArray instance = new IntSortedArray(0);
     instance.reallocate();
-    int expResult = 0;
+    int expResult = 2;
     int result = instance.elements.length;
     assertEquals(expResult, result);
   }
@@ -270,7 +270,7 @@ public class IntSortedArrayTest {
 //    System.out.println(instance.size);
     int resultPosition = instance.insert(4);    
     // test della size di instance
-    assertEquals(0, instance.size);
+    assertEquals(1, instance.size);
     // test della posizione di inserimento
     assertEquals(0, resultPosition);
   }
