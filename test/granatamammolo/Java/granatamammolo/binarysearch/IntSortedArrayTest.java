@@ -59,19 +59,19 @@ public class IntSortedArrayTest {
     assertEquals(3, result);
   }
   
-//  @Test
-//  public void testBinarySearchNotPresence() { // TOSEE nome del metodo
-//    System.out.println("binarySearch: elemento non presente");
-//    IntSortedArray instance = new IntSortedArray(6);
-//    instance.insert(5);
-//    instance.insert(6);
-//    instance.insert(3);
-//    instance.insert(9);
-//    instance.insert(10);
-//    instance.insert(11);
-//    int result = instance.binarySearch(4);
-//    assertEquals(-1, result);   // TOSEE è giusto aspettarsi -1?
-//  }
+  @Test
+  public void testBinarySearchElementoNonPresente() { 
+    System.out.println("binarySearch: elemento non presente");
+    IntSortedArray instance = new IntSortedArray(6);
+    instance.insert(3);
+    instance.insert(5);
+    instance.insert(6);    
+    instance.insert(9);
+    instance.insert(10);
+    instance.insert(11);
+    int result = instance.binarySearch(4);
+    assertEquals(-2, result);   // TOSEE è giusto aspettarsi -2? 
+  }
   
   @Test
   public void testBinarySearchEmptyArray() {
@@ -91,8 +91,9 @@ public class IntSortedArrayTest {
   }
   
   @Test
-  public void testBinaryValueLittle() {   // TOSEE nome metodo
-    System.out.println("binarySearch: elemento presente");
+  public void testBinaryFirstPositionElement() {   
+    System.out.println("binarySearch: elemento non presente - andrebbe inserito"
+            + " nella prima posizione");
     IntSortedArray instance = new IntSortedArray(6);
     instance.insert(5);
     instance.insert(6);
@@ -105,8 +106,9 @@ public class IntSortedArrayTest {
   }
   
   @Test
-  public void testBinaryValueBig() {    // TOSEE nome metodo
-    System.out.println("binarySearch: elemento presente");
+  public void testBinaryLastPositionElement() {    
+    System.out.println("binarySearch: elemento non presente - andrebbe inserito"
+            + " nell'ultima poszione");
     IntSortedArray instance = new IntSortedArray(6);
     instance.insert(5);
     instance.insert(6);
@@ -155,7 +157,7 @@ public class IntSortedArrayTest {
   }
   
   @Test
-  public void testSizeNotFull() {                   // parzialmente riempito
+  public void testSizeNotFull() {                   
     System.out.println("size: array parzialmente riempito");
     IntSortedArray instance = new IntSortedArray(7);
     instance.insert(5);
@@ -190,15 +192,15 @@ public class IntSortedArrayTest {
     assertEquals(expResult, result);
   }
   
-//  @Test
-//  public void testReallocateClassicArray() {    // TOSEE non funziona nella classe
-//    System.out.println("reallocate: array di capacità 16");
-//    IntSortedArray instance = new IntSortedArray();
-//    instance.reallocate();
-//    int result = instance.elements.length;
-//    int expResult = 32;    
-//    assertEquals(expResult, result);
-//  }
+  @Test
+  public void testReallocateClassicArray() {    // TOSEE non funziona nella classe
+    System.out.println("reallocate: array di capacità 16");
+    IntSortedArray instance = new IntSortedArray();
+    instance.reallocate();
+    int result = instance.elements.length;
+    int expResult = 32;    
+    assertEquals(expResult, result);
+  }
 
 /******************************************************************************/
 /************************ TEST INSERT *****************************************/
@@ -261,20 +263,20 @@ public class IntSortedArrayTest {
     assertEquals(1, resultPosition);
   }
 
-//  @Test
-//  public void testInsertEmptyArray() {    // TOSEE controllare questo caso, non effettua l'inserimento
-//    System.out.println("insert: array vuoto");
-//    IntSortedArray instance = new IntSortedArray(0);
-////    System.out.println(instance.size);
-//    int resultPosition = instance.insert(4);    
-//    // test della size di instance
-//    assertEquals(0, instance.size);
-//    // test della posizione di inserimento
-//    assertEquals(0, resultPosition);
-//  }
+  @Test
+  public void testInsertEmptyArray() {    // TOSEE controllare questo caso, non effettua l'inserimento
+    System.out.println("insert: array vuoto");
+    IntSortedArray instance = new IntSortedArray(0);
+//    System.out.println(instance.size);
+    int resultPosition = instance.insert(4);    
+    // test della size di instance
+    assertEquals(0, instance.size);
+    // test della posizione di inserimento
+    assertEquals(0, resultPosition);
+  }
   
   @Test
-  public void testInsertPresentElement() {    // TOSEE nome metodo
+  public void testInsertElementoPresente() {    
     System.out.println("insert: array parzialmente riempito - elemento già presente");
     IntSortedArray instance = new IntSortedArray(4);
     instance.insert(5);
@@ -289,7 +291,7 @@ public class IntSortedArrayTest {
   }
   
   @Test
-  public void testInsertNotPresentElement() {   // TOSEE nome metodo
+  public void testInsertElementoNonPresente() {
     System.out.println("insert: array parzialmente riempito - elemento non presente");
     IntSortedArray instance = new IntSortedArray(4);
     instance.insert(5);
@@ -363,7 +365,7 @@ public class IntSortedArrayTest {
    * Test of indexOf method, of class IntSortedArray.
    */
   @Test
-  public void testIndexOfPresence() {   // TOSEE nome metodo
+  public void testIndexOfElementoPresente() {  
     System.out.println("indexOf - elemento presente");
     IntSortedArray instance = new IntSortedArray(5);
     instance.insert(5);
@@ -374,7 +376,7 @@ public class IntSortedArrayTest {
   }
   
     @Test
-  public void testIndexOfNotPresence() {    // TOSEE nome metodo
+  public void testIndexOfElementoNonPresente() {    
     System.out.println("indexOf - elemento non presente");
     IntSortedArray instance = new IntSortedArray(5);
     instance.insert(5);
@@ -421,15 +423,15 @@ public class IntSortedArrayTest {
   }
   
   @Test         
-  public void testToStringClassicArray() {
-    System.out.println("toString");
+  public void testToStringClassicArray() {        // TOSEE eseguire e vedere la differenza di stampa....aggiunge uno zero iniziale...
+    System.out.println("toString - versione classica");
     IntSortedArray instance = new IntSortedArray(4);
     instance.insert(5);
     instance.insert(9);
     instance.insert(6);
     String result = instance.toString();    
     String expResult = "[5, 6, 9]";
-    System.out.println(result  + " result \nexp:" + expResult);
+    System.out.println("result: " + result  + "\nexp:" + expResult);
     boolean bool = expResult.equals(result);
     assertTrue(bool);
   }

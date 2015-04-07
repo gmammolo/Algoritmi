@@ -43,7 +43,6 @@ public class IntSortedArray {
         this(a.length + 16);
         for(int i=0; i< a.length;i++)
             this.insert(a[i]);
-
     }
 
    /**
@@ -140,6 +139,7 @@ public class IntSortedArray {
      * Restituisce una versione stampabile dell'array ordinato.
      * @return String
      */
+    @Override
     public String toString() {
       String s= "[";
       for(int i = 0; i < size-1; i++) {
