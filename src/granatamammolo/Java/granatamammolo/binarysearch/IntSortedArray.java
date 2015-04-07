@@ -82,8 +82,7 @@ public class IntSortedArray {
      */
     protected void reallocate() {
       int[] doppio = new int[this.elements.length*2];
-      for(int i = 0; i < this.size; i++)
-        doppio[i] = this.elements[i];
+      System.arraycopy(this.elements, 0, doppio, 0, this.size);
       this.elements = doppio;
     }
     
