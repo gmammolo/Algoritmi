@@ -81,8 +81,8 @@ public class IntSortedArray {
      * <p>Viene richiamato da insert()</p>
      */
     protected void reallocate() {
-      int siz= (this.elements.length == 0) ? 1 : this.elements.length;
-      int[] doppio = new int[siz*2];
+      int newSize= (this.elements.length == 0) ? 1 : this.elements.length * 2;
+      int[] doppio = new int[newSize];
       System.arraycopy(this.elements, 0, doppio, 0, this.size);
       this.elements = doppio;
     }

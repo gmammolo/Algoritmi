@@ -187,7 +187,7 @@ public class IntSortedArrayTest {
     System.out.println("reallocate: array vuoto");
     IntSortedArray instance = new IntSortedArray(0);
     instance.reallocate();
-    int expResult = 2;
+    int expResult = 1;
     int result = instance.elements.length;
     assertEquals(expResult, result);
   }
