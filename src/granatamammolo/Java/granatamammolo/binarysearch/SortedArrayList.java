@@ -74,8 +74,6 @@ public class SortedArrayList<E extends Comparable<E>> {
       return this.elements.size();
     }
     
-   
-
     /**
      * Inserisce l'elemento nell'array mantenendolo ordinato <br>
      * Lo inserisce anche se è già presente (ripetendolo più volte). <br>
@@ -98,7 +96,7 @@ public class SortedArrayList<E extends Comparable<E>> {
     /**
      * Restituisce l'elemento al posto indicato
      * @param index posizione in cui cercare
-     * @return valore dell' array
+     * @return valore dell'array
      * @throws ArrayIndexOutOfBoundsException Nel caso in cui l'indice non è
      * accettabile
      */
