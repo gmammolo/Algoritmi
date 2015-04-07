@@ -1,22 +1,8 @@
 package granatamammolo.Java.granatamammolo.binarysearch;
 
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
-/*TOSEE: attenta, che tu avevi testato l'intSortedArray invece che il SortedArray.
-  **************** hai ragione, ora correggo
- *parti da questa base che ho fatto io per sistemare i test e usa i String o al massimo i Double/Float per 
- * testare, altrimenti tanto valeva usare IntSortedArray appunto.. 
-******************* ok, uso gli String
- * il defaultArray serve per avere un array già riempito con nomi random  e non perdere un giorno ogni volta.
-******************* ogni metodo deve essere indipendente dall'altro (tant'è che vengono eseguiti con un ordine diverso
-ogni volta), quindi se usi un array che viene modificato ogni volta in maniera diversa, senza aver la certezza di
-cosa ottieni in input, non puoi fare un test consistente
 
-UNA VOLTA LETTO QUESTO TOSEE ELIMINALO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!***********************************
- * 
- */
 /**
  *
  * @author Federica
@@ -24,14 +10,7 @@ UNA VOLTA LETTO QUESTO TOSEE ELIMINALO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*********
 public class SortedArrayListTest {
   
   public SortedArrayListTest() {
-  }
-  
-  @BeforeClass
-  public static void setUpClass() {
-  }
-  
-  @AfterClass
-  public static void tearDownClass() {
+      
   }
   
 /******************************************************************************/
@@ -76,7 +55,7 @@ public class SortedArrayListTest {
     instance.insert("Lorenza");
     instance.insert("Gianmarco");
     int result = instance.binarySearch("Arianna");
-    assertEquals(-2, result);   // TOSEE è giusto aspettarsi -2? 
+    assertEquals(-2, result);   
   }
   
   @Test
