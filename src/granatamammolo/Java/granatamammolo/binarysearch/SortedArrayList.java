@@ -38,8 +38,9 @@ public class SortedArrayList<E extends Comparable<E>> {
      */
     public SortedArrayList(E[] a) {
       this(a.length + 16);
-      for(int i = 0; i < a.length; i++)
-            this.insert(a[i]);
+        for (E a1 : a) {
+            this.insert(a1);
+        }
     }
     
     /**
@@ -95,8 +96,8 @@ public class SortedArrayList<E extends Comparable<E>> {
 
     /**
      * Restituisce l'elemento al posto indicato
-     * @param index posizione in cui cercare
-     * @return valore dell'array
+     * @param i posizione in cui cercare
+     * @return valore dell' array
      * @throws ArrayIndexOutOfBoundsException Nel caso in cui l'indice non è
      * accettabile
      */
@@ -122,6 +123,7 @@ public class SortedArrayList<E extends Comparable<E>> {
      * Restituisce una versione stampabile dell'array
      * @return Stringa rappresentante gli elementi dell'array.
      */
+    @Override
     public String toString() {
       String s= "[";                  
       for(int i=0; i< size()-1; i++) 
