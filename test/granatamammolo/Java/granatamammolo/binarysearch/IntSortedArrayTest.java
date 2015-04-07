@@ -91,7 +91,7 @@ public class IntSortedArrayTest {
   }
   
   @Test
-  public void testBinaryFirstPositionElement() {   
+  public void testBinarySearchFirstPositionElement() {   
     System.out.println("binarySearch: elemento non presente - andrebbe inserito"
             + " nella prima posizione");
     IntSortedArray instance = new IntSortedArray(6);
@@ -106,7 +106,7 @@ public class IntSortedArrayTest {
   }
   
   @Test
-  public void testBinaryLastPositionElement() {    
+  public void testBinarySearchLastPositionElement() {    
     System.out.println("binarySearch: elemento non presente - andrebbe inserito"
             + " nell'ultima poszione");
     IntSortedArray instance = new IntSortedArray(6);
