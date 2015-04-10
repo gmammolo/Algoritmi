@@ -160,10 +160,64 @@ public class Sorting {
 // *****************************************************************************
   
   /**
-   * Implementazione del Merge Sort.
+   * Implementazione del Merge Sort. Versione non ottimizzata
    * @param a Array da ordinare.
    */
   public static void mSortBasic(int[] a){
-    
+    mSortBasicRic(a, 0, a.length-1);
   }
+  
+  private static void mSortBasicRic(int[] a, int first, int last){
+    if(first < last){
+      int half = (first + last) / 2;
+      mSort(a, first, half);
+      mSort(a, half+1, last);
+      mergeBasic(a, first, half, last);
+    }
+  }  
+  
+  /**
+   * Metodo di supporto per il Merge Sort. Fonde due porzioni ordinate dell'array
+   * in una sola. Versione non ottimizzata.
+   * @param a Array su cui operare.
+   * @param fst Indice iniziale della prima porzione.
+   * @param mid Indice finale della prima porzione.
+   * @param lst Indice finale della seconda porzione.
+   */
+  static void mergeBasic(int[] a, int first, int middle, int last) {
+    // dimensione array temporaneo
+    int n = last - first + 1;
+    int[] c = new int[n];
+    int i = first, j = middle+1, k = 0; // Attenzione: k non è = i+j !
+    // scorrimento delle due porzioni e inserimento nell'array temporaneo
+    while(i <= middle && j <= last) {
+      if(a[i] <= a[j]) c[k++] = a[i++];
+      else             c[k++] = a[j++];
+    }
+    // inserimento in c dell'array non ancora esaurito
+    while(i <= middle) 
+      c[k++] = a[i++];
+    while(j <= last) 
+      c[k++] = a[j++];
+    // copiatura di c all'interno dell'array originale
+    for(int h = 0; h < n; h++) 
+      a[first + h] = c[h];
+  }
+  
+  /**
+   * Implementazione del Merge Sort. Versione con un unico array ausiliario
+   * e merge ottimizzato.
+   * @param a Array da ordinare.
+   */
+//  public static void mSortNoGarbage(int[] a){
+//    int n = a.length;
+//    int[] aux = new int[n];
+//    msortNoGarbageRic(a, 0, n-1, aux);
+//  }
+//  
+//  private static void msortNoGarbageRic(){
+//    
+//  }
+  
+  
 }
