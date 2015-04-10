@@ -37,7 +37,7 @@ public class SortingTest {
     
     @Test
     public void testIsSortedVoidArrays() {
-        //TOSEE: l'array int_void per fefinizione è int_order o no?
+        //TOSEE: l'array int_void per definizione è int_order o no? Secondo me si
         System.out.println("testIsSortedVoidArrays");
         int[] a = int_void;
         boolean expResult = true;
@@ -47,7 +47,7 @@ public class SortingTest {
 
     @Test
     public void testIsSortedSingleArrays() {
-        //TOSEE: se c'è solo un elemento nell' array come fa a non essere int_order?
+        //TOSEE: se c'è solo un elemento nell' array come fa a non essere int_order? Con un solo elemento infatti è ordinato
         System.out.println("testIsSortedSingleArrays");
         int[] a = int_single;
         boolean expResult = true;
@@ -72,7 +72,7 @@ public class SortingTest {
         boolean result = Sorting.isSorted(a);
         assertEquals(expResult, result);
     }
-    
+    // TOSEE testare il metodo generico che hai fatto tu :)
     //####################################################################
     
     @Test

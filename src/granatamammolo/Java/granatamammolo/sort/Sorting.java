@@ -12,15 +12,14 @@ public class Sorting {
    * @return <code>true</code> se l'array è ordinato, <code>false</code> altrimenti.
    */
   public static boolean isSorted(int[] a){
-    if(a.length == 0 || a.length == 1) return false;
+    if(a.length == 0 || a.length == 1) return true;
     for(int i = 0; i < a.length-1; i++)
       if(a[i] > a[i+1])
         return false;
     return true;
   }
 
-    public static  <T extends Comparable<T>> boolean isSorted (T[] a)
-    {
+    public static  <T extends Comparable<T>> boolean isSorted (T[] a) {
       if(a.length == 0 || a.length == 1) 
           return true;
       for(int i = 0; i < a.length-1; i++)
@@ -39,18 +38,16 @@ public class Sorting {
    * @param a Array da ordinare.
    */
   public static void ssort(int[] a){
-    int i = 0, n = a.length;
-    while(i < n){
+    int n = a.length;
+    for(int i = 0; i < n-1; i++) {
+      // trova il minimo nella porzione successiva ad i
       int iMin = i;
-      for(int j = i+1; j < n-1; j++){
-        if(a[j] < a[i]){
-          a[i] = a[j];
+      for(int j = i+1; j < n; j++){
+        if(a[j] < a[iMin])
           iMin = j;
-        }
       }
       if(iMin != i)
         scambia(a, iMin, i);
-      i++;
     }    
   }
   
@@ -81,13 +78,14 @@ public class Sorting {
   public static void isort(int[] a){
     int n = a.length;
     if(n > 1){
-      for(int i = 1; i < n; i++){
-        int j = i-1;
-        if(a[i] < a[j]){
-          while(a[i] < a[j])
+      for(int i = 1; i < n; i++){      
+        int val = a[i];
+        int j = i;
+          while(j > 0 && val < a[j-1]){
+            a[j] = a[j-1];
             j--;
-          inserisci(a, j, i);
-        }
+          }
+          a[j] = val;
       }   
     }
   }
@@ -142,18 +140,16 @@ public class Sorting {
    */
   private static int ricercaBinaria(int[] a, int val, int limite){
     int ini = 0, fin = limite; 
-      if (fin == -1 || val < a[ini]) 
-        return -1;
-      if (val > a[fin]) 
-        return -(limite + 1);
+      if (fin == -1 || val < a[ini])  return -1;
+      if (val > a[fin])               return -(fin + 1);
       while (ini <= fin) {
-        int i = (ini + fin) >>> 1;
-        if (val < a[i])
-          fin = i - 1;
-        else if (val > a[i])
-          ini = i + 1;
+        int middle = (ini + fin) >>> 1;
+        if (val < a[middle])
+          fin = middle - 1;
+        else if (val > a[middle])
+          ini = middle + 1;
         else
-          return i;
+          return middle;
       }
       return -(ini+1);
   }
