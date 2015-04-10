@@ -170,8 +170,8 @@ public class Sorting {
   private static void mSortBasicRic(int[] a, int first, int last){
     if(first < last){
       int half = (first + last) / 2;
-      mSort(a, first, half);
-      mSort(a, half+1, last);
+      mSortBasicRic(a, first, half);
+      mSortBasicRic(a, half+1, last);
       mergeBasic(a, first, half, last);
     }
   }  
