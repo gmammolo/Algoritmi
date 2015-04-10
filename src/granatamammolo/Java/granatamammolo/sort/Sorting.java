@@ -18,10 +18,17 @@ public class Sorting {
         return false;
     return true;
   }
-  
-//  public static <T extends Comparable<?superT>> boolean isSorted (T[] a){
-//    
-//  }
+
+    public static  <T extends Comparable<T>> boolean isSorted (T[] a)
+    {
+      if(a.length == 0 || a.length == 1) 
+          return true;
+      for(int i = 0; i < a.length-1; i++)
+        if(a[i].compareTo(a[i+1]) > 0)
+            return false; 
+      return true;
+    }
+
   
 // *****************************************************************************
 // *********************** SELECTION SORT **************************************
@@ -199,7 +206,7 @@ public class Sorting {
     for(int h = 0; h < n; h++) 
       a[first + h] = c[h];
   }
-  
+
   /**
    * Implementazione del Merge Sort. Versione con un unico array ausiliario
    * e merge ottimizzato.
