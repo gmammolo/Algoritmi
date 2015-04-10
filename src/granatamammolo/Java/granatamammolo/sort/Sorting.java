@@ -5,15 +5,11 @@ package granatamammolo.Java.granatamammolo.sort;
  * @author Federica
  */
 public class Sorting {
-  
-// *****************************************************************************
-// *********************** ISSORTED ********************************************
-// *****************************************************************************
-  
+    
   /**
    * Controlla che l'array sia ordinato.
    * @param a Array da controllare.
-   * @return true se l'array è ordinato, false altrimenti.
+   * @return <code>true</code> se l'array è ordinato, <code>false</code> altrimenti.
    */
   public static boolean isSorted(int[] a){
     if(a.length == 0 || a.length == 1) return false;
