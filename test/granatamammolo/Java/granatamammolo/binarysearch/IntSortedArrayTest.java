@@ -5,7 +5,6 @@
  */
 package granatamammolo.Java.granatamammolo.binarysearch;
 
-import granatamammolo.Java.granatamammolo.binarysearch.IntSortedArray;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
