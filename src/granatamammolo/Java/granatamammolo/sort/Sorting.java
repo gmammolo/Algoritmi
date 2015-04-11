@@ -406,5 +406,13 @@ public class Sorting {
   public static void mSortIsort(int[] a){
     
   }
+
+    public static <T extends Comparable<? super T>> void iSortBin(T[] a) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public static  <T extends Comparable<? super T>>  void mSortBasic(T[] a) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
   
 }// end class
