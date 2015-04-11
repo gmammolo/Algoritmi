@@ -34,7 +34,7 @@ public class SortingTest {
         string_void = new String[0];
         string_single = new String[]{"Giuseppe"};
     }
-    
+    // TOSEE testare tutti i metodi generici + msort con noGarbage
     @Test
     public void testIsSortedVoidArrays() {
         //TOSEE: l'array int_void per definizione è int_order o no? Secondo me si
@@ -72,7 +72,7 @@ public class SortingTest {
         boolean result = Sorting.isSorted(a);
         assertEquals(expResult, result);
     }
-    // TOSEE testare il metodo generico che hai fatto tu :)
+    
     //####################################################################
     
     @Test
@@ -114,7 +114,7 @@ public class SortingTest {
         System.out.println(Arrays.toString(a));
         assertArrayEquals(a, int_single);
     }
-    
+     
     //####################################################################
  
     @Test
@@ -156,7 +156,6 @@ public class SortingTest {
         System.out.println(Arrays.toString(a));
         assertArrayEquals(a, int_single);
     }
-
     
     //####################################################
     
