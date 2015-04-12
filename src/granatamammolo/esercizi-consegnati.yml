@@ -6,4 +6,6 @@
       - granatamammolo:
         - binarysearch:
             punti: 3
-  somma-punti: 3
+        - sort:
+        	punti: 10
+  somma-punti: 13
