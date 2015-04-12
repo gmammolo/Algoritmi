@@ -100,7 +100,7 @@ public class IntSortedArray {
         if(size == elements.length)  
           reallocate();
         if (index < 0) 
-          index = -index - 1;
+          index = -(index + 1);
         if(index < size) {
           for(int i = size; i > index; i--) {
             elements[i] = elements[i-1];

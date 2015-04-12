@@ -291,7 +291,7 @@ public class SortedArrayListTest {
   @Test
   public void testGetClassic() {
     System.out.println("get: indice corretto");
-    SortedArrayList instance = new SortedArrayList(8);
+    SortedArrayList instance = new SortedArrayList();
     instance.insert("Arianna");
     instance.insert("Norberto");
     instance.insert("Isidoro");
@@ -303,7 +303,7 @@ public class SortedArrayListTest {
   @Test(expected = ArrayIndexOutOfBoundsException.class)  
   public void testGetIndexBiggerLength() {
     System.out.println("get: indice più grande di size");
-    SortedArrayList instance = new SortedArrayList(4);
+    SortedArrayList instance = new SortedArrayList();
     instance.insert("Arianna");
     instance.insert("Norberto");
     instance.insert("Isidoro");
