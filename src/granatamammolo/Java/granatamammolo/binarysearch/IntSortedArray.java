@@ -18,7 +18,7 @@ public class IntSortedArray {
      * Costruttore: crea un array contenente 16 elementi con valori inizializzati a 0 
      */
     public IntSortedArray() {
-      this(16);
+        this(16);
     }
 
     /**
@@ -101,10 +101,8 @@ public class IntSortedArray {
           reallocate();
         if (index < 0) 
           index = -(index + 1);
-        if(index < size) {
-          for(int i = size; i > index; i--) {
+        for(int i = size; i > index; i--) {
             elements[i] = elements[i-1];
-          }
         }
         elements[index] = x;
         size++;

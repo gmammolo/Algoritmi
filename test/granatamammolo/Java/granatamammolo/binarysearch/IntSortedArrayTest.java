@@ -422,7 +422,7 @@ public class IntSortedArrayTest {
   }
   
   @Test         
-  public void testToStringClassicArray() {        // TOSEE eseguire e vedere la differenza di stampa....aggiunge uno zero iniziale...
+  public void testToStringClassicArray() {  
     System.out.println("toString - versione classica");
     IntSortedArray instance = new IntSortedArray(4);
     instance.insert(5);

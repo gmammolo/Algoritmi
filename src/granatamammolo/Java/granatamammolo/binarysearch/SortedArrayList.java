@@ -75,7 +75,7 @@ public class SortedArrayList<E extends Comparable<E>> {
       return this.elements.size();
     }
     
-    /**
+   /**
      * Inserisce l'elemento nell'array mantenendolo ordinato <br>
      * Lo inserisce anche se è già presente (ripetendolo più volte). <br>
      * Se l'array è già pieno lo rialloca in un array di dimensione doppia 
@@ -85,10 +85,8 @@ public class SortedArrayList<E extends Comparable<E>> {
      */
     public int insert(E x) {
       int index = binarySearch(x);
-    //  if(size() >= elements.size())          
-    //    elements.ensureCapacity(size()*2+16);
       if (index < 0) 
-        index = -index - 1;
+        index = -(index + 1);
       elements.add(index, x);
       return index;
     }

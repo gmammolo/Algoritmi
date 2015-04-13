@@ -35,7 +35,10 @@ public class Sorting {
 // *****************************************************************************
   
   /**
-   * Implementazione dell'algoritmo Selection Sort.
+   * Implementazione dell'algoritmo di ordinamento del Selection Sort.
+   * L'algoritmo scorre l'array   per ogni elemento  cerca un elemento minore  tra i successivi.
+   * Se lo trova, scambia i due elementi. 
+   * <p>OTTIMIZZAZIONE: il primo for scorre gli elementi da 0 a n-1, mentre il for interno va da i a n</p>
    * @param a Array da ordinare.
    */
   public static void ssort(int[] a){
@@ -66,6 +69,9 @@ public class Sorting {
   
   /**
    * Implementazione del Selection Sort per mezzo dei tipi generici.
+   * L'algoritmo scorre l'array   per ogni elemento  cerca un elemento minore  tra i successivi.
+   * Se lo trova, scambia i due elementi. 
+   * <p>OTTIMIZZAZIONE: il primo for scorre gli elementi da 0 a n-1, mentre il for interno va da i a n</p>
    * @param <T> Tipo dell'array.      TOSEE è giusto scritto così?
    * @param a Array da ordinare.
    */
@@ -107,12 +113,12 @@ public class Sorting {
   public static void isort(int[] a){
     int n = a.length;
     if(n > 1){
-      for(int i = 1; i < n; i++){      
+      for(int i = 1; i < n; i++){
         int val = a[i];
         int j = i;
           while(j > 0 && val < a[j-1]){
-            a[j] = a[j-1];
-            j--;
+            a[j] = a[--j];
+            
           }
           a[j] = val;
       }   
@@ -406,13 +412,5 @@ public class Sorting {
   public static void mSortIsort(int[] a){
     
   }
-
-    public static <T extends Comparable<? super T>> void iSortBin(T[] a) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public static  <T extends Comparable<? super T>>  void mSortBasic(T[] a) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
   
 }// end class
