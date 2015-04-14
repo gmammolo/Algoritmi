@@ -7,6 +7,11 @@ package granatamammolo.Java.granatamammolo.sort;
 public class Sorting {
     
   /**
+   * Non istanziabile!
+   */
+  private Sorting() {}  
+    
+  /**
    * Controlla che l'array sia ordinato.
    * @param a Array da controllare.
    * @return <code>true</code> se l'array è ordinato, <code>false</code> altrimenti.
@@ -20,6 +25,13 @@ public class Sorting {
     return true;
   }
 
+  
+  /**
+   * Controlla che l'array sia ordinato.
+   * @param <T>  type
+   * @param a  array da ordinare
+   * @return <code>true</code> se l'array è ordinato, <code>false</code> altrimenti.
+   */
   public static  <T extends Comparable<? super T>> boolean isSorted (T[] a) {
     if(a.length == 0 || a.length == 1) 
       return true;
@@ -108,6 +120,7 @@ public class Sorting {
   
   /**
    * Implementazione dell'algoritmo Insertion Sort.
+   * TOSEE. scrivere bene il javadoc
    * @param a Algoritmo da ordinare.
    */
   public static void isort(int[] a){
@@ -117,8 +130,7 @@ public class Sorting {
         int val = a[i];
         int j = i;
           while(j > 0 && val < a[j-1]){
-            a[j] = a[--j];
-            
+            a[j] = a[--j]; 
           }
           a[j] = val;
       }   
@@ -140,6 +152,12 @@ public class Sorting {
     a[j] = val;
   }
   
+  /**
+   * Implementazione dell'algoritmo Insertion Sort.
+   * TOSEE. scrivere bene il javadoc
+   * @param <T> type
+   * @param a  array da ordinare
+   */
   public static <T extends Comparable<? super T>> void isort (T[] a){
     int n = a.length;
     if(n > 1){
@@ -147,8 +165,7 @@ public class Sorting {
         T val = a[i];
         int j = i;
         while(j > 0 && a[j-1].compareTo(val) > 0){
-          a[j] = a[j-1];
-          j--;
+          a[j] = a[--j];
         }
         a[j] = val;
       }   
@@ -157,6 +174,7 @@ public class Sorting {
   
   /**
    * Insertion sort con utilizzo della ricerca binaria del punto di inserimento.
+   * TOSEE. scrivere bene il javadoc
    * @param a Array da ordinare.
    */
   public static void iSortBin(int[] a){
@@ -192,6 +210,7 @@ public class Sorting {
         fin = middle-1;
       else  
         ini = middle+1;
+      //TOSEE: e il caso in cui sia uguale e quindi l'ha trovato?
     }
     return ini;
   }
@@ -221,9 +240,9 @@ public class Sorting {
    * Metodo di supporto per il Merge Sort. Fonde due porzioni ordinate dell'array
    * in una sola. Versione non ottimizzata.
    * @param a Array su cui operare.
-   * @param fst Indice iniziale della prima porzione.
-   * @param mid Indice finale della prima porzione.
-   * @param lst Indice finale della seconda porzione.
+   * @param first Indice iniziale della prima porzione.
+   * @param middle Indice finale della prima porzione.
+   * @param last Indice finale della seconda porzione.
    */
   static void mergeBasic(int[] a, int first, int middle, int last) {
     // dimensione array temporaneo
@@ -407,7 +426,7 @@ public class Sorting {
   /**
    * Implementazione del Merge Sort ottimizzato, con l'utilizzo dell'Insertion
    * Sort al di sotto di una certa soglia.
-   * @param a 
+   * @param a  array da ordinare
    */
   public static void mSortIsort(int[] a){
     

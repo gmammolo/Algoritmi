@@ -25,16 +25,16 @@ public class SortingTest {
     public void setUp() {
         int_void = new int[0];
         int_single= new int[]{1};
-        int_unorder = new int[] {1,4,5,6,8,3,2,9,10,7,0};
-        int_order = new int[]  {0,1,2,3,4,5,6,7,8,9,10};
+        int_unorder = new int[] {1,4,5,6,8,5,3,3,2,9,10,7,0};
+        int_order = int_unorder.clone();
+        Arrays.sort(int_order);
         
-        string_unorder = new String[]{"Katy", "Drizzit", "Pluto", "Batman", "Tartaglia", "Michelangelo"};
+        string_unorder = new String[]{ "Batman", "Katy", "Drizzit", "Drizzit", "Pluto", "Batman", "Tartaglia",  "Batman", "Michelangelo"};
         string_order =string_unorder.clone();
         Arrays.sort(string_order);
         string_void = new String[0];
         string_single = new String[]{"Giuseppe"};
     }
-    // TOSEE testare tutti i metodi generici + msort con noGarbage
     
     //###########################################################
     
@@ -124,80 +124,63 @@ public class SortingTest {
         System.out.println(Arrays.toString(a));
         Sorting.ssort(a);
         System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_order);
+        assertArrayEquals(int_order, a);
     }
     
     @Test
     public void testSsortOrderIntArrays() {
         System.out.println("testSsortOrderIntArrays");
         int[] a = int_order.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.ssort(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_order);
+        assertArrayEquals(int_order ,a );
     }
     
     @Test
     public void testSsortVoidIntArrays() {
         System.out.println("testSsortVoidIntArrays");
-        int[] a = int_void;
-        System.out.println(Arrays.toString(a));
+        int[] a = int_void.clone();
         Sorting.ssort(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_void);
+        assertArrayEquals(int_void, a);
     }
     
     @Test
     public void testSsortSingleIntArrays() {
         System.out.println("testSsortSingleIntArrays");
-        int[] a = int_single;
-        System.out.println(Arrays.toString(a));
+        int[] a = int_single.clone();
         Sorting.ssort(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_single);
+        assertArrayEquals(int_single, a);
     }
-     
-    
-    
-    
+
     @Test
     public void testSsortUnorderArrays() {
         System.out.println("testSsortUnorderArrays");
         String[] a = string_unorder.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.ssort(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, string_order);
+        assertArrayEquals(string_order , a);
     }
     
     @Test
     public void testSsortOrderArrays() {
         System.out.println("testSsortOrderArrays");
         String[] a = string_order.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.ssort(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, string_order);
+        assertArrayEquals(string_order, a);
     }
     
     @Test
     public void testSsortVoidArrays() {
         System.out.println("testSsortVoidArrays");
-        String[] a = string_void;
-        System.out.println(Arrays.toString(a));
+        String[] a = string_void.clone();
         Sorting.ssort(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, string_void);
+        assertArrayEquals(string_void, a);
     }
     
     @Test
     public void testSsortSingleArrays() {
         System.out.println("testSsortSingleArrays");
-        String[] a = string_single;
-        System.out.println(Arrays.toString(a));
+        String[] a = string_single.clone();
         Sorting.ssort(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, string_single);
+        assertArrayEquals(string_single,a);
     }
          
     //####################################################################
@@ -206,40 +189,33 @@ public class SortingTest {
     public void testIsortOrderIntArray() {
         System.out.println("testIsortOrderIntArray");
         int[] a = int_order.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.isort(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_order);
+        assertArrayEquals(int_order, a);
     }
     
     @Test
     public void testIsortUnorderIntArray() {
         System.out.println("testIsortUnorderIntArray");
         int[] a = int_unorder.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.isort(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_order);
+        Arrays.sort(int_unorder);
+        assertArrayEquals(int_unorder, a);
     }
     
     @Test
     public void testIsortVoidIntArray() {
         System.out.println("testIsortVoidIntArray");
         int[] a = int_void.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.isort(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_void);
+        assertArrayEquals(int_void, a);
     }
     
     @Test
     public void testIsortSingleIntArray() {
         System.out.println("testIsortSingleIntArray");
         int[] a = int_single.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.isort(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_single);
+        assertArrayEquals(int_single, a);
     }
     
     
@@ -247,40 +223,32 @@ public class SortingTest {
     public void testIsortOrderArray() {
         System.out.println("testIsortOrderArray");
         String[] a = string_order.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.isort(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, string_order);
+        assertArrayEquals(string_order, a);
     }
     
     @Test
     public void testIsortUnorderArray() {
         System.out.println("testIsortUnorderArray");
         String[] a = string_unorder.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.isort(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, string_order);
+        assertArrayEquals(string_order, a );
     }
     
     @Test
     public void testIsortVoidArray() {
         System.out.println("testIsortVoidArray");
         String[] a = string_void.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.isort(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, string_void);
+        assertArrayEquals(string_void, a);
     }
     
     @Test
     public void testIsortSingleArray() {
         System.out.println("testIsortSingleArray");
         String[] a = string_single.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.isort(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, string_single);
+        assertArrayEquals(string_single, a);
     }
     
     //####################################################
@@ -289,40 +257,32 @@ public class SortingTest {
     public void testISortBinOrderIntArrays() {
         System.out.println("testISortBinOrderIntArrays");
         int[] a = int_order.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.iSortBin(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_order);
+        assertArrayEquals(int_order, a);
     }
     
         @Test
     public void testISortBinUnorderIntArray() {
         System.out.println("testISortBinUnorderIntArray");
         int[] a = int_unorder.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.iSortBin(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_order);
+        assertArrayEquals(int_order, a);
     }
     
         @Test
     public void testISortBinVoidIntArray() {
         System.out.println("testISortBinVoidIntArray");
         int[] a = int_void.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.iSortBin(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_void);
+        assertArrayEquals(int_void, a);
     }
     
         @Test
     public void testISortBinSingleIntArray() {
         System.out.println("testISortBinSingleIntArray");
         int[] a = int_single.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.iSortBin(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_single);
+        assertArrayEquals(int_single, a);
     }
     
     //######################################################
@@ -331,40 +291,32 @@ public class SortingTest {
     public void testMSortBasicOrderIntArrays() {
         System.out.println("testMSortBasicOrderIntArrays");
         int[] a = int_order.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.mSortBasic(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_order);
+        assertArrayEquals(int_order, a );
     }
     
     @Test
     public void testMSortBasicUnorderIntArrays() {
         System.out.println("testMSortBasicUnorderIntArrays");
         int[] a = int_unorder.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.mSortBasic(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_order);
+        assertArrayEquals(int_order, a);
     }
     
     @Test
     public void testMSortBasicVoidIntArray() {
         System.out.println("testMSortBasicVoidIntArray");
         int[] a = int_void.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.mSortBasic(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_void);
+        assertArrayEquals(int_void, a );
     }
     
     @Test
     public void testMSortBasicSingleIntArray() {
         System.out.println("testMSortBasicSingleIntArray");
         int[] a = int_single.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.mSortBasic(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_single);
+        assertArrayEquals(int_single, a);
     }
     
 
@@ -374,19 +326,15 @@ public class SortingTest {
     public void testMSortNoGarbageOrderIntArrays() {
         System.out.println("testMSortNoGarbageOrderIntArrays");
         int[] a = int_order.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.mSortNoGarbage(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_order);
+        assertArrayEquals(int_order, a);
     }
     
     @Test
     public void testMSortNoGarbageUnorderIntArrays() {
         System.out.println("testMSortNoGarbageUnorderIntArrays");
         int[] a = int_unorder.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.mSortNoGarbage(a);
-        System.out.println(Arrays.toString(a));
         assertArrayEquals(int_order, a);
     }
     
@@ -394,20 +342,16 @@ public class SortingTest {
     public void testMSortNoGarbageVoidIntArray() {
         System.out.println("testMSortNoGarbageVoidIntArray");
         int[] a = int_void.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.mSortNoGarbage(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_void);
+        assertArrayEquals(int_void, a);
     }
     
     @Test
     public void testMSortNoGarbageSingleIntArray() {
         System.out.println("testMSortNoGarbageSingleIntArray");
         int[] a = int_single.clone();
-        System.out.println(Arrays.toString(a));
         Sorting.mSortNoGarbage(a);
-        System.out.println(Arrays.toString(a));
-        assertArrayEquals(a, int_single);
+        assertArrayEquals(int_single, a);
     }
     
 }
