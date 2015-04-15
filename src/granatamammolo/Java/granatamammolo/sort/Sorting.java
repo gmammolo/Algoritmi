@@ -387,7 +387,7 @@ public class Sorting {
     while(h >= i)
       a[l--] = a[h--];
     // trasferimento dei valori da aux[] ad a[]
-    for(int m = first; m < l; m++)
+    for(int m = first; m < k; m++)
       a[m] = aux[m];
   }
   
