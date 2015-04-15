@@ -7,7 +7,7 @@ package granatamammolo.Java.granatamammolo.sort;
 public class Sorting {
     
   /**
-   * Non istanziabile!
+   * Classe statica non istanziabile
    */
   private Sorting() {}  
     
@@ -28,7 +28,7 @@ public class Sorting {
   
   /**
    * Controlla che l'array sia ordinato.
-   * @param <T>  type
+   * @param <T>  extends Comparable
    * @param a  array da ordinare
    * @return <code>true</code> se l'array è ordinato, <code>false</code> altrimenti.
    */
@@ -48,9 +48,13 @@ public class Sorting {
   
   /**
    * Implementazione dell'algoritmo di ordinamento del Selection Sort.
-   * L'algoritmo scorre l'array   per ogni elemento  cerca un elemento minore  tra i successivi.
-   * Se lo trova, scambia i due elementi. 
-   * <p>OTTIMIZZAZIONE: il primo for scorre gli elementi da 0 a n-1, mentre il for interno va da i a n</p>
+   * L'algoritmo scorre l'array   e cerca sempre l' elemento minore  tra i successivi. quando lo trova lo 
+   * riordina e riparte a cercare il nuovo minimo nella porzione di array rimasta. termina quando tutto l'array 
+   * è stato ordinato. <br>
+   * -<b>Caso Migliore= Caso peggiore = Caso medio </b>= O(n^2) [Quadratico]  <br>
+   * -<b>Sul Posto</b> <br>
+   * -<b>Non Stabile</b><br>
+   * <p><i>OTTIMIZZAZIONE: il primo for scorre gli elementi da 0 a n-1, mentre il for interno va da i a n</i></p>
    * @param a Array da ordinare.
    */
   public static void ssort(int[] a){
@@ -63,7 +67,7 @@ public class Sorting {
           iMin = j;
       }
       if(iMin != i)
-        scambia(a, iMin, i);
+        swap(a, iMin, i);
     }    
   }
   
@@ -73,7 +77,7 @@ public class Sorting {
    * @param iMin Indice dell'elemento minimo.
    * @param index Indice in cui inserire l'elemento minimo.
    */
-  private static void scambia(int[] a, int iMin, int index){
+  private static void swap(int[] a, int iMin, int index){
     int tmp = a[index];
     a[index] = a[iMin];
     a[iMin] = tmp;      
@@ -83,8 +87,11 @@ public class Sorting {
    * Implementazione del Selection Sort per mezzo dei tipi generici.
    * L'algoritmo scorre l'array   per ogni elemento  cerca un elemento minore  tra i successivi.
    * Se lo trova, scambia i due elementi. 
-   * <p>OTTIMIZZAZIONE: il primo for scorre gli elementi da 0 a n-1, mentre il for interno va da i a n</p>
-   * @param <T> Tipo dell'array.      TOSEE è giusto scritto così?
+   * <p><i>OTTIMIZZAZIONE: il primo for scorre gli elementi da 0 a n-1, mentre il for interno va da i a n</i></p>
+   * -<b>Caso Migliore= Caso peggiore = Caso medio </b> = O(n^2) [Quadratico] <br>
+   * -<b>Sul Posto</b> <br>
+   * -<b>Non Stabile</b> <br>
+   * @param <T> extends Comparable
    * @param a Array da ordinare.
    */
   public static <T extends Comparable<? super T>> void ssort (T[] a){
@@ -97,18 +104,18 @@ public class Sorting {
           iMin = j;
       }
       if(iMin != i)
-        scambia(a, iMin, i);
+        swap(a, iMin, i);
     } 
   }
  
   /**
    * Metodo di supporto per il Selection sort. Scambia di posizione due valori.
-   * @param <T> Tipo dell'array.      TOSEE è giusto scritto così?
+   * @param <T> extends Comparable
    * @param a Array su cui operare.
    * @param iMin Indice dell'elemento minimo.
    * @param index Indice in cui inserire l'elemento minimo.
    */
-  private static <T extends Comparable<? super T>> void scambia(T[] a, int iMin, int index){
+  private static <T extends Comparable<? super T>> void swap(T[] a, int iMin, int index){
     T tmp = a[index];
     a[index] = a[iMin];
     a[iMin] = tmp;      
@@ -119,8 +126,15 @@ public class Sorting {
 // *****************************************************************************
   
   /**
-   * Implementazione dell'algoritmo Insertion Sort.
-   * TOSEE. scrivere bene il javadoc
+   * <p>Implementazione dell'algoritmo di <strong>ordinamento</strong> Insertion Sort.
+   * Si prende via via l'elemento successivo e lo si inserisce in maniera ordinata nella parte che era già
+   * stata ordinata</p>
+   * <p>-<strong>Caso Peggiore:</strong>L'array di partenza è ordinato inversamente.  O(n^2)</p>
+   * <p>-<strong>Caso Migliore:</strong>L'array di partenza è già ordinato: O(n)</p>
+   * <p>-<strong>Caso Medio:</strong> O(n) ~ O(n^2)</p>
+   * <p>-<strong>Sul Posto</strong></p>
+   * <p>-<strong>Stabile:</strong> l'array posiziona ogni elemento nel primo posto utile per ordinare l'array
+   * e una volta posizionato non sarà più spostato, mantenendo stabile l'algoritmo</p>
    * @param a Algoritmo da ordinare.
    */
   public static void isort(int[] a){
@@ -138,13 +152,14 @@ public class Sorting {
   }
   
   /**
-   * Metodo di supporto per l'Insertion Sort. Inserisce l'elemento in posizione 
+   * Metodo di supporto per l'Insertion Sort (Versione con Ricerca binaria). Inserisce l'elemento di posizione 
    * i in posizione j, shiftando il resto dell'array di una posizione.
    * @param a Array su cui operare.
    * @param j Posizione di destinazione dell'elemento.
-   * @param i Posizione originale dell'elemento.
+   * @param i Posizione originale dell'elemento (<code>i-1</code> corrisponde con l'ultimo elemento
+   * ordinato ).
    */
-  private static void inserisci(int[] a, int j, int i){
+  private static void insert(int[] a, int j, int i){
     int val = a[i];
     for(int k = i; k > j; k--){
       a[k] = a[k-1];
@@ -153,9 +168,16 @@ public class Sorting {
   }
   
   /**
-   * Implementazione dell'algoritmo Insertion Sort.
-   * TOSEE. scrivere bene il javadoc
-   * @param <T> type
+   * <p>Implementazione dell'algoritmo di <strong>ordinamento</strong> Insertion Sort.
+   * Si prende via via l'elemento successivo e lo si inserisce in maniera ordinata nella parte che era già
+   * stata ordinata</p>
+   * <p><strong>Caso Peggiore:</strong>L'array di partenza è ordinato inversamente.  O(n^2)</p>
+   * <p><strong>Caso Migliore:</strong>L'array di partenza è già ordinato: O(n)</p>
+   * <p><strong>Caso Medio:</strong> O(n) ~ O(n^2)</p>
+   * <p>-<strong>Sul Posto</strong></p>
+   * <p>-<strong>Stabile:</strong> l'array posiziona ogni elemento nel primo posto utile per ordinare l'array
+   * e una volta posizionato non sarà più spostato, mantenendo stabile l'algoritmo</p>
+   * @param <T> extends Comparable
    * @param a  array da ordinare
    */
   public static <T extends Comparable<? super T>> void isort (T[] a){
@@ -173,8 +195,18 @@ public class Sorting {
   }
   
   /**
-   * Insertion sort con utilizzo della ricerca binaria del punto di inserimento.
-   * TOSEE. scrivere bene il javadoc
+   * <p>Implementazione dell'algoritmo di <strong>ordinamento</strong> Insertion Sort con ausilio 
+   * della ricerca binaria. Si prende via via l'elemento successivo e lo si inserisce in maniera 
+   * ordinata nella parte che era già stata ordinata</p>
+   * <p>NOTE SULLA RICERCA BINARIA: la ricerca binaria ha una complessita <code>O(log(n))</code> ,
+   * a cui bisogna però aggiungere lo spostamento dei valori dell' array in avanti fino alla posizione occupata
+   * dal valore da ordinare (che nell' algoritmo di base viene fatto nello stesso momento in cui si cerca
+   * il valore) Dunque la complessità temporale rimane comunque quadratica nel caso peggiore</p>  //TOSEE: Assicurarsi che non ho scritto una fesseria ^^"
+   * <p>-<strong>Caso Peggiore:</strong>L'array di partenza è ordinato inversamente.  O(n^2)</p>
+   * <p>-<strong>Caso Migliore:</strong>L'array di partenza è già ordinato: O(n*log(n))</p> //TOSEE: verificare se è vero
+   * <p>-<strong>Caso Medio:</strong> O(n) ~ O(n^2)</p>
+   * <p>-<strong>Sul Posto</strong></p>
+   * <p>-<strong>Stabile:</strong> La ricerca binaria ritorna sempre la posizione più a sinistra possibile (modificata per farlo)</p>
    * @param a Array da ordinare.
    */
   public static void iSortBin(int[] a){
@@ -184,16 +216,19 @@ public class Sorting {
         int j = i-1;
         if(a[i] < a[j]){
           int pos = ricercaBinaria(a, a[i], 0, j);
-          inserisci(a, pos, i);
+          insert(a, pos, i);
         }          
       }  
     }      
   }
   
   /**
-   * Metodo di supporto per l'Insertion Sort. Ricerca binaria (versione
-   * leggermente modificata) per determinare il punto di inserimento del
-   * valore.
+   * Metodo di supporto per l'Insertion Sort con Ricerca binaria per determinare il punto di
+   * inserimento del valore.<br>
+   * Complessità:<code> i= fin - ini := O(log(i))</code>
+   * <p><i>NOTE: L'algoritmo è modificato in modo da non uscire appena trova la posizione adatta
+   * per il valore cercato, ma continua per trovare la "posizione migliore", ovvero quella più a sinistra possibile
+   * (in questo caso)</i></p>
    * @param a Array su cui operare.
    * @param val Valore da ordinare.
    * @param ini Indice iniziale della porzione da considerare per la ricerca.
@@ -210,7 +245,6 @@ public class Sorting {
         fin = middle-1;
       else  
         ini = middle+1;
-      //TOSEE: e il caso in cui sia uguale e quindi l'ha trovato?
     }
     return ini;
   }
@@ -220,7 +254,9 @@ public class Sorting {
 // *****************************************************************************
   
   /**
-   * Implementazione del Merge Sort. Versione non ottimizzata
+   * Implementazione del Merge Sort( Versione non ottimizzata) <br>
+   * <p></p>
+   * <p>-<b>Complessità: </b> O(n*log(n)) </p>
    * @param a Array da ordinare.
    */
   public static void mSortBasic(int[] a){
@@ -239,6 +275,7 @@ public class Sorting {
   /**
    * Metodo di supporto per il Merge Sort. Fonde due porzioni ordinate dell'array
    * in una sola. Versione non ottimizzata.
+   * <p>Complessità: O(n)</p>
    * @param a Array su cui operare.
    * @param first Indice iniziale della prima porzione.
    * @param middle Indice finale della prima porzione.
@@ -256,7 +293,7 @@ public class Sorting {
     }
     // inserimento in c dell'array non ancora esaurito
     while(i <= middle) 
-      c[k++] = a[i++];
+        c[k++] = a[i++];
     while(j <= last) 
       c[k++] = a[j++];
     // copiatura di c all'interno dell'array originale
