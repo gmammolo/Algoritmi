@@ -578,20 +578,22 @@ public class Sorting {
   public static void qSortBasic(int[] a){
     if(a.length <= 1) return;
     qSortBasicRic(a, 0, a.length);
-////    Random ran = new Random();
-////    int val = ran.nextInt(a.length);
   }
   
   private static void qSortBasicRic(int[] a, int inf, int sup){
     if(inf >= sup) return;
-        int i = inf;
+    Random random = new Random();
+    int pivot = random.nextInt(sup - inf + 1) + inf;
+    int i = inf;
     for(int j = inf+1; j <= sup; j++){
-      if(a[j] < a[inf]){
+      if(a[j] < pivot){
         i++;
         swap(a, i, j);
       }
     }
-    swap(a, inf, i);    
+    swap(a, inf, i);   
+    qSortBasicRic(a, inf, i);
+    qSortBasicRic(a, i+1, sup);
   }
   // </editor-fold> 
   
