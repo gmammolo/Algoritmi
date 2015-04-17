@@ -10,7 +10,10 @@ public class Sorting {
    * Classe statica non istanziabile
    */
   private Sorting() {}  
-    
+
+  
+ // <editor-fold defaultstate="collapsed" desc=" isSorted">
+
   /**
    * Controlla che l'array sia ordinato.
    * @param a Array da controllare.
@@ -40,11 +43,9 @@ public class Sorting {
         return false; 
     return true;
   }
-
+   // </editor-fold>
   
-// *****************************************************************************
-// *********************** SELECTION SORT **************************************
-// *****************************************************************************
+ // <editor-fold defaultstate="collapsed" desc=" SELECTION SORT ">
   
   /**
    * Implementazione dell'algoritmo di ordinamento del Selection Sort.
@@ -121,9 +122,11 @@ public class Sorting {
     a[iMin] = tmp;      
   }
 
-// *****************************************************************************
-// *********************** INSERTION SORT **************************************
-// *****************************************************************************
+  
+// </editor-fold>
+  
+ // <editor-fold defaultstate="collapsed" desc=" INSERTION SORT ">
+
   
   /**
    * <p>Implementazione dell'algoritmo di <strong>ordinamento</strong> Insertion Sort.
@@ -215,7 +218,7 @@ public class Sorting {
       for(int i = 1; i < n; i++){
         int j = i-1;
         if(a[i] < a[j]){
-          int pos = ricercaBinaria(a, a[i], 0, j);
+          int pos = binarySearch(a, a[i], 0, j);
           insert(a, pos, i);
         }          
       }  
@@ -235,7 +238,7 @@ public class Sorting {
    * @param fin Indice finale della porzione da considerare per la ricerca.
    * @return Posizione dove inserire val,
    */
-  private static int ricercaBinaria(int[] a, int val, int ini, int fin){
+  private static int binarySearch(int[] a, int val, int ini, int fin){
     if(val < a[ini])  return ini;
     if(val >= a[fin])  return fin+1;
     int middle;
@@ -249,20 +252,34 @@ public class Sorting {
     return ini;
   }
   
-// *****************************************************************************
-// *********************** MERGE SORT ******************************************
-// *****************************************************************************
   
+  
+// </editor-fold>
+  
+ // <editor-fold defaultstate="collapsed" desc=" MergeSort Base ">
   /**
    * Implementazione del Merge Sort( Versione non ottimizzata) <br>
-   * <p></p>
+   * <p>Algoritmo ricorsivo: divide l'array da ordinare in tanti piccoli array (N.B. in realtà lavora con gli indici,
+   * quindi su porzioni dello stesso array ), fino ad arrivare  all' ultimo passo in cui gli array sono 
+   * composti da 1 solo elemento.e poi li riordina risalendo (nel passo invariante generico si ha, quindi,
+   * che i due array su cui fare il merge sono ordinati) </p>
    * <p>-<b>Complessità: </b> O(n*log(n)) </p>
+   * <p>-<b>Non sul Posto:</b> nel merge viene usato un array ausiliario</p>
+   * <p>-<b>Stabile:</b>L'algoritmo che esegue il merge fa in modo che se due elementi chiave
+   * sono uguali, venga preso prima quello a sinistra.</p>
    * @param a Array da ordinare.
    */
   public static void mSortBasic(int[] a){
     mSortBasicRic(a, 0, a.length-1);
   }
   
+  /**
+   * Metodo privato ricorsivo richiamato inizialmente da mSortBasic
+   * @see mSortBasic
+   * @param a
+   * @param first 
+   * @param last 
+   */
   private static void mSortBasicRic(int[] a, int first, int last){
     if(first < last){
       int half = (first + last) / 2;
@@ -274,7 +291,8 @@ public class Sorting {
   
   /**
    * Metodo di supporto per il Merge Sort. Fonde due porzioni ordinate dell'array
-   * in una sola. Versione non ottimizzata.
+   * in una sola con l'ausilio di un array temporaneo (rende l'algoritmo non sul posto). <br>
+   * Versione non ottimizzata.
    * <p>Complessità: O(n)</p>
    * @param a Array su cui operare.
    * @param first Indice iniziale della prima porzione.
@@ -301,9 +319,17 @@ public class Sorting {
       a[first + h] = c[h];
   }
 
+   // </editor-fold>
+  
+ // <editor-fold defaultstate="collapsed" desc=" Merge Sort (No Garbage)">
   /**
-   * Implementazione del Merge Sort. Versione con un unico array ausiliario
-   * e merge ottimizzato.
+   * Implementazione del Merge Sort. Versione con un unico array ausiliario e merge ottimizzato.
+   * <p>Crea un array della stessa dimensione dell' array da ordinare che userà come supporto per
+   * riordinare l'array a.</p>
+   * <p>-<b>Complessità: </b> O(n*log(n)) </p>
+   * <p>-<b>Non sul Posto:</b> nel merge viene usato un array ausiliario</p>
+   * <p>-<b>Stabile:</b>L'algoritmo che esegue il merge fa in modo che se due elementi chiave
+   * sono uguali, venga preso prima quello a sinistra.</p>
    * @param a Array da ordinare.
    */
   public static void mSortNoGarbage(int[] a){
@@ -312,6 +338,14 @@ public class Sorting {
     mSortNoGarbageRic(a, 0, n-1, aux);
   }
 
+  /**
+   * metodo ausiliario privato per mSortNoGarbage
+   * @see mSortNoGarbage
+   * @param a
+   * @param first
+   * @param last
+   * @param aux 
+   */
   private static void mSortNoGarbageRic(int[] a, int first, int last, int[] aux){
     if(first < last){
       int middle = (first + last) >>> 1;
@@ -323,6 +357,7 @@ public class Sorting {
   
   /**
    * Metodo di supporto per il Merge Sort senza Garbage.
+   * <b>Non<b> è a passo alternato, contiene le varie ottimizzazioni del merge
    * @param a Array su cui operare.
    * @param first Indice iniziale della prima porzione.
    * @param middle Indice finale della prima porzione.
@@ -332,6 +367,11 @@ public class Sorting {
   private static void mergeOptimized(int[] a, int first, int middle, int last, int[] aux){
     int i = first, j = middle+1;
     int k = first;
+    // TOSEE: NON VEDO QUESTA OTTIMIZZAZIONE :
+    //Se quando si deve effettuare la fusione l'ultimo elemento del segmento sinistro è minore o 
+    //uguale al primo elemento del segmento di destra, la sequenza dei due segmenti è già un
+    //segmento ordinato e quindi la fusione non è necessaria.
+
     while(i <= middle && j <= last){
       if(a[i] <= a[j])
         aux[k++] = a[i++];
@@ -353,7 +393,13 @@ public class Sorting {
   
   /**
    * Implementazione del Merge Sort per mezzo dei tipi generici.
-   * @param <T> Tipo dell'array.      TOSEE è giusto scritto così?
+   * <p>Crea un array della stessa dimensione dell' array da ordinare che userà come supporto per
+   * riordinare l'array a.</p>
+   * <p>-<b>Complessità: </b> O(n*log(n)) </p>
+   * <p>-<b>Non sul Posto:</b> nel merge viene usato un array ausiliario</p>
+   * <p>-<b>Stabile:</b>L'algoritmo che esegue il merge fa in modo che se due elementi chiave
+   * sono uguali, venga preso prima quello a sinistra.</p>
+   * @param <T> extends Comparable
    * @param a Array da ordinare.
    */
   public static <T extends Comparable<? super T>> void msortNoGarbage (T[] a ){
@@ -362,6 +408,15 @@ public class Sorting {
     mSortNoGarbageRic(a, 0, n-1, aux);
   }
   
+  /**
+   * Metodo Ausiliario privato usato da msortNoGarbage
+   * @see msortNoGarbage
+   * @param <T>
+   * @param a
+   * @param first
+   * @param last
+   * @param aux 
+   */
    private static <T extends Comparable<? super T>> void mSortNoGarbageRic(T[] a, int first, int last, T[] aux){
     if(first < last){
       int middle = (first + last) >>> 1;
@@ -374,6 +429,11 @@ public class Sorting {
   private static <T extends Comparable<? super T>> void mergeOptimized(T[] a, int first, int middle, int last, T[] aux){
     int i = first, j = middle+1;
     int k = first;
+    // TOSEE: NON VEDO QUESTA OTTIMIZZAZIONE :
+    //Se quando si deve effettuare la fusione l'ultimo elemento del segmento sinistro è minore o 
+    //uguale al primo elemento del segmento di destra, la sequenza dei due segmenti è già un
+    //segmento ordinato e quindi la fusione non è necessaria.
+    
     while(i <= middle && j <= last){
       if(a[i].compareTo(a[j]) <= 0)
         aux[k++] = a[i++];
@@ -393,11 +453,17 @@ public class Sorting {
       a[m] = aux[m];
   }
   
+  
+   // </editor-fold>
+  
+ // <editor-fold defaultstate="collapsed" desc="Merge Sort Alternato">
+
+  
   /**
    * Implementazione del Merge Sort - versione "a passo alternato".
    * @param a Array da ordinare.
    */
-  public static void mSortAlt (int[] a){
+  public static void msortAlt (int[] a){
     int n = a.length;
     int[] aux = a.clone();
     mSortAltRic(a, 0, n-1, aux);
@@ -415,10 +481,16 @@ public class Sorting {
   private static void mergeAlt(int[] a, int first, int middle, int last, int[] c) {
     int i = first, j = middle+1, k = 0; 
     // scorrimento delle due porzioni e inserimento nell'array temporaneo
+    
+    // TOSEE: NON VEDO QUESTA OTTIMIZZAZIONE :
+    //Se quando si deve effettuare la fusione l'ultimo elemento del segmento sinistro è minore o 
+    //uguale al primo elemento del segmento di destra, la sequenza dei due segmenti è già un
+    //segmento ordinato e quindi la fusione non è necessaria.
     while(i <= middle && j <= last) {
       if(a[i] <= a[j]) c[k++] = a[i++];
       else             c[k++] = a[j++];
     }
+    
     // inserimento in c dell'array non ancora esaurito
     while(i <= middle) 
       c[k++] = a[i++];
@@ -449,6 +521,12 @@ public class Sorting {
   private static <T extends Comparable<? super T>> void mergeAlt(T[] a, int first, int middle, int last, T[] c) {
     int i = first, j = middle+1, k = 0; 
     // scorrimento delle due porzioni e inserimento nell'array temporaneo
+    
+    // TOSEE: NON VEDO QUESTA OTTIMIZZAZIONE :
+    //Se quando si deve effettuare la fusione l'ultimo elemento del segmento sinistro è minore o 
+    //uguale al primo elemento del segmento di destra, la sequenza dei due segmenti è già un
+    //segmento ordinato e quindi la fusione non è necessaria.
+    
     while(i <= middle && j <= last) {
       if(a[i].compareTo(a[j]) <= 0) c[k++] = a[i++];
       else                          c[k++] = a[j++];
@@ -460,13 +538,22 @@ public class Sorting {
       c[k++] = a[j++];
   }
   
-  /**
+ // </editor-fold>
+  
+ // <editor-fold defaultstate="collapsed" desc=" MSort Isort ">
+  
+ /**
    * Implementazione del Merge Sort ottimizzato, con l'utilizzo dell'Insertion
    * Sort al di sotto di una certa soglia.
    * @param a  array da ordinare
    */
-  public static void mSortIsort(int[] a){ // TODO TOSEE
-    
+  public static void mSortIsort(int[] a){
+      //TOSEE: perchè non l'avevi fatto? l'ho completato io
+    int soglia = 10;
+    if(a.length <= soglia)
+        isort(a);
+    else
+        msortAlt(a);
   }
   
   /**
@@ -476,13 +563,15 @@ public class Sorting {
   public static void parallelMergesort(int[] a){
     
   }
+  // </editor-fold>
+  
   
   /**
    * Implementazione del QuickSort.
    * @param a Array da ordinare
    */
   public static void qSortBasic(int[] a){
-    
   }
+   
   
-}// end class
+}
