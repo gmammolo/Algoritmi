@@ -5,7 +5,7 @@ package granatamammolo.Java.granatamammolo.sort;
  * @author Federica
  */
 public class Sorting {
-    
+   // TOSEE devo levare tutti i commenti in mezzo 
   /**
    * Classe statica non istanziabile
    */
@@ -465,7 +465,23 @@ public class Sorting {
    * Sort al di sotto di una certa soglia.
    * @param a  array da ordinare
    */
-  public static void mSortIsort(int[] a){
+  public static void mSortIsort(int[] a){ // TODO TOSEE
+    
+  }
+  
+  /**
+   * Versione parallela di una delle versioni precedenti. TOSEE non credo lo farò
+   * @param a 
+   */
+  public static void parallelMergesort(int[] a){
+    
+  }
+  
+  /**
+   * Implementazione del QuickSort.
+   * @param a Array da ordinare
+   */
+  public static void qSortBasic(int[] a){
     
   }
   
