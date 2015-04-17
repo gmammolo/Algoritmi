@@ -598,7 +598,7 @@ public class Sorting {
     qSortBasicRic(a, i+1, sup);
   }
   
-  public static <T extends Comparable<? super T>> void qsortBasic(T[] a){
+  public static <T extends Comparable<? super T>> void qSortBasic(T[] a){
     if(a.length <= 1) return;
     qSortBasicRic(a, 0, a.length);
   }
@@ -629,12 +629,12 @@ public class Sorting {
    * Algoritmo sul posto. Il pivot non viene rimosso.
    * @param a Array da ordinare
    */
-  public void qsortHoare(int [] a){
+  public static void qSortHoare(int [] a){
     if(a.length <= 1) return;
     qSortHoareRic(a, 0, a.length);
   }
   
-  private void qSortHoareRic(int[] a, int inf, int sup){
+  private static void qSortHoareRic(int[] a, int inf, int sup){
     int i = inf, j = sup;
     Random random = new Random();
     int pivot = a[random.nextInt(sup - inf + 1) + inf];
