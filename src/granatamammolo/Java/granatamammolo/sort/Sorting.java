@@ -461,6 +461,9 @@ public class Sorting {
   
   /**
    * Implementazione del Merge Sort - versione "a passo alternato".
+   * Versione ottimizzata del merge sort: L'arrey ausiliario viene caricato con gli stessi valori dell' array
+   * da ordinare e si esegue il merge usando in modo alternato porzioni dei due array, evitando cosi 
+   * di dover caricare i valori ordinati nell' ausiliario dentro l'array originale.
    * @param a Array da ordinare.
    */
   public static void msortAlt (int[] a){
