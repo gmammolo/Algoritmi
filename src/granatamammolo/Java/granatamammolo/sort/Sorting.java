@@ -1,11 +1,14 @@
 package granatamammolo.Java.granatamammolo.sort;
 
+import java.util.Random;
+
 /**
  *
  * @author Federica
  */
 public class Sorting {
    // TOSEE devo levare tutti i commenti in mezzo 
+  // TOSEE metodi di supporto renderli generici
   /**
    * Classe statica non istanziabile
    */
@@ -456,7 +459,7 @@ public class Sorting {
   
    // </editor-fold>
   
- // <editor-fold defaultstate="collapsed" desc="Merge Sort Alternato">
+ // <editor-fold defaultstate="collapsed" desc=" Merge Sort Alternato">
 
   
   /**
@@ -556,6 +559,8 @@ public class Sorting {
         msortAlt(a);
   }
   
+  // </editor-fold>
+   
   /**
    * Versione parallela di una delle versioni precedenti. TOSEE non credo lo farò
    * @param a 
@@ -563,15 +568,31 @@ public class Sorting {
   public static void parallelMergesort(int[] a){
     
   }
-  // </editor-fold>
   
   
+ // <editor-fold defaultstate="collapsed" desc=" QuickSort Base  ">  
   /**
-   * Implementazione del QuickSort.
+   * Implementazione del QuickSort base (con estrazione del pivot).
    * @param a Array da ordinare
    */
   public static void qSortBasic(int[] a){
+    if(a.length <= 1) return;
+    qSortBasicRic(a, 0, a.length);
+////    Random ran = new Random();
+////    int val = ran.nextInt(a.length);
   }
-   
+  
+  private static void qSortBasicRic(int[] a, int inf, int sup){
+    if(inf >= sup) return;
+        int i = inf;
+    for(int j = inf+1; j <= sup; j++){
+      if(a[j] < a[inf]){
+        i++;
+        swap(a, i, j);
+      }
+    }
+    swap(a, inf, i);    
+  }
+  // </editor-fold> 
   
 }
