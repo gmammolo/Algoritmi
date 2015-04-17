@@ -422,4 +422,74 @@ public class SortingTest {
 //        assertArrayEquals(string_single, a);
 //    }
 //    
+    //###############################################à
+    
+       @Test
+    public void testQsortHoareOrderIntArray() {
+        System.out.println("testQsortHoareOrderIntArray");
+        int[] a = int_order.clone();
+        Sorting.qSortBasic(a);
+        assertArrayEquals(int_order, a);
+    }
+    
+    @Test
+    public void testQsortHoareUnorderIntArray() {
+        System.out.println("testQsortHoareUnorderIntArray");
+        int[] a = int_unorder.clone();
+        Sorting.qSortBasic(a);
+        Arrays.sort(int_unorder);
+        assertArrayEquals(int_unorder, a);
+    }
+    
+    @Test
+    public void testQsortHoareVoidIntArray() {
+        System.out.println("testQsortHoareVoidIntArray");
+        int[] a = int_void.clone();
+        Sorting.qSortBasic(a);
+        assertArrayEquals(int_void, a);
+    }
+    
+    @Test
+    public void testQsortHoareSingleIntArray() {
+        System.out.println("testQsortHoareSingleIntArray");
+        int[] a = int_single.clone();
+        Sorting.qSortBasic(a);
+        assertArrayEquals(int_single, a);
+    }
+    
+    
+    //    
+//        @Test
+//    public void testQsortHoareOrderArray() {
+//        System.out.println("testQsortHoareOrderArray");
+//        String[] a = string_order.clone();
+//        Sorting.qSortBasic(a);
+//        assertArrayEquals(string_order, a);
+//    }
+//    
+//    @Test
+//    public void testQsortUHoarenorderArray() {
+//        System.out.println("testQsortHoareUnorderArray");
+//        String[] a = string_unorder.clone();
+//        Sorting.qSortBasic(a);
+//        assertArrayEquals(string_order, a );
+//    }
+//    
+//    @Test
+//    public void testQsortHoareVoidArray() {
+//        System.out.println("testQsortHoareVoidArray");
+//        String[] a = string_void.clone();
+//        Sorting.qSortBasic(a);
+//        assertArrayEquals(string_void, a);
+//    }
+//    
+//    @Test
+//    public void testQsortHoareSingleArray() {
+//        System.out.println("testIsortHoareSingleArray");
+//        String[] a = string_single.clone();
+//        Sorting.qSortBasic(a);
+//        assertArrayEquals(string_single, a);
+//    }
+//    
+    
 }
