@@ -374,7 +374,6 @@ public class Sorting {
     //Se quando si deve effettuare la fusione l'ultimo elemento del segmento sinistro è minore o 
     //uguale al primo elemento del segmento di destra, la sequenza dei due segmenti è già un
     //segmento ordinato e quindi la fusione non è necessaria.
-
     while(i <= middle && j <= last){
       if(a[i] <= a[j])
         aux[k++] = a[i++];
@@ -459,9 +458,7 @@ public class Sorting {
   
    // </editor-fold>
   
- // <editor-fold defaultstate="collapsed" desc=" Merge Sort Alternato">
-
-  
+ // <editor-fold defaultstate="collapsed" desc=" Merge Sort Alternato">  
   /**
    * Implementazione del Merge Sort - versione "a passo alternato".
    * Versione ottimizzata del merge sort: L'arrey ausiliario viene caricato con gli stessi valori dell' array
@@ -576,6 +573,8 @@ public class Sorting {
  // <editor-fold defaultstate="collapsed" desc=" QuickSort Base  ">  
   /**
    * Implementazione del QuickSort base (con estrazione del pivot).
+   * Gli elementi uguali al pivot rimangono sempre nella stessa porzione di 
+   * destra (insieme agli elementi > pivot).
    * @param a Array da ordinare
    */
   public static void qSortBasic(int[] a){
@@ -598,6 +597,60 @@ public class Sorting {
     qSortBasicRic(a, inf, i);
     qSortBasicRic(a, i+1, sup);
   }
+  
+  public static <T extends Comparable<? super T>> void qsortBasic(T[] a){
+    if(a.length <= 1) return;
+    qSortBasicRic(a, 0, a.length);
+  }
+  
+  private static <T extends Comparable<? super T>> void qSortBasicRic(T[] a, int inf, int sup){
+    if(inf >= sup) return;
+    Random random = new Random();
+    int pivot = random.nextInt(sup - inf + 1) + inf;
+    int i = inf;
+    for(int j = inf+1; j <= sup; j++){
+      if(a[j].compareTo(a[pivot]) < 0){
+        i++;
+        swap(a, i, j);
+      }
+    }
+    swap(a, inf, i);   
+    qSortBasicRic(a, inf, i);
+    qSortBasicRic(a, i+1, sup);
+  }
   // </editor-fold> 
   
+  // <editor-fold defaultstate="collapsed" desc=" QuickSort Hoare  ">
+  
+  /**
+   * Implementazione del QuickSort alla Hoare. 
+   * Gli elementi uguali al pivot possono essere in entrambi i lati rispetto al
+   * pivot.
+   * Algoritmo sul posto. Il pivot non viene rimosso.
+   * @param a Array da ordinare
+   */
+  public void qsortHoare(int [] a){
+    if(a.length <= 1) return;
+    qSortHoareRic(a, 0, a.length);
+  }
+  
+  private void qSortHoareRic(int[] a, int inf, int sup){
+    int i = inf, j = sup;
+    Random random = new Random();
+    int pivot = a[random.nextInt(sup - inf + 1) + inf];
+    do{
+      while(a[i] < pivot)
+        i++;
+      while(a[j] > pivot)
+        j--;
+      if(i <= j){
+        swap(a, i, j);
+        i++;
+        j--;
+      }
+    }while(i <= j);
+    qSortHoareRic(a, inf, j);
+    qSortHoareRic(a, i, sup);
+  }
+  // </editor-fold> 
 }
