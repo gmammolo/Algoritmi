@@ -492,4 +492,43 @@ public class SortingTest {
     }
     
     
+    
+    //#################################
+    
+       
+    @Test
+    public void testmsortParallelOrderIntArray() {
+        System.out.println("testmsortParallelOrderIntArray");
+        int[] a = int_order.clone();
+        Sorting.parallelMergesort(a);
+        assertArrayEquals(int_order, a);
+    }
+    
+    @Test
+    public void testmsortParallelUnorderIntArray() {
+        System.out.println("testmsortParallelUnorderIntArray");
+        int[] a = int_unorder.clone();
+        Sorting.parallelMergesort(a);
+        Arrays.sort(int_unorder);
+        assertArrayEquals(int_unorder, a);
+    }
+    
+    @Test
+    public void testmsortParallelVoidIntArray() {
+        System.out.println("testmsortParallelVoidIntArray");
+        int[] a = int_void.clone();
+        Sorting.parallelMergesort(a);
+        assertArrayEquals(int_void, a);
+    }
+    
+    @Test
+    public void testmsortParallelSingleIntArray() {
+        System.out.println("testmsortParallelSingleIntArray");
+        int[] a = int_single.clone();
+        Sorting.parallelMergesort(a);
+        assertArrayEquals(int_single, a);
+    }
+    
+    
+    
 }
