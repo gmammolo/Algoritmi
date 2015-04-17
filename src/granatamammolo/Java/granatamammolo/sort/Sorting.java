@@ -1,11 +1,14 @@
 package granatamammolo.Java.granatamammolo.sort;
 
+import java.util.Random;
+
 /**
  *
  * @author Federica
  */
 public class Sorting {
-    
+   // TOSEE devo levare tutti i commenti in mezzo 
+  // TOSEE metodi di supporto renderli generici
   /**
    * Classe statica non istanziabile
    */
@@ -456,7 +459,7 @@ public class Sorting {
   
    // </editor-fold>
   
- // <editor-fold defaultstate="collapsed" desc="Merge Sort Alternato">
+ // <editor-fold defaultstate="collapsed" desc=" Merge Sort Alternato">
 
   
   /**
@@ -553,11 +556,48 @@ public class Sorting {
   public static void mSortIsort(int[] a){
       //TOSEE: perchè non l'avevi fatto? l'ho completato io
     int soglia = 10;
-    if(a.length <= 10)
+    if(a.length <= soglia)
         isort(a);
     else
         msortAlt(a);
   }
-   // </editor-fold>
+  
+  // </editor-fold>
+   
+  /**
+   * Versione parallela di una delle versioni precedenti. TOSEE non credo lo farò
+   * @param a 
+   */
+  public static void parallelMergesort(int[] a){
+    
+  }
+  
+  
+ // <editor-fold defaultstate="collapsed" desc=" QuickSort Base  ">  
+  /**
+   * Implementazione del QuickSort base (con estrazione del pivot).
+   * @param a Array da ordinare
+   */
+  public static void qSortBasic(int[] a){
+    if(a.length <= 1) return;
+    qSortBasicRic(a, 0, a.length);
+  }
+  
+  private static void qSortBasicRic(int[] a, int inf, int sup){
+    if(inf >= sup) return;
+    Random random = new Random();
+    int pivot = random.nextInt(sup - inf + 1) + inf;
+    int i = inf;
+    for(int j = inf+1; j <= sup; j++){
+      if(a[j] < pivot){
+        i++;
+        swap(a, i, j);
+      }
+    }
+    swap(a, inf, i);   
+    qSortBasicRic(a, inf, i);
+    qSortBasicRic(a, i+1, sup);
+  }
+  // </editor-fold> 
   
 }
