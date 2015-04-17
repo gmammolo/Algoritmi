@@ -629,7 +629,32 @@ public class Sorting {
    * Algoritmo sul posto. Il pivot non viene rimosso.
    * @param a Array da ordinare
    */
-  public static void qSortHoare(int [] a){
+  public static <T extends Comparable<? super T>> void qsortHoare(T [] a){
+    if(a.length <= 1) return;
+    qSortHoareRic(a, 0, a.length);
+  }
+  
+  private static <T extends Comparable<? super T>> void qSortHoareRic(T[] a, int inf, int sup){
+    int i = inf, j = sup;
+    Random random = new Random();
+    T pivot = a[random.nextInt(sup - inf + 1) + inf];
+    do{
+      while(a[i].compareTo(pivot) < 0)
+        i++;
+      while(a[j].compareTo(pivot) > 0)
+        j--;
+      if(i <= j){
+        swap(a, i, j);
+        i++;
+        j--;
+      }
+    }while(i <= j);
+    assert(i == j+1 || i == j+2);
+    qSortHoareRic(a, inf, j);
+    qSortHoareRic(a, i, sup);
+  }
+  
+  public static void qsortHoare(int [] a){
     if(a.length <= 1) return;
     qSortHoareRic(a, 0, a.length);
   }
@@ -649,6 +674,7 @@ public class Sorting {
         j--;
       }
     }while(i <= j);
+    assert(i == j+1 || i == j+2);
     qSortHoareRic(a, inf, j);
     qSortHoareRic(a, i, sup);
   }
