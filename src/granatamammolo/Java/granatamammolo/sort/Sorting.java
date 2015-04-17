@@ -629,7 +629,7 @@ public class Sorting {
    * Algoritmo sul posto. Il pivot non viene rimosso.
    * @param a Array da ordinare
    */
-  public static <T extends Comparable<? super T>> void qsortHoare(T [] a){
+  public static <T extends Comparable<? super T>> void qSortHoare(T [] a){
     if(a.length <= 1) return;
     qSortHoareRic(a, 0, a.length);
   }
@@ -654,7 +654,7 @@ public class Sorting {
     qSortHoareRic(a, i, sup);
   }
   
-  public static void qsortHoare(int [] a){
+  public static void qSortHoare(int [] a){
     if(a.length <= 1) return;
     qSortHoareRic(a, 0, a.length);
   }
