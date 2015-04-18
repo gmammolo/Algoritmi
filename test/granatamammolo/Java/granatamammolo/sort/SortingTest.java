@@ -537,7 +537,7 @@ public class SortingTest {
     public void testqsortIsortOrderIntArray() {
         System.out.println("testqsortIsortOrderIntArray");
         int[] a = int_order.clone();
-        Sorting.qsortIsort(a);
+        Sorting.qSortHoareIsort(a);
         assertArrayEquals(int_order, a);
     }
     
@@ -545,7 +545,7 @@ public class SortingTest {
     public void testqsortIsortUnorderIntArray() {
         System.out.println("testqsortIsortUnorderIntArray");
         int[] a = int_unorder.clone();
-        Sorting.qsortIsort(a);
+        Sorting.qSortHoareIsort(a);
         Arrays.sort(int_unorder);
         assertArrayEquals(int_unorder, a);
     }
@@ -554,7 +554,7 @@ public class SortingTest {
     public void testqsortIsortVoidIntArray() {
         System.out.println("testqsortIsortVoidIntArray");
         int[] a = int_void.clone();
-        Sorting.qsortIsort(a);
+        Sorting.qSortHoareIsort(a);
         assertArrayEquals(int_void, a);
     }
     
@@ -562,7 +562,7 @@ public class SortingTest {
     public void testqsortIsortSingleIntArray() {
         System.out.println("testqsortIsortSingleIntArray");
         int[] a = int_single.clone();
-        Sorting.qsortIsort(a);
+        Sorting.qSortHoareIsort(a);
         assertArrayEquals(int_single, a);
     }
     
