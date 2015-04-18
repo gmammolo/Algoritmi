@@ -1,6 +1,8 @@
 package granatamammolo.Java.granatamammolo.sort;
 
 import java.util.Random;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveAction;
 
 /**
  *
@@ -373,7 +375,7 @@ public class Sorting {
    * @param last
    * @param aux 
    */
-  private static void mSortNoGarbageRic(int[] a, int first, int last, int[] aux){
+  protected static void mSortNoGarbageRic(int[] a, int first, int last, int[] aux){
     if(first < last){
       int middle = (first + last) >>> 1;
       mSortNoGarbageRic(a, first, middle, aux);
@@ -391,7 +393,7 @@ public class Sorting {
    * @param last Indice finale della seconda porzione.
    * @param aux Array ausiliario/di supporto.
    */
-  private static void mergeOptimized(int[] a, int first, int middle, int last, int[] aux){
+  protected static void mergeOptimized(int[] a, int first, int middle, int last, int[] aux){
     int i = first, j = middle+1;
     int k = first;
     // TOSEE: NON VEDO QUESTA OTTIMIZZAZIONE :
@@ -594,8 +596,39 @@ public class Sorting {
    * @param a 
    */
   public static void parallelMergesort(int[] a){
-    // TOSEE da fare
+    int n= a.length - 1;
+    int cores = Runtime.getRuntime().availableProcessors();
+    ForkJoinPool pool = ForkJoinPool.commonPool();
+    int[] aux = new int[a.length];
+    ParallelMergeSorter sorter = new ParallelMergeSorter(a, 0, n, aux, cores);
+    pool.invoke(sorter);
+
   }
+  
+    private static class ParallelMergeSorter extends RecursiveAction {
+        int[] a, aux;
+        int first, last;
+        int numThreads; // numero dei threads ancora disponibili
+        ParallelMergeSorter(int[] a, int f, int l, int[] aux, int n){
+            this.a = a; this.aux = aux;
+            first = f; last = l; numThreads = n;
+        }
+        
+        @Override
+        protected void compute() {
+            if(first >= last) return;
+            if(numThreads <= 1) mSortNoGarbageRic(a, first, last, aux);
+            else {
+            int m = (first + last)/2;
+            ParallelMergeSorter left = new ParallelMergeSorter(a, first, m, aux, numThreads/2);
+            ParallelMergeSorter right = new ParallelMergeSorter(a, m+1, last, aux, numThreads/2);
+            invokeAll(left, right);
+            mergeOptimized(a, first, m, last, aux);
+            }
+
+        }
+}
+
   
   
  // <editor-fold defaultstate="collapsed" desc=" QuickSort Base  ">  
@@ -650,7 +683,7 @@ public class Sorting {
   }
   // </editor-fold> 
   
-  // <editor-fold defaultstate="collapsed" desc=" QuickSort Hoare  ">
+ // <editor-fold defaultstate="collapsed" desc=" QuickSort Hoare  ">
   
   /**
    * Implementazione del QuickSort alla Hoare. 
