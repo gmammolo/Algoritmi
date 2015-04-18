@@ -9,6 +9,9 @@ import java.util.Random;
 public class Sorting {
    // TOSEE devo levare tutti i commenti in mezzo 
   // TOSEE metodi di supporto renderli generici
+  // TOSEE vedere nomi metodi (camel case)
+  
+  public static Random random = new Random();
   /**
    * Classe statica non istanziabile
    */
@@ -572,49 +575,51 @@ public class Sorting {
   
  // <editor-fold defaultstate="collapsed" desc=" QuickSort Base  ">  
   /**
-   * Implementazione del QuickSort base (con estrazione del pivot).
+   * Implementazione del QuickSort base (con estrazione del pivot e scelta
+   * del pivot tramite random).
    * Gli elementi uguali al pivot rimangono sempre nella stessa porzione di 
-   * destra (insieme agli elementi > pivot).
+   * destra (insieme agli elementi > pivot). L'indice i indica l'ultima posizione
+   * degli elementi minori del pivot.
    * @param a Array da ordinare
    */
   public static void qSortBasic(int[] a){
-    if(a.length <= 1) return;
-    qSortBasicRic(a, 0, a.length);
+    if(a.length <= 1) return;    
+    qSortBasicRic(a, 0, a.length-1);
   }
   
   private static void qSortBasicRic(int[] a, int inf, int sup){
     if(inf >= sup) return;
-    Random random = new Random();
-    int pivot = random.nextInt(sup - inf + 1) + inf;
+    int iPivot = random.nextInt(sup - inf + 1) + inf;
+    swap(a, inf, iPivot);
     int i = inf;
     for(int j = inf+1; j <= sup; j++){
-      if(a[j] < pivot){
+      if(a[j] < a[inf]){
         i++;
-        swap(a, i, j);
+        swap(a, i , j);
       }
     }
-    swap(a, inf, i);   
+    swap(a, i, inf);
     qSortBasicRic(a, inf, i);
     qSortBasicRic(a, i+1, sup);
   }
   
   public static <T extends Comparable<? super T>> void qSortBasic(T[] a){
     if(a.length <= 1) return;
-    qSortBasicRic(a, 0, a.length);
+    qSortBasicRic(a, 0, a.length-1);
   }
   
   private static <T extends Comparable<? super T>> void qSortBasicRic(T[] a, int inf, int sup){
     if(inf >= sup) return;
-    Random random = new Random();
-    int pivot = random.nextInt(sup - inf + 1) + inf;
+    int iPivot = random.nextInt(sup - inf + 1) + inf;
+    swap(a, inf, iPivot);
     int i = inf;
     for(int j = inf+1; j <= sup; j++){
-      if(a[j].compareTo(a[pivot]) < 0){
+      if(a[j].compareTo(a[inf]) < 0){
         i++;
-        swap(a, i, j);
+        swap(a, i , j);
       }
     }
-    swap(a, inf, i);   
+    swap(a, i, inf);
     qSortBasicRic(a, inf, i);
     qSortBasicRic(a, i+1, sup);
   }
@@ -629,14 +634,39 @@ public class Sorting {
    * Algoritmo sul posto. Il pivot non viene rimosso.
    * @param a Array da ordinare
    */
+  public static void qSortHoare(int [] a){
+    if(a.length <= 1) return;
+    qSortHoareRic(a, 0, a.length-1);
+  }
+  
+  private static void qSortHoareRic(int[] a, int inf, int sup){
+    if(inf >= sup) return;
+    int i = inf, j = sup;
+    int pivot = a[random.nextInt(sup - inf + 1) + inf];
+    do{
+      while(a[i] < pivot)
+        i++;
+      while(a[j] > pivot)
+        j--;
+      if(i <= j){
+        swap(a, i, j);
+        i++; j--;
+      }
+    }while(i <= j);
+//    assert(i == j+1 || i == j+2);
+    System.out.println(j + " " + i);
+    qSortHoareRic(a, inf, j);
+    qSortHoareRic(a, i, sup);
+  }
+  
   public static <T extends Comparable<? super T>> void qSortHoare(T [] a){
     if(a.length <= 1) return;
-    qSortHoareRic(a, 0, a.length);
+    qSortHoareRic(a, 0, a.length-1);
   }
   
   private static <T extends Comparable<? super T>> void qSortHoareRic(T[] a, int inf, int sup){
+    if(inf >= sup) return;
     int i = inf, j = sup;
-    Random random = new Random();
     T pivot = a[random.nextInt(sup - inf + 1) + inf];
     do{
       while(a[i].compareTo(pivot) < 0)
@@ -654,29 +684,6 @@ public class Sorting {
     qSortHoareRic(a, i, sup);
   }
   
-  public static void qSortHoare(int [] a){
-    if(a.length <= 1) return;
-    qSortHoareRic(a, 0, a.length);
-  }
   
-  private static void qSortHoareRic(int[] a, int inf, int sup){
-    int i = inf, j = sup;
-    Random random = new Random();
-    int pivot = a[random.nextInt(sup - inf + 1) + inf];
-    do{
-      while(a[i] < pivot)
-        i++;
-      while(a[j] > pivot)
-        j--;
-      if(i <= j){
-        swap(a, i, j);
-        i++;
-        j--;
-      }
-    }while(i <= j);
-    assert(i == j+1 || i == j+2);
-    qSortHoareRic(a, inf, j);
-    qSortHoareRic(a, i, sup);
-  }
   // </editor-fold> 
 }
