@@ -531,4 +531,39 @@ public class SortingTest {
     
     
     
+    //#############################################
+    
+    @Test
+    public void testqsortIsortOrderIntArray() {
+        System.out.println("testqsortIsortOrderIntArray");
+        int[] a = int_order.clone();
+        Sorting.qsortIsort(a);
+        assertArrayEquals(int_order, a);
+    }
+    
+    @Test
+    public void testqsortIsortUnorderIntArray() {
+        System.out.println("testqsortIsortUnorderIntArray");
+        int[] a = int_unorder.clone();
+        Sorting.qsortIsort(a);
+        Arrays.sort(int_unorder);
+        assertArrayEquals(int_unorder, a);
+    }
+    
+    @Test
+    public void testqsortIsortVoidIntArray() {
+        System.out.println("testqsortIsortVoidIntArray");
+        int[] a = int_void.clone();
+        Sorting.qsortIsort(a);
+        assertArrayEquals(int_void, a);
+    }
+    
+    @Test
+    public void testqsortIsortSingleIntArray() {
+        System.out.println("testqsortIsortSingleIntArray");
+        int[] a = int_single.clone();
+        Sorting.qsortIsort(a);
+        assertArrayEquals(int_single, a);
+    }
+    
 }
