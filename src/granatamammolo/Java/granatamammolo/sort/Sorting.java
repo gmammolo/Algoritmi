@@ -146,8 +146,29 @@ public class Sorting {
    * e una volta posizionato non sarà più spostato, mantenendo stabile l'algoritmo</p>
    * @param a Algoritmo da ordinare.
    */
-  public static void isort(int[] a){
-    int n = a.length;
+  public static void iSort(int[] a){
+    iSortRange(a, 0, a.length);
+//    int n = a.length;
+//    if(n > 1){
+//      for(int i = 1; i < n; i++){
+//        int val = a[i];
+//        int j = i;
+//          while(j > 0 && val < a[j-1]){
+//            a[j] = a[--j]; 
+//          }
+//          a[j] = val;
+//      }   
+//    }
+  }
+  
+  /**
+   * Applica l'algoritmo dell'Insertion sort su un intervallo dell'array.
+   * @param a Array da ordinare.
+   * @param inf Indice iniziale dell'intervallo.
+   * @param sup Indice finale dell'intervallo.
+   */
+  private static void iSortRange(int[] a, int inf, int sup){
+    int n = sup-inf;
     if(n > 1){
       for(int i = 1; i < n; i++){
         int val = a[i];
@@ -561,7 +582,7 @@ public class Sorting {
     // l'array non è tanto più grande
     int soglia = 10;
     if(a.length <= soglia)
-        isort(a);   
+        iSort(a);   
     else
         msortAlt(a);
   }
@@ -658,7 +679,6 @@ public class Sorting {
       }
     }while(i <= j);
     assert(i == j+1 || i == j+2);
-    System.out.println(j + " " + i);
     qSortHoareRic(a, inf, j);
     qSortHoareRic(a, i, sup);
   }
@@ -701,19 +721,9 @@ public class Sorting {
   private static void qSortHoareIsortRic(int[] a, int inf, int sup){
     if(inf >= sup) return;
     int soglia = 10;
-    if((sup-inf) <= soglia){      // isort
-      int n = sup-inf;
-      if(n > 1){
-        for(int i = inf; i < n; i++){
-          int val = a[i];
-          int j = i;
-            while(j > 0 && val < a[j-1]){
-              a[j] = a[--j]; 
-            }
-            a[j] = val;
-        }   
-    }
-    }else{                        // qsort
+    if((sup-inf) <= soglia)      
+      iSortRange(a, inf, sup);
+    else{                        // qsort
       int i = inf, j = sup;
       int pivot = a[random.nextInt(sup - inf + 1) + inf];
       do{
@@ -727,9 +737,8 @@ public class Sorting {
         }
       }while(i <= j);
       assert(i == j+1 || i == j+2);
-      System.out.println(j + " " + i);
-      qSortHoareRic(a, inf, j);
-      qSortHoareRic(a, i, sup);
+      qSortHoareIsortRic(a, inf, j);
+      qSortHoareIsortRic(a, i, sup);
     }
   }
   // </editor-fold> 
