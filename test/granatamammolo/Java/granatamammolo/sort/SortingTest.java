@@ -424,7 +424,7 @@ public class SortingTest {
     
     //###############################################à
     
-       @Test
+    @Test
     public void testQsortHoareOrderIntArray() {
         System.out.println("testQsortHoareOrderIntArray");
         int[] a = int_order.clone();
