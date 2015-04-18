@@ -556,10 +556,14 @@ public class Sorting {
    * @param a  array da ordinare
    */
   public static void mSortIsort(int[] a){
-      //TOSEE: perchè non l'avevi fatto? l'ho completato io
+      //TOSEE: (perchè non l'avevi fatto? l'ho completato io) - non bisognerebbe
+      // vedere anche durante l'esecuzione quando utilizzare l'isort? cioè
+    // negli intervalli che si vanno a creare, quando sono piccini usi l'isort
+    // cmq con una soglia 10, il mergesort non viene praticamente utilizzato, perchè
+    // l'array non è tanto più grande
     int soglia = 10;
     if(a.length <= soglia)
-        isort(a);
+        isort(a);   
     else
         msortAlt(a);
   }
@@ -686,7 +690,7 @@ public class Sorting {
         i++; j--;
       }
     }while(i <= j);
-//    assert(i == j+1 || i == j+2);
+    assert(i == j+1 || i == j+2);
     System.out.println(j + " " + i);
     qSortHoareRic(a, inf, j);
     qSortHoareRic(a, i, sup);
@@ -717,6 +721,51 @@ public class Sorting {
     qSortHoareRic(a, i, sup);
   }
   
+  /**
+   * Implementazione del QuickSort versione Hoare, ottimizzato con l'esecuzione
+   * dell'InsertionSort al di sotto di una certa soglia.
+   * @param a 
+   */
+  public static void qSortHoareIsort(int[] a){
+    if(a.length <= 1) return;
+    qSortHoareIsortRic(a, 0, a.length-1);
+  }
   
+  private static void qSortHoareIsortRic(int[] a, int inf, int sup){
+    if(inf >= sup) return;
+    int soglia = 10;
+    if((sup-inf) <= soglia){      // isort
+      int n = sup-inf;
+      if(n > 1){
+        for(int i = inf; i < n; i++){
+          int val = a[i];
+          int j = i;
+            while(j > 0 && val < a[j-1]){
+              a[j] = a[--j]; 
+            }
+            a[j] = val;
+        }   
+    }
+    }else{                        // qsort
+      int i = inf, j = sup;
+      int pivot = a[random.nextInt(sup - inf + 1) + inf];
+      do{
+        while(a[i] < pivot)
+          i++;
+        while(a[j] > pivot)
+          j--;
+        if(i <= j){
+          swap(a, i, j);
+          i++; j--;
+        }
+      }while(i <= j);
+      assert(i == j+1 || i == j+2);
+      System.out.println(j + " " + i);
+      qSortHoareRic(a, inf, j);
+      qSortHoareRic(a, i, sup);
+    }
+  }
   // </editor-fold> 
+  
+
 }
