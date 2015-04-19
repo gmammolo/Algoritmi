@@ -171,16 +171,15 @@ public class Sorting {
    */
   private static void iSortRange(int[] a, int inf, int sup){
     int n = sup-inf;
-    if(n > 1){
-      for(int i = 1; i < n; i++){
-        int val = a[i];
-        int j = i;
-          while(j > 0 && val < a[j-1]){
-            a[j] = a[--j]; 
-          }
-          a[j] = val;
-      }   
-    }
+    if(n <= 1) return;
+    for(int i = inf+1; i < n; i++){ // era i=1
+      int val = a[i];
+      int j = i;
+      while(j > 0 && val < a[j-1]){
+        a[j] = a[--j]; 
+      }
+      a[j] = val;
+    }   
   }
   
   /**
@@ -280,8 +279,6 @@ public class Sorting {
     }
     return ini;
   }
-  
-  
   
 // </editor-fold>
   
@@ -569,7 +566,7 @@ public class Sorting {
   
  // </editor-fold>
   
- // <editor-fold defaultstate="collapsed" desc=" MSort Isort ">
+ // <editor-fold defaultstate="collapsed" desc=" Merge Sort Isort ">
   
  /**
    * Implementazione del Merge Sort ottimizzato, con l'utilizzo dell'Insertion
@@ -591,6 +588,8 @@ public class Sorting {
   
   // </editor-fold>
    
+ // <editor-fold defaultstate="collapsed" desc=" Merge Sort Parallel ">
+  
   /**
    * Versione parallela di una delle versioni precedenti. TOSEE non credo lo farò
    * @param a 
@@ -602,36 +601,35 @@ public class Sorting {
     int[] aux = new int[a.length];
     ParallelMergeSorter sorter = new ParallelMergeSorter(a, 0, n, aux, cores);
     pool.invoke(sorter);
-
   }
   
-    private static class ParallelMergeSorter extends RecursiveAction {
-        int[] a, aux;
-        int first, last;
-        int numThreads; // numero dei threads ancora disponibili
-        ParallelMergeSorter(int[] a, int f, int l, int[] aux, int n){
-            this.a = a; this.aux = aux;
-            first = f; last = l; numThreads = n;
-        }
-        
-        @Override
-        protected void compute() {
-            if(first >= last) return;
-            if(numThreads <= 1) mSortNoGarbageRic(a, first, last, aux);
-            else {
-            int m = (first + last)/2;
-            ParallelMergeSorter left = new ParallelMergeSorter(a, first, m, aux, numThreads/2);
-            ParallelMergeSorter right = new ParallelMergeSorter(a, m+1, last, aux, numThreads/2);
-            invokeAll(left, right);
-            mergeOptimized(a, first, m, last, aux);
-            }
+  private static class ParallelMergeSorter extends RecursiveAction {
+    int[] a, aux;
+    int first, last;
+    int numThreads; // numero dei threads ancora disponibili
+    
+    ParallelMergeSorter(int[] a, int f, int l, int[] aux, int n){
+      this.a = a; this.aux = aux;
+      first = f; last = l; numThreads = n;
+    }
 
-        }
-}
+    @Override
+    protected void compute() {
+      if(first >= last) return;
+      if(numThreads <= 1) mSortNoGarbageRic(a, first, last, aux);
+      else {
+        int m = (first + last)/2;
+        ParallelMergeSorter left = new ParallelMergeSorter(a, first, m, aux, numThreads/2);
+        ParallelMergeSorter right = new ParallelMergeSorter(a, m+1, last, aux, numThreads/2);
+        invokeAll(left, right);
+        mergeOptimized(a, first, m, last, aux);
+      }
+    }
+  }
 
+  // </editor-fold>
   
-  
- // <editor-fold defaultstate="collapsed" desc=" QuickSort Base  ">  
+ // <editor-fold defaultstate="collapsed" desc=" Quick Sort Base  ">  
   /**
    * Implementazione del QuickSort base (con estrazione del pivot e scelta
    * del pivot tramite random).
@@ -683,7 +681,7 @@ public class Sorting {
   }
   // </editor-fold> 
   
- // <editor-fold defaultstate="collapsed" desc=" QuickSort Hoare  ">
+ // <editor-fold defaultstate="collapsed" desc=" Quick Sort Hoare ">
   
   /**
    * Implementazione del QuickSort alla Hoare. 
@@ -748,30 +746,31 @@ public class Sorting {
    */
   public static void qSortHoareIsort(int[] a){
     if(a.length <= 1) return;
-    qSortHoareIsortRic(a, 0, a.length-1);
+    qSortHoareIsortRic(a, 0, a.length);
   }
   
   private static void qSortHoareIsortRic(int[] a, int inf, int sup){
     if(inf >= sup) return;
-    int soglia = 10;
+    int soglia = 7;
     if((sup-inf) <= soglia)      
       iSortRange(a, inf, sup);
-    else{                        // qsort
-      int i = inf, j = sup;
-      int pivot = a[random.nextInt(sup - inf + 1) + inf];
-      do{
-        while(a[i] < pivot)
-          i++;
-        while(a[j] > pivot)
-          j--;
-        if(i <= j){
-          swap(a, i, j);
-          i++; j--;
-        }
-      }while(i <= j);
-      assert(i == j+1 || i == j+2);
-      qSortHoareIsortRic(a, inf, j);
-      qSortHoareIsortRic(a, i, sup);
+    else{                        // qsortAlt
+        sup--;
+        int i = inf, j = sup;
+        int pivot = a[random.nextInt(sup - inf + 1) + inf];
+        do{
+          while(a[i] < pivot)
+            i++;
+          while(a[j] > pivot)
+            j--;
+          if(i <= j){
+            swap(a, i, j);
+            i++; j--;
+          }
+        }while(i <= j);
+        assert(i == j+1 || i == j+2);
+        qSortHoareRic(a, inf, j);
+        qSortHoareRic(a, i, sup);
     }
   }
   // </editor-fold> 

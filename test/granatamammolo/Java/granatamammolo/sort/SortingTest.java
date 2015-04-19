@@ -190,6 +190,7 @@ public class SortingTest {
         System.out.println("testIsortOrderIntArray");
         int[] a = int_order.clone();
         Sorting.iSort(a);
+        System.out.println(Arrays.toString(a));
         assertArrayEquals(int_order, a);
     }
     
@@ -197,7 +198,9 @@ public class SortingTest {
     public void testIsortUnorderIntArray() {
         System.out.println("testIsortUnorderIntArray");
         int[] a = int_unorder.clone();
+        System.out.println(Arrays.toString(int_unorder));
         Sorting.iSort(a);
+        System.out.println(Arrays.toString(a));
         Arrays.sort(int_unorder);
         assertArrayEquals(int_unorder, a);
     }
