@@ -182,6 +182,19 @@ public class Sorting {
     }   
   }
   
+  private static <T extends Comparable<? super T>> void iSortRange(T[] a, int inf, int sup){
+    int n = sup-inf;
+    if(n <= 1) return;
+    for(int i = inf+1; i < n; i++){ // era i=1
+      T val = a[i];
+      int j = i;
+      while(j > 0 && val.compareTo(a[j-1]) < 0){
+        a[j] = a[--j]; 
+      }
+      a[j] = val;
+    }   
+  }
+  
   /**
    * Metodo di supporto per l'Insertion Sort (Versione con Ricerca binaria). Inserisce l'elemento di posizione 
    * i in posizione j, shiftando il resto dell'array di una posizione.
@@ -595,6 +608,28 @@ public class Sorting {
     }
   }
   
+  public static <T extends Comparable<? super T>> void mSortIsort(T[] a){
+    if(a.length <= 1) return;
+    T[] b = a.clone();
+    mSortIsortRic(a, 0, a.length, b);
+  }
+  
+  private static <T extends Comparable<? super T>> void mSortIsortRic(T[] a, int inf, int sup, T[] b){
+    if(inf >= sup) return;
+    int soglia = 7;
+    if((sup-inf) < soglia){
+      iSortRange(a, inf, sup);
+    }else{                        // mSortAlt
+      int first = inf, last = sup-1;
+      if(first < last){
+        int middle = (first + last) >>> 1;
+        mSortIsortRic(b, first, middle, a);
+        mSortIsortRic(b, middle+1, last, a);
+        mergeAlt(b, first, middle, last, a);
+      }
+    }
+  }
+  
   // </editor-fold>
    
  // <editor-fold defaultstate="collapsed" desc=" Merge Sort Parallel ">
@@ -784,5 +819,9 @@ public class Sorting {
   }
   // </editor-fold> 
   
-
+ // <editor-fold defaultstate="collapsed" desc=" Quick Sort Parallel ">
+  public static void parallelQuickSort(int[] a){
+    // TOSEE todo
+  }
+// </editor-fold>
 }
