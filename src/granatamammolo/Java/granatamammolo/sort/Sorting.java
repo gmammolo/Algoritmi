@@ -574,16 +574,25 @@ public class Sorting {
    * @param a  array da ordinare
    */
   public static void mSortIsort(int[] a){
-      //TOSEE: (perchè non l'avevi fatto? l'ho completato io) - non bisognerebbe
-      // vedere anche durante l'esecuzione quando utilizzare l'isort? cioè
-    // negli intervalli che si vanno a creare, quando sono piccini usi l'isort
-    // cmq con una soglia 10, il mergesort non viene praticamente utilizzato, perchè
-    // l'array non è tanto più grande
-    int soglia = 10;
-    if(a.length <= soglia)
-        iSort(a);   
-    else
-        msortAlt(a);
+    if(a.length <= 1) return;
+    int[] b = a.clone();
+    mSortIsortRic(a, 0, a.length, b);
+  }
+  
+  private static void mSortIsortRic(int[] a, int inf, int sup, int[] b){
+    if(inf >= sup) return;
+    int soglia = 7;
+    if((sup-inf) < soglia){
+      iSortRange(a, inf, sup);
+    }else{                        // mSortAlt
+      int first = inf, last = sup-1;
+      if(first < last){
+        int middle = (first + last) >>> 1;
+        mSortIsortRic(b, first, middle, a);
+        mSortIsortRic(b, middle+1, last, a);
+        mergeAlt(b, first, middle, last, a);
+      }
+    }
   }
   
   // </editor-fold>
