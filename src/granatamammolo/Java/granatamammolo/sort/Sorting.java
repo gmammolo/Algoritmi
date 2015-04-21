@@ -2,6 +2,7 @@ package granatamammolo.Java.granatamammolo.sort;
 
 import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
+import static java.util.concurrent.ForkJoinTask.invokeAll;
 import java.util.concurrent.RecursiveAction;
 
 /**
@@ -201,7 +202,7 @@ public class Sorting {
    * cui si cerca il valore). Dunque la complessità temporale rimane comunque 
    * quadratica nel caso peggiore</p>                                           
    * <p>-<strong>Caso Peggiore:</strong>L'array di partenza è ordinato inversamente.  O(n^2)</p>
-   * <p>-<strong>Caso Migliore:</strong>L'array di partenza è già ordinato: O(n)</p> //TOSEE: verificare se è vero: slide 48 lez18 - ho paura a parlare di complessità xD
+   * <p>-<strong>Caso Migliore:</strong>L'array di partenza è già ordinato: O(n)</p> 
    * <p>-<strong>Caso Medio:</strong> O(n) ~ O(n^2)</p>
    * <p>-<strong>Sul Posto</strong></p>
    * <p>-<strong>Stabile:</strong> La ricerca binaria ritorna sempre la posizione più a sinistra possibile (modificata per farlo)</p>
@@ -367,6 +368,8 @@ public class Sorting {
     //uguale al primo elemento del segmento di destra, la sequenza dei due segmenti è già un
     //segmento ordinato e quindi la fusione non è necessaria.
     // RISPOSTA: vero, non ci avevo pensato però ho paura ad osare con le modifiche dei metodi dati da lui :/
+    //RI-RISPOSTA: si, ma in teoria il laboratorio serve proprio per quello... se questa ottimizzazione la descrive
+    //sulle slide mi sembra un po strano non metterla
     while(i <= middle && j <= last){
       if(a[i] <= a[j])
         aux[k++] = a[i++];
@@ -423,6 +426,7 @@ public class Sorting {
     //uguale al primo elemento del segmento di destra, la sequenza dei due segmenti è già un
     //segmento ordinato e quindi la fusione non è necessaria.
     // RISPOSTA: vero, non ci avevo pensato però ho paura ad osare con le modifiche dei metodi dati da lui :/
+    //RI-RISPOSTA: idem sopra
     while(i <= middle && j <= last){
       if(a[i].compareTo(a[j]) <= 0)
         aux[k++] = a[i++];
@@ -482,7 +486,7 @@ public class Sorting {
   
   /**
    * Implementazione del Merge Sort versione alternata per mezzo dei tipi generici.
-   * @param <T> Tipo dell'array.      TOSEE è giusto scritto così? GIUSE RIIISP
+   * @param <T> extends Comparable //TOSEE: è giusta, se noti l'ho lasciata  el'ho modificata inserendo una nuova descrizione
    * @param a Array da ordinare.
    */
   public static <T extends Comparable<? super T>> void mSortAlt (T[ ] a ){
@@ -762,8 +766,39 @@ public class Sorting {
   
  // <editor-fold defaultstate="collapsed" desc=" Quick Sort Parallel ">
   public static void parallelQuickSort(int[] a){
-    // TOSEE todo
+     //TOSEE: TODO x me: completare 
+    int n= a.length - 1;
+    int cores = Runtime.getRuntime().availableProcessors();
+    ForkJoinPool pool = ForkJoinPool.commonPool();
+    ParallelQuickSorter sorter = new ParallelQuickSorter(a, 0, n, cores);
+    pool.invoke(sorter);
   }
+  
+  
+   private static class ParallelQuickSorter extends RecursiveAction {
+    int[] a, aux;
+    int first, last;
+    int numThreads; // numero dei threads ancora disponibili
+    
+    ParallelQuickSorter(int[] a, int f, int l, int n){
+      this.a = a;
+      first = f; last = l; numThreads = n;
+    }
+
+    @Override
+    protected void compute() {
+      if(first >= last) return;
+      if(numThreads <= 1) qSortHoareRic(a, first, last);
+      else {
+        int m = (first + last)/2;
+        ParallelQuickSorter left = new ParallelQuickSorter(a, first, m, numThreads/2);
+        ParallelQuickSorter right = new ParallelQuickSorter(a, m+1, last, numThreads/2);
+        invokeAll(left, right);
+      }
+    }
+  }
+
+  
 // </editor-fold>
   
  // <editor-fold defaultstate="collapsed" desc=" Metodi di supporto ">
