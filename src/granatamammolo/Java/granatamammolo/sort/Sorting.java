@@ -9,9 +9,6 @@ import java.util.concurrent.RecursiveAction;
  * @author Federica
  */
 public class Sorting {
-   // TOSEE devo levare tutti i commenti in mezzo 
-  // TOSEE metodi di supporto renderli generici
-  // TOSEE vedere nomi metodi (camel case)
   
   public static Random random = new Random();
   /**
@@ -57,19 +54,19 @@ public class Sorting {
   
   /**
    * Implementazione dell'algoritmo di ordinamento del Selection Sort.
-   * L'algoritmo scorre l'array   e cerca sempre l' elemento minore  tra i successivi. quando lo trova lo 
-   * riordina e riparte a cercare il nuovo minimo nella porzione di array rimasta. termina quando tutto l'array 
-   * è stato ordinato. <br>
-   * -<b>Caso Migliore= Caso peggiore = Caso medio </b>= O(n^2) [Quadratico]  <br>
+   * L'algoritmo scorre l'array e cerca sempre l'elemento minore  tra i successivi. 
+   * Quando lo trova lo riordina e riparte a cercare il nuovo minimo nella 
+   * porzione di array rimasta. Termina quando tutto l'array stato ordinato. <br>
+   * -<b>Caso Migliore = Caso peggiore = Caso medio </b>= O(n^2) [Quadratico]  <br>
    * -<b>Sul Posto</b> <br>
    * -<b>Non Stabile</b><br>
-   * <p><i>OTTIMIZZAZIONE: il primo for scorre gli elementi da 0 a n-1, mentre il for interno va da i a n</i></p>
+   * <p><i>OTTIMIZZAZIONE: il primo <code>for</code> scorre gli elementi da 0 a 
+   * n-1, mentre il for interno va da i a n</i></p>
    * @param a Array da ordinare.
    */
-  public static void ssort(int[] a){
+  public static void sSort(int[] a){
     int n = a.length;
     for(int i = 0; i < n-1; i++) {
-      // trova il minimo nella porzione successiva ad i
       int iMin = i;
       for(int j = i+1; j < n; j++){
         if(a[j] < a[iMin])
@@ -81,32 +78,21 @@ public class Sorting {
   }
   
   /**
-   * Metodo di supporto per il Selection sort. Scambia di posizione due valori.
-   * @param a Array su cui operare.
-   * @param iMin Indice dell'elemento minimo.
-   * @param index Indice in cui inserire l'elemento minimo.
-   */
-  private static void swap(int[] a, int iMin, int index){
-    int tmp = a[index];
-    a[index] = a[iMin];
-    a[iMin] = tmp;      
-  }
-  
-  /**
    * Implementazione del Selection Sort per mezzo dei tipi generici.
-   * L'algoritmo scorre l'array   per ogni elemento  cerca un elemento minore  tra i successivi.
-   * Se lo trova, scambia i due elementi. 
-   * <p><i>OTTIMIZZAZIONE: il primo for scorre gli elementi da 0 a n-1, mentre il for interno va da i a n</i></p>
-   * -<b>Caso Migliore= Caso peggiore = Caso medio </b> = O(n^2) [Quadratico] <br>
+   * L'algoritmo scorre l'array e cerca sempre l'elemento minore  tra i successivi. 
+   * Quando lo trova lo riordina e riparte a cercare il nuovo minimo nella 
+   * porzione di array rimasta. Termina quando tutto l'array stato ordinato. <br>
+   * -<b>Caso Migliore = Caso peggiore = Caso medio </b>= O(n^2) [Quadratico]  <br>
    * -<b>Sul Posto</b> <br>
-   * -<b>Non Stabile</b> <br>
+   * -<b>Non Stabile</b><br>
+   * <p><i>OTTIMIZZAZIONE: il primo <code>for</code> scorre gli elementi da 0 a 
+   * n-1, mentre il for interno va da i a n</i></p>
    * @param <T> extends Comparable
    * @param a Array da ordinare.
    */
-  public static <T extends Comparable<? super T>> void ssort (T[] a){
+  public static <T extends Comparable<? super T>> void sSort (T[] a){
     int n = a.length;
     for(int i = 0; i < n-1; i++) {
-      // trova il minimo nella porzione successiva ad i
       int iMin = i;
       for(int j = i+1; j < n; j++){
         if(a[j].compareTo(a[iMin]) < 0)
@@ -116,20 +102,6 @@ public class Sorting {
         swap(a, iMin, i);
     } 
   }
- 
-  /**
-   * Metodo di supporto per il Selection sort. Scambia di posizione due valori.
-   * @param <T> extends Comparable
-   * @param a Array su cui operare.
-   * @param iMin Indice dell'elemento minimo.
-   * @param index Indice in cui inserire l'elemento minimo.
-   */
-  private static <T extends Comparable<? super T>> void swap(T[] a, int iMin, int index){
-    T tmp = a[index];
-    a[index] = a[iMin];
-    a[iMin] = tmp;      
-  }
-
   
 // </editor-fold>
   
@@ -138,33 +110,24 @@ public class Sorting {
   
   /**
    * <p>Implementazione dell'algoritmo di <strong>ordinamento</strong> Insertion Sort.
-   * Si prende via via l'elemento successivo e lo si inserisce in maniera ordinata nella parte che era già
-   * stata ordinata</p>
+   * Si prende via via l'elemento successivo e lo si inserisce in maniera 
+   * ordinata nella parte che era già stata ordinata</p>
    * <p>-<strong>Caso Peggiore:</strong>L'array di partenza è ordinato inversamente.  O(n^2)</p>
    * <p>-<strong>Caso Migliore:</strong>L'array di partenza è già ordinato: O(n)</p>
    * <p>-<strong>Caso Medio:</strong> O(n) ~ O(n^2)</p>
    * <p>-<strong>Sul Posto</strong></p>
-   * <p>-<strong>Stabile:</strong> l'array posiziona ogni elemento nel primo posto utile per ordinare l'array
-   * e una volta posizionato non sarà più spostato, mantenendo stabile l'algoritmo</p>
-   * @param a Algoritmo da ordinare.
+   * <p>-<strong>Stabile:</strong> l'array posiziona ogni elemento nel primo 
+   * posto utile per ordinare l'array e una volta posizionato non sarà più 
+   * spostato, mantenendo stabile l'algoritmo</p>
+   * @param a Array da ordinare.
    */
   public static void iSort(int[] a){
     iSortRange(a, 0, a.length);
-//    int n = a.length;
-//    if(n > 1){
-//      for(int i = 1; i < n; i++){
-//        int val = a[i];
-//        int j = i;
-//          while(j > 0 && val < a[j-1]){
-//            a[j] = a[--j]; 
-//          }
-//          a[j] = val;
-//      }   
-//    }
   }
   
   /**
    * Applica l'algoritmo dell'Insertion sort su un intervallo dell'array.
+   * @see iSort
    * @param a Array da ordinare.
    * @param inf Indice iniziale dell'intervallo.
    * @param sup Indice finale dell'intervallo.
@@ -172,7 +135,7 @@ public class Sorting {
   private static void iSortRange(int[] a, int inf, int sup){
     int n = sup-inf;
     if(n <= 1) return;
-    for(int i = inf+1; i < n; i++){ // era i=1
+    for(int i = inf+1; i < n; i++){
       int val = a[i];
       int j = i;
       while(j > 0 && val < a[j-1]){
@@ -185,7 +148,7 @@ public class Sorting {
   private static <T extends Comparable<? super T>> void iSortRange(T[] a, int inf, int sup){
     int n = sup-inf;
     if(n <= 1) return;
-    for(int i = inf+1; i < n; i++){ // era i=1
+    for(int i = inf+1; i < n; i++){
       T val = a[i];
       int j = i;
       while(j > 0 && val.compareTo(a[j-1]) < 0){
@@ -195,36 +158,24 @@ public class Sorting {
     }   
   }
   
-  /**
-   * Metodo di supporto per l'Insertion Sort (Versione con Ricerca binaria). Inserisce l'elemento di posizione 
-   * i in posizione j, shiftando il resto dell'array di una posizione.
-   * @param a Array su cui operare.
-   * @param j Posizione di destinazione dell'elemento.
-   * @param i Posizione originale dell'elemento (<code>i-1</code> corrisponde con l'ultimo elemento
-   * ordinato ).
-   */
-  private static void insert(int[] a, int j, int i){
-    int val = a[i];
-    for(int k = i; k > j; k--){
-      a[k] = a[k-1];
-    }
-    a[j] = val;
-  }
+
   
   /**
-   * <p>Implementazione dell'algoritmo di <strong>ordinamento</strong> Insertion Sort.
-   * Si prende via via l'elemento successivo e lo si inserisce in maniera ordinata nella parte che era già
-   * stata ordinata</p>
-   * <p><strong>Caso Peggiore:</strong>L'array di partenza è ordinato inversamente.  O(n^2)</p>
-   * <p><strong>Caso Migliore:</strong>L'array di partenza è già ordinato: O(n)</p>
-   * <p><strong>Caso Medio:</strong> O(n) ~ O(n^2)</p>
+   * <p>Implementazione dell'algoritmo di <strong>ordinamento</strong> Insertion Sort
+   * con i tipi generici.
+   * Si prende via via l'elemento successivo e lo si inserisce in maniera 
+   * ordinata nella parte che era già stata ordinata</p>
+   * <p>-<strong>Caso Peggiore:</strong>L'array di partenza è ordinato inversamente.  O(n^2)</p>
+   * <p>-<strong>Caso Migliore:</strong>L'array di partenza è già ordinato: O(n)</p>
+   * <p>-<strong>Caso Medio:</strong> O(n) ~ O(n^2)</p>
    * <p>-<strong>Sul Posto</strong></p>
-   * <p>-<strong>Stabile:</strong> l'array posiziona ogni elemento nel primo posto utile per ordinare l'array
-   * e una volta posizionato non sarà più spostato, mantenendo stabile l'algoritmo</p>
+   * <p>-<strong>Stabile:</strong> l'array posiziona ogni elemento nel primo 
+   * posto utile per ordinare l'array e una volta posizionato non sarà più 
+   * spostato, mantenendo stabile l'algoritmo</p>
    * @param <T> extends Comparable
-   * @param a  array da ordinare
+   * @param a  Array da ordinare
    */
-  public static <T extends Comparable<? super T>> void isort (T[] a){
+  public static <T extends Comparable<? super T>> void iSort (T[] a){
     int n = a.length;
     if(n > 1){
       for(int i = 1; i < n; i++){      
@@ -239,15 +190,18 @@ public class Sorting {
   }
   
   /**
-   * <p>Implementazione dell'algoritmo di <strong>ordinamento</strong> Insertion Sort con ausilio 
-   * della ricerca binaria. Si prende via via l'elemento successivo e lo si inserisce in maniera 
-   * ordinata nella parte che era già stata ordinata</p>
-   * <p>NOTE SULLA RICERCA BINARIA: la ricerca binaria ha una complessita <code>O(log(n))</code> ,
-   * a cui bisogna però aggiungere lo spostamento dei valori dell' array in avanti fino alla posizione occupata
-   * dal valore da ordinare (che nell' algoritmo di base viene fatto nello stesso momento in cui si cerca
-   * il valore) Dunque la complessità temporale rimane comunque quadratica nel caso peggiore</p>  //TOSEE: Assicurarsi che non ho scritto una fesseria ^^"
+   * <p>Implementazione dell'algoritmo di <strong>ordinamento</strong> 
+   * Insertion Sort con ausilio della ricerca binaria. Si prende via via l'elemento 
+   * successivo e lo si inserisce in maniera ordinata nella parte che era già 
+   * stata ordinata</p>
+   * <p>NOTE SULLA RICERCA BINARIA: la ricerca binaria ha una complessità 
+   * <code>O(log(n))</code>, a cui bisogna però aggiungere lo spostamento dei 
+   * valori dell'array in avanti fino alla posizione occupata dal valore da 
+   * ordinare (che nell'algoritmo di base viene fatto nello stesso momento in 
+   * cui si cerca il valore). Dunque la complessità temporale rimane comunque 
+   * quadratica nel caso peggiore</p>                                           
    * <p>-<strong>Caso Peggiore:</strong>L'array di partenza è ordinato inversamente.  O(n^2)</p>
-   * <p>-<strong>Caso Migliore:</strong>L'array di partenza è già ordinato: O(n*log(n))</p> //TOSEE: verificare se è vero
+   * <p>-<strong>Caso Migliore:</strong>L'array di partenza è già ordinato: O(n)</p> //TOSEE: verificare se è vero: slide 48 lez18 - ho paura a parlare di complessità xD
    * <p>-<strong>Caso Medio:</strong> O(n) ~ O(n^2)</p>
    * <p>-<strong>Sul Posto</strong></p>
    * <p>-<strong>Stabile:</strong> La ricerca binaria ritorna sempre la posizione più a sinistra possibile (modificata per farlo)</p>
@@ -269,7 +223,7 @@ public class Sorting {
   /**
    * Metodo di supporto per l'Insertion Sort con Ricerca binaria per determinare il punto di
    * inserimento del valore.<br>
-   * Complessità:<code> i= fin - ini := O(log(i))</code>
+   * Complessità:<code> i = fin - ini := O(log(i))</code>
    * <p><i>NOTE: L'algoritmo è modificato in modo da non uscire appena trova la posizione adatta
    * per il valore cercato, ma continua per trovare la "posizione migliore", ovvero quella più a sinistra possibile
    * (in questo caso)</i></p>
@@ -295,17 +249,18 @@ public class Sorting {
   
 // </editor-fold>
   
- // <editor-fold defaultstate="collapsed" desc=" MergeSort Base ">
+ // <editor-fold defaultstate="collapsed" desc=" MERGE SORT Base ">
   /**
-   * Implementazione del Merge Sort( Versione non ottimizzata) <br>
-   * <p>Algoritmo ricorsivo: divide l'array da ordinare in tanti piccoli array (N.B. in realtà lavora con gli indici,
-   * quindi su porzioni dello stesso array ), fino ad arrivare  all' ultimo passo in cui gli array sono 
-   * composti da 1 solo elemento.e poi li riordina risalendo (nel passo invariante generico si ha, quindi,
-   * che i due array su cui fare il merge sono ordinati) </p>
+   * Implementazione del Merge Sort (Versione non ottimizzata) <br>
+   * <p>Algoritmo ricorsivo: divide l'array da ordinare in tanti piccoli 
+   * array. NB in realtà lavora con gli indici, quindi su porzioni dello stesso 
+   * array), fino ad arrivare all'ultimo passo in cui gli array sono 
+   * composti da 1 solo elemento. Poi li riordina risalendo (nel passo invariante 
+   * generico si ha, quindi, che i due array su cui fare il merge sono ordinati) </p>
    * <p>-<b>Complessità: </b> O(n*log(n)) </p>
    * <p>-<b>Non sul Posto:</b> nel merge viene usato un array ausiliario</p>
-   * <p>-<b>Stabile:</b>L'algoritmo che esegue il merge fa in modo che se due elementi chiave
-   * sono uguali, venga preso prima quello a sinistra.</p>
+   * <p>-<b>Stabile:</b>L'algoritmo che esegue il merge fa in modo che se due 
+   * elementi chiave sono uguali, venga preso prima quello a sinistra.</p>
    * @param a Array da ordinare.
    */
   public static void mSortBasic(int[] a){
@@ -313,7 +268,7 @@ public class Sorting {
   }
   
   /**
-   * Metodo privato ricorsivo richiamato inizialmente da mSortBasic
+   * Metodo privato ricorsivo richiamato inizialmente da mSortBasic.
    * @see mSortBasic
    * @param a
    * @param first 
@@ -339,21 +294,17 @@ public class Sorting {
    * @param last Indice finale della seconda porzione.
    */
   static void mergeBasic(int[] a, int first, int middle, int last) {
-    // dimensione array temporaneo
     int n = last - first + 1;
     int[] c = new int[n];
     int i = first, j = middle+1, k = 0; 
-    // scorrimento delle due porzioni e inserimento nell'array temporaneo
     while(i <= middle && j <= last) {
       if(a[i] <= a[j]) c[k++] = a[i++];
       else             c[k++] = a[j++];
     }
-    // inserimento in c dell'array non ancora esaurito
     while(i <= middle) 
         c[k++] = a[i++];
     while(j <= last) 
       c[k++] = a[j++];
-    // copiatura di c all'interno dell'array originale
     for(int h = 0; h < n; h++) 
       a[first + h] = c[h];
   }
@@ -362,13 +313,13 @@ public class Sorting {
   
  // <editor-fold defaultstate="collapsed" desc=" Merge Sort (No Garbage)">
   /**
-   * Implementazione del Merge Sort. Versione con un unico array ausiliario e merge ottimizzato.
-   * <p>Crea un array della stessa dimensione dell' array da ordinare che userà come supporto per
-   * riordinare l'array a.</p>
+   * Implementazione del Merge Sort. Versione con un unico array ausiliario e 
+   * merge ottimizzato. <p>Crea un array della stessa dimensione dell'array da 
+   * ordinare che userà come supporto per riordinare l'array a.</p>
    * <p>-<b>Complessità: </b> O(n*log(n)) </p>
    * <p>-<b>Non sul Posto:</b> nel merge viene usato un array ausiliario</p>
-   * <p>-<b>Stabile:</b>L'algoritmo che esegue il merge fa in modo che se due elementi chiave
-   * sono uguali, venga preso prima quello a sinistra.</p>
+   * <p>-<b>Stabile:</b>L'algoritmo che esegue il merge fa in modo che se due
+   * elementi chiave sono uguali, venga preso prima quello a sinistra.</p>
    * @param a Array da ordinare.
    */
   public static void mSortNoGarbage(int[] a){
@@ -378,7 +329,7 @@ public class Sorting {
   }
 
   /**
-   * metodo ausiliario privato per mSortNoGarbage
+   * Metodo ausiliario privato per mSortNoGarbage
    * @see mSortNoGarbage
    * @param a
    * @param first
@@ -395,8 +346,13 @@ public class Sorting {
   } 
   
   /**
-   * Metodo di supporto per il Merge Sort senza Garbage.
-   * <b>Non<b> è a passo alternato, contiene le varie ottimizzazioni del merge
+   * Metodo per effettuare il merge (relativo al Merge Sort senza Garbage).
+   * <b>Non<b> è a passo alternato, contiene le varie ottimizzazioni del merge.
+   * NB: dopo il while, tutti i valori della porzione [middle+1 .. last] sono 
+   * minori dei valori rimanenti nella prima porzione [i .. middle], 
+   * quindi sono stati copiati tutti all'interno di aux. Per questo motivo, 
+   * la seconda porzione la si può considerare libera per poterci copiare, dal 
+   * più grande, i valori rimanenti tra [i .. middle].
    * @param a Array su cui operare.
    * @param first Indice iniziale della prima porzione.
    * @param middle Indice finale della prima porzione.
@@ -410,37 +366,32 @@ public class Sorting {
     //Se quando si deve effettuare la fusione l'ultimo elemento del segmento sinistro è minore o 
     //uguale al primo elemento del segmento di destra, la sequenza dei due segmenti è già un
     //segmento ordinato e quindi la fusione non è necessaria.
+    // RISPOSTA: vero, non ci avevo pensato però ho paura ad osare con le modifiche dei metodi dati da lui :/
     while(i <= middle && j <= last){
       if(a[i] <= a[j])
         aux[k++] = a[i++];
       else 
         aux[k++] = a[j++];
     }
-    // tutti i valori della porzione [middle+1 .. last] sono minori dei valori
-    // rimanenti nella prima porzione [i .. middle]
-    // quindi sono stati copiati tutti all'interno di aux
-    // per questo motivo, la seconda porzione la si può considerare libera
-    // per poterci copiare, dal più grande, i valori rimanenti tra [i .. middle]
     int h = middle, l = last;
     while(h >= i)
       a[l--] = a[h--];
-    // trasferimento dei valori da aux[] ad a[]
     for(int m = first; m < k; m++)
       a[m] = aux[m];
   }
   
   /**
    * Implementazione del Merge Sort per mezzo dei tipi generici.
-   * <p>Crea un array della stessa dimensione dell' array da ordinare che userà come supporto per
-   * riordinare l'array a.</p>
+   * <p>Crea un array della stessa dimensione dell'array da ordinare che userà 
+   * come supporto per riordinare l'array a.</p>
    * <p>-<b>Complessità: </b> O(n*log(n)) </p>
    * <p>-<b>Non sul Posto:</b> nel merge viene usato un array ausiliario</p>
-   * <p>-<b>Stabile:</b>L'algoritmo che esegue il merge fa in modo che se due elementi chiave
-   * sono uguali, venga preso prima quello a sinistra.</p>
+   * <p>-<b>Stabile:</b>L'algoritmo che esegue il merge fa in modo che se due 
+   * elementi chiave sono uguali, venga preso prima quello a sinistra.</p>
    * @param <T> extends Comparable
    * @param a Array da ordinare.
    */
-  public static <T extends Comparable<? super T>> void msortNoGarbage (T[] a ){
+  public static <T extends Comparable<? super T>> void mSortNoGarbage (T[] a ){
     int n = a.length;
     T[] aux = (T[]) new Object[n];
     mSortNoGarbageRic(a, 0, n-1, aux);
@@ -448,7 +399,7 @@ public class Sorting {
   
   /**
    * Metodo Ausiliario privato usato da msortNoGarbage
-   * @see msortNoGarbage
+   * @see msortNoGarbage#mSortNoGarbage
    * @param <T>
    * @param a
    * @param first
@@ -471,22 +422,16 @@ public class Sorting {
     //Se quando si deve effettuare la fusione l'ultimo elemento del segmento sinistro è minore o 
     //uguale al primo elemento del segmento di destra, la sequenza dei due segmenti è già un
     //segmento ordinato e quindi la fusione non è necessaria.
-    
+    // RISPOSTA: vero, non ci avevo pensato però ho paura ad osare con le modifiche dei metodi dati da lui :/
     while(i <= middle && j <= last){
       if(a[i].compareTo(a[j]) <= 0)
         aux[k++] = a[i++];
       else 
         aux[k++] = a[j++];
     }
-    // tutti i valori della porzione [middle+1 .. last] sono minori dei valori
-    // rimanenti nella prima porzione [i .. middle]
-    // quindi sono stati copiati tutti all'interno di aux
-    // per questo motivo, la seconda porzione la si può considerare libera
-    // per poterci copiare, dal più grande, i valori rimanenti tra [i .. middle]
     int h = middle, l = last;
     while(h >= i)
       a[l--] = a[h--];
-    // trasferimento dei valori da aux[] ad a[]
     for(int m = first; m < l; m++)
       a[m] = aux[m];
   }
@@ -497,12 +442,13 @@ public class Sorting {
  // <editor-fold defaultstate="collapsed" desc=" Merge Sort Alternato">  
   /**
    * Implementazione del Merge Sort - versione "a passo alternato".
-   * Versione ottimizzata del merge sort: L'arrey ausiliario viene caricato con gli stessi valori dell' array
-   * da ordinare e si esegue il merge usando in modo alternato porzioni dei due array, evitando cosi 
-   * di dover caricare i valori ordinati nell' ausiliario dentro l'array originale.
+   * Versione ottimizzata del merge sort: L'arrey ausiliario viene caricato con 
+   * gli stessi valori dell'array da ordinare e si esegue il merge usando in modo 
+   * alternato porzioni dei due array, evitando cosi di dover caricare i valori 
+   * ordinati nell' ausiliario dentro l'array originale.
    * @param a Array da ordinare.
    */
-  public static void msortAlt (int[] a){
+  public static void mSortAlt (int[] a){
     int n = a.length;
     int[] aux = a.clone();
     mSortAltRic(a, 0, n-1, aux);
@@ -518,19 +464,16 @@ public class Sorting {
   }
   
   private static void mergeAlt(int[] a, int first, int middle, int last, int[] c) {
-    int i = first, j = middle+1, k = 0; 
-    // scorrimento delle due porzioni e inserimento nell'array temporaneo
-    
+    int i = first, j = middle+1, k = 0;     
     // TOSEE: NON VEDO QUESTA OTTIMIZZAZIONE :
     //Se quando si deve effettuare la fusione l'ultimo elemento del segmento sinistro è minore o 
     //uguale al primo elemento del segmento di destra, la sequenza dei due segmenti è già un
     //segmento ordinato e quindi la fusione non è necessaria.
+    // RISPOSTA vero, non ci avevo pensato però ho paura ad osare con le modifiche dei metodi dati da lui :/
     while(i <= middle && j <= last) {
       if(a[i] <= a[j]) c[k++] = a[i++];
       else             c[k++] = a[j++];
-    }
-    
-    // inserimento in c dell'array non ancora esaurito
+    }    
     while(i <= middle) 
       c[k++] = a[i++];
     while(j <= last) 
@@ -539,10 +482,10 @@ public class Sorting {
   
   /**
    * Implementazione del Merge Sort versione alternata per mezzo dei tipi generici.
-   * @param <T> Tipo dell'array.      TOSEE è giusto scritto così?
+   * @param <T> Tipo dell'array.      TOSEE è giusto scritto così? GIUSE RIIISP
    * @param a Array da ordinare.
    */
-  public static <T extends Comparable<? super T>> void msortAlt (T[ ] a ){
+  public static <T extends Comparable<? super T>> void mSortAlt (T[ ] a ){
     int n = a.length;
     T[] aux = a.clone();
     mSortAltRic(a, 0, n-1, aux);
@@ -559,18 +502,16 @@ public class Sorting {
   
   private static <T extends Comparable<? super T>> void mergeAlt(T[] a, int first, int middle, int last, T[] c) {
     int i = first, j = middle+1, k = 0; 
-    // scorrimento delle due porzioni e inserimento nell'array temporaneo
     
     // TOSEE: NON VEDO QUESTA OTTIMIZZAZIONE :
     //Se quando si deve effettuare la fusione l'ultimo elemento del segmento sinistro è minore o 
     //uguale al primo elemento del segmento di destra, la sequenza dei due segmenti è già un
     //segmento ordinato e quindi la fusione non è necessaria.
-    
+    // RISPOSTA vero, non ci avevo pensato però ho paura ad osare con le modifiche dei metodi dati da lui :/
     while(i <= middle && j <= last) {
       if(a[i].compareTo(a[j]) <= 0) c[k++] = a[i++];
       else                          c[k++] = a[j++];
     }
-    // inserimento in c dell'array non ancora esaurito
     while(i <= middle) 
       c[k++] = a[i++];
     while(j <= last) 
@@ -635,7 +576,7 @@ public class Sorting {
  // <editor-fold defaultstate="collapsed" desc=" Merge Sort Parallel ">
   
   /**
-   * Versione parallela di una delle versioni precedenti. TOSEE non credo lo farò
+   * Versione parallela di una delle versioni precedenti.
    * @param a 
    */
   public static void parallelMergesort(int[] a){
@@ -824,4 +765,49 @@ public class Sorting {
     // TOSEE todo
   }
 // </editor-fold>
+  
+ // <editor-fold defaultstate="collapsed" desc=" Metodi di supporto ">
+  /**
+   * Metodo di supporto per scambio di posizione di due valori in un array.
+   * @param array Array su cui operare.
+   * @param i Indice del primo elemento.
+   * @param j Indice del secondo elemento.
+   */
+  private static void swap(int[] array, int i, int j){
+    int tmp = array[j];
+    array[j] = array[i];
+    array[i] = tmp;      
+  }
+  
+  /**
+   * Metodo di supporto per scambio di posizione di due valori in un array con 
+   * tipi generici.
+   * @param <T> extends Comparable
+   * @param array Array su cui operare.
+   * @param i Indice del primo elemento.
+   * @param j Indice del secondo elemento.
+   */
+  private static <T extends Comparable<? super T>> void swap(T[] array, int i, int j){
+    T tmp = array[j];
+    array[j] = array[i];
+    array[i] = tmp;      
+  }
+  
+  /**
+   * Metodo di supporto per l'Insertion Sort (Versione con Ricerca binaria). 
+   * Inserisce l'elemento di posizione i in posizione j, shiftando il resto 
+   * dell'array di una posizione.
+   * @param a Array su cui operare.
+   * @param j Posizione di destinazione dell'elemento.
+   * @param i Posizione originale dell'elemento (<code>i-1</code> corrisponde 
+   * all'ultimo elemento ordinato ).
+   */
+  private static void insert(int[] a, int j, int i){
+    int val = a[i];
+    for(int k = i; k > j; k--){
+      a[k] = a[k-1];
+    }
+    a[j] = val;
+  }
+  // </editor-fold>
 }

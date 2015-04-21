@@ -6,6 +6,6 @@
       - granatamammolo:
         - binarysearch:
             punti: 3
-        - sort:
+        - sort:           // da terminare con heapsort!!
         	punti: 10
   somma-punti: 13

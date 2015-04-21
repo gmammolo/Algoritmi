@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package granatamammolo.Java.granatamammolo.sort;
 
 import java.util.Arrays;
@@ -122,7 +117,7 @@ public class SortingTest {
         System.out.println("testSsortUnorderIntArrays");
         int[] a = int_unorder.clone();
         System.out.println(Arrays.toString(a));
-        Sorting.ssort(a);
+        Sorting.sSort(a);
         System.out.println(Arrays.toString(a));
         assertArrayEquals(int_order, a);
     }
@@ -131,7 +126,7 @@ public class SortingTest {
     public void testSsortOrderIntArrays() {
         System.out.println("testSsortOrderIntArrays");
         int[] a = int_order.clone();
-        Sorting.ssort(a);
+        Sorting.sSort(a);
         assertArrayEquals(int_order ,a );
     }
     
@@ -139,7 +134,7 @@ public class SortingTest {
     public void testSsortVoidIntArrays() {
         System.out.println("testSsortVoidIntArrays");
         int[] a = int_void.clone();
-        Sorting.ssort(a);
+        Sorting.sSort(a);
         assertArrayEquals(int_void, a);
     }
     
@@ -147,7 +142,7 @@ public class SortingTest {
     public void testSsortSingleIntArrays() {
         System.out.println("testSsortSingleIntArrays");
         int[] a = int_single.clone();
-        Sorting.ssort(a);
+        Sorting.sSort(a);
         assertArrayEquals(int_single, a);
     }
 
@@ -155,7 +150,7 @@ public class SortingTest {
     public void testSsortUnorderArrays() {
         System.out.println("testSsortUnorderArrays");
         String[] a = string_unorder.clone();
-        Sorting.ssort(a);
+        Sorting.sSort(a);
         assertArrayEquals(string_order , a);
     }
     
@@ -163,7 +158,7 @@ public class SortingTest {
     public void testSsortOrderArrays() {
         System.out.println("testSsortOrderArrays");
         String[] a = string_order.clone();
-        Sorting.ssort(a);
+        Sorting.sSort(a);
         assertArrayEquals(string_order, a);
     }
     
@@ -171,7 +166,7 @@ public class SortingTest {
     public void testSsortVoidArrays() {
         System.out.println("testSsortVoidArrays");
         String[] a = string_void.clone();
-        Sorting.ssort(a);
+        Sorting.sSort(a);
         assertArrayEquals(string_void, a);
     }
     
@@ -179,7 +174,7 @@ public class SortingTest {
     public void testSsortSingleArrays() {
         System.out.println("testSsortSingleArrays");
         String[] a = string_single.clone();
-        Sorting.ssort(a);
+        Sorting.sSort(a);
         assertArrayEquals(string_single,a);
     }
          
@@ -226,7 +221,7 @@ public class SortingTest {
     public void testIsortOrderArray() {
         System.out.println("testIsortOrderArray");
         String[] a = string_order.clone();
-        Sorting.isort(a);
+        Sorting.iSort(a);
         assertArrayEquals(string_order, a);
     }
     
@@ -234,7 +229,7 @@ public class SortingTest {
     public void testIsortUnorderArray() {
         System.out.println("testIsortUnorderArray");
         String[] a = string_unorder.clone();
-        Sorting.isort(a);
+        Sorting.iSort(a);
         assertArrayEquals(string_order, a );
     }
     
@@ -242,7 +237,7 @@ public class SortingTest {
     public void testIsortVoidArray() {
         System.out.println("testIsortVoidArray");
         String[] a = string_void.clone();
-        Sorting.isort(a);
+        Sorting.iSort(a);
         assertArrayEquals(string_void, a);
     }
     
@@ -250,7 +245,7 @@ public class SortingTest {
     public void testIsortSingleArray() {
         System.out.println("testIsortSingleArray");
         String[] a = string_single.clone();
-        Sorting.isort(a);
+        Sorting.iSort(a);
         assertArrayEquals(string_single, a);
     }
     
