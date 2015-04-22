@@ -1,10 +1,7 @@
 package granatamammolo.Java.granatamammolo.sort;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.ForkJoinTask;
 import static java.util.concurrent.ForkJoinTask.invokeAll;
 import java.util.concurrent.RecursiveAction;
 
@@ -351,7 +348,7 @@ public class Sorting {
   
   /**
    * Metodo per effettuare il merge (relativo al Merge Sort senza Garbage).
-   * <b>Non<b> è a passo alternato, contiene le varie ottimizzazioni del merge.
+   * <b>Non</b> è a passo alternato, contiene le varie ottimizzazioni del merge.
    * NB: dopo il while, tutti i valori della porzione [middle+1 .. last] sono 
    * minori dei valori rimanenti nella prima porzione [i .. middle], 
    * quindi sono stati copiati tutti all'interno di aux. Per questo motivo, 
@@ -405,8 +402,8 @@ public class Sorting {
   
   /**
    * Metodo Ausiliario privato usato da msortNoGarbage
-   * @see msortNoGarbage#mSortNoGarbage
-   * @param <T>
+   * @see mSortNoGarbage 
+   * @param <T> extends Comparable
    * @param a
    * @param first
    * @param last
@@ -626,7 +623,7 @@ public class Sorting {
    * Implementazione del QuickSort base (con estrazione del pivot e scelta
    * del pivot tramite random).
    * Gli elementi uguali al pivot rimangono sempre nella stessa porzione di 
-   * destra (insieme agli elementi > pivot). L'indice i indica l'ultima posizione
+   * destra (insieme agli elementi &lt;  pivot). L'indice i indica l'ultima posizione
    * degli elementi minori del pivot.
    * @param a Array da ordinare
    */
