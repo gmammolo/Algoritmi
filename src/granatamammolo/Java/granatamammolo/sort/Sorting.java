@@ -1,7 +1,10 @@
 package granatamammolo.Java.granatamammolo.sort;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.ForkJoinTask;
 import static java.util.concurrent.ForkJoinTask.invokeAll;
 import java.util.concurrent.RecursiveAction;
 
@@ -765,8 +768,9 @@ public class Sorting {
   // </editor-fold> 
   
  // <editor-fold defaultstate="collapsed" desc=" Quick Sort Parallel ">
-  public static void parallelQuickSort(int[] a){
-     //TOSEE: TODO x me: completare 
+
+  
+  public static void parallelQuicksort(int[] a){
     int n= a.length - 1;
     int cores = Runtime.getRuntime().availableProcessors();
     ForkJoinPool pool = ForkJoinPool.commonPool();
@@ -774,25 +778,33 @@ public class Sorting {
     pool.invoke(sorter);
   }
   
-  
-   private static class ParallelQuickSorter extends RecursiveAction {
-    int[] a, aux;
-    int first, last;
+  private static class ParallelQuickSorter extends RecursiveAction {
+    int[] a;
+    int inf, sup;
     int numThreads; // numero dei threads ancora disponibili
     
     ParallelQuickSorter(int[] a, int f, int l, int n){
-      this.a = a;
-      first = f; last = l; numThreads = n;
+      this.a = a; 
+      inf = f; sup = l; numThreads = n;
     }
 
     @Override
     protected void compute() {
-      if(first >= last) return;
-      if(numThreads <= 1) qSortHoareRic(a, first, last);
-      else {
-        int m = (first + last)/2;
-        ParallelQuickSorter left = new ParallelQuickSorter(a, first, m, numThreads/2);
-        ParallelQuickSorter right = new ParallelQuickSorter(a, m+1, last, numThreads/2);
+      if(inf >= sup) return;
+      if(numThreads <= 1) qSortBasicRic(a, inf, sup);
+      else { 
+        int iPivot = random.nextInt(sup - inf + 1) + inf;
+        swap(a, inf, iPivot);
+        int i = inf;
+        for(int j = inf+1; j <= sup; j++){
+          if(a[j] < a[inf]){
+            i++;
+            swap(a, i , j);
+          }
+        }
+        swap(a, i, inf);
+        ParallelQuickSorter left = new ParallelQuickSorter(a, inf, i, numThreads/2);
+        ParallelQuickSorter right = new ParallelQuickSorter(a, i+1, sup, numThreads/2);
         invokeAll(left, right);
       }
     }
