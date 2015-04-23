@@ -3,6 +3,7 @@
  */
 package granatamammolo.priorityqueue;
 
+import granatamammolo.Java.priorityqueue.PriorityQueueStringDoubleSimple;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

@@ -1,4 +1,4 @@
-package granatamammolo.priorityqueue;
+package granatamammolo.Java.priorityqueue;
 
 /**
  *
