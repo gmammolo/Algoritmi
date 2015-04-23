@@ -174,7 +174,7 @@ public class SortTiming {
   static public Timings measureAlgorithms(String[] algorithms, int minSize, int maxSize, int stepSize, ArrayBuilder builder) throws ReflectiveOperationException {
     Timings timings = new Timings(algorithms);
     for( int size=minSize; size<=maxSize; size+=stepSize ) {
-      log.info("starting experiment for array size:" + size);
+      log.info("Starting experiment for array size:" + size);
       timings.addExperiment(size);
       int[] array = builder.randomArray(size);
 
@@ -193,16 +193,33 @@ public class SortTiming {
    * Results are written in CSV format.
    */
   static public void writeResults(String filename, Timings timings) throws IOException  {
-    PrintWriter writer = new PrintWriter(filename, "UTF-8");
+    PrintWriter writer = new PrintWriter("./"+filename, "UTF-8");
     writer.println("sep="+Timings.SEP);
     writer.println(timings.toCsvString());
     writer.close();
   }
-
-  // Example of using the class to test few quadratic and few optimal algorithms.
+  
+  /**
+   * Il programma deve effettuare
+   * misurazioni su array di dimensioni crescenti distinte per gli algoritmi quadratici
+   * e per quelli ottimali. 
+   * 
+   * Gli algoritmi quadratici vanno musurati insieme ad almeno
+   * un algoritmo ottimale (al fine di apprezzarne la differenza di prestazioni). In
+   * entrambi i casi gli ultimi esperimenti (quelli che misurano i tempi di esecuzione
+   * su array di dimensioni maggiori) devono forzare gli algoritmi a lavorare per
+   * almeno qualche decina di secondi.
+   * Si testino infine i metodi sort e parallelSort della classe Arrays della libreria di
+   * Java, che hanno un’ottimizzazione molto spinta e sono quindi presumibilmente
+   * i più veloci di tutti.
+   * @param args
+   * @throws ReflectiveOperationException
+   * @throws IOException 
+   */
   public static void main(String[] args) throws ReflectiveOperationException, IOException {
-    String[] quadratic = { "isort", "ssort" };
-    String[] optimal = { "qsort", "msort" };
+    String[] quadratic = { "iSort", "sSort" };          // si può aggiungere: iSortBin
+    String[] optimal = { "qSortHoare", "mSortAlt" };    // si può aggiungere: mSortBasic, mSortISort, mSortNoGarbage, parallelMergeSort
+                                                        // si può aggiungere: parallelQuickSort, qSortBasic, qSortHoareISort
 
     ArrayBuilder builder = new ArrayBuilder(Integer.MIN_VALUE, Integer.MAX_VALUE);
 
