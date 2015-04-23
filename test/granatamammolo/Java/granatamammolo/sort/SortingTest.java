@@ -569,7 +569,7 @@ public class SortingTest {
     public void testMSortParallel_OrderIntArrays() {
         System.out.println("testMSortParallel_OrderIntArrays");
         int[] a = int_order.clone();
-        Sorting.parallelMergesort(a);
+        Sorting.parallelMergeSort(a);
         assertArrayEquals(int_order, a);
     }
     
@@ -577,7 +577,7 @@ public class SortingTest {
     public void testMSortParallel_UnorderIntArrays() {
         System.out.println("testMSortParallel_UnorderIntArrays");
         int[] a = int_unorder.clone();
-        Sorting.parallelMergesort(a);
+        Sorting.parallelMergeSort(a);
         Arrays.sort(int_unorder);
         assertArrayEquals(int_unorder, a);
     }
@@ -586,7 +586,7 @@ public class SortingTest {
     public void testMSortParallel_VoidIntArrays() {
         System.out.println("testMSortParallel_VoidIntArrays");
         int[] a = int_void.clone();
-        Sorting.parallelMergesort(a);
+        Sorting.parallelMergeSort(a);
         assertArrayEquals(int_void, a);
     }
     
@@ -594,7 +594,7 @@ public class SortingTest {
     public void testMSortParallel_SingleIntArrays() {
         System.out.println("testMSortParallel_SingleIntArrays");
         int[] a = int_single.clone();
-        Sorting.parallelMergesort(a);
+        Sorting.parallelMergeSort(a);
         assertArrayEquals(int_single, a);
     }
     
@@ -602,7 +602,7 @@ public class SortingTest {
     public void testMSortParallel_DecrescentIntArrays() {
         System.out.println("testMSortParallel_DecrescentIntArrays");
         int[] a = int_decrescent.clone();
-        Sorting.parallelMergesort(a);
+        Sorting.parallelMergeSort(a);
         assertArrayEquals(int_ord_decrescent, a);
     }
     
@@ -614,7 +614,7 @@ public class SortingTest {
     public void testQSortISort_OrderIntArrays() {
         System.out.println("testQSortISort_OrderIntArrays");
         int[] a = int_order.clone();
-        Sorting.qSortHoareIsort(a);
+        Sorting.qSortHoareISort(a);
         assertArrayEquals(int_order, a);
     }
     
@@ -622,7 +622,7 @@ public class SortingTest {
     public void testQSortISort_UnorderIntArrays() {
         System.out.println("testQSortISort_UnorderIntArrays");
         int[] a = int_unorder.clone();
-        Sorting.qSortHoareIsort(a);
+        Sorting.qSortHoareISort(a);
         Arrays.sort(int_unorder);
         assertArrayEquals(int_unorder, a);
     }
@@ -631,7 +631,7 @@ public class SortingTest {
     public void testQSortISort_VoidIntArrays() {
         System.out.println("testQSortISort_VoidIntArrays");
         int[] a = int_void.clone();
-        Sorting.qSortHoareIsort(a);
+        Sorting.qSortHoareISort(a);
         assertArrayEquals(int_void, a);
     }
     
@@ -639,7 +639,7 @@ public class SortingTest {
     public void testQSortISort_SingleIntArrays() {
         System.out.println("testQSortISort_SingleIntArrays");
         int[] a = int_single.clone();
-        Sorting.qSortHoareIsort(a);
+        Sorting.qSortHoareISort(a);
         assertArrayEquals(int_single, a);
     }
     
@@ -648,7 +648,7 @@ public class SortingTest {
     public void testQSortISort_DecrescentIntArrays() {
         System.out.println("testQSortISort_DecrescentIntArrays");
         int[] a = int_decrescent.clone();
-        Sorting.qSortHoareIsort(a);
+        Sorting.qSortHoareISort(a);
         assertArrayEquals(int_ord_decrescent, a);
     }
     
@@ -660,7 +660,7 @@ public class SortingTest {
     public void testQSortParallel_OrderIntArrays() {
         System.out.println("testQSortParallel_OrderIntArrays");
         int[] a = int_order.clone();
-        Sorting.parallelQuicksort(a);
+        Sorting.parallelQuickSort(a);
         assertArrayEquals(int_order, a);
     }
     
@@ -668,7 +668,7 @@ public class SortingTest {
     public void testQSortParallel_UnorderIntArrays() {
         System.out.println("testQSortParallel_UnorderIntArrays");
         int[] a = int_unorder.clone();
-        Sorting.parallelQuicksort(a);
+        Sorting.parallelQuickSort(a);
         Arrays.sort(int_unorder);
         assertArrayEquals(int_unorder, a);
     }
@@ -677,7 +677,7 @@ public class SortingTest {
     public void testQSortParallel_VoidIntArrays() {
         System.out.println("testQSortParallel_VoidIntArrays");
         int[] a = int_void.clone();
-        Sorting.parallelQuicksort(a);
+        Sorting.parallelQuickSort(a);
         assertArrayEquals(int_void, a);
     }
     
@@ -685,7 +685,7 @@ public class SortingTest {
     public void testQSortParallel_SingleIntArrays() {
         System.out.println("testQSortParallel_SingleIntArrays");
         int[] a = int_single.clone();
-        Sorting.parallelQuicksort(a);
+        Sorting.parallelQuickSort(a);
         assertArrayEquals(int_single, a);
     }
     
@@ -693,7 +693,7 @@ public class SortingTest {
     public void testQSortParallel_DecrescentIntArrays() {
         System.out.println("testQSortParallel_DecrescentIntArrays");
         int[] a = int_decrescent.clone();
-        Sorting.parallelQuicksort(a);
+        Sorting.parallelQuickSort(a);
         assertArrayEquals(int_ord_decrescent, a);
     }
     

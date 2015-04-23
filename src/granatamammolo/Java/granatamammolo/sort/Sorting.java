@@ -531,7 +531,7 @@ public class Sorting {
    * Sort al di sotto di una certa soglia.
    * @param a  array da ordinare
    */
-  public static void mSortIsort(int[] a){
+  public static void mSortISort(int[] a){
     if(a.length <= 1) return;
     int[] b = a.clone();
     mSortIsortRic(a, 0, a.length, b);
@@ -553,13 +553,13 @@ public class Sorting {
     }
   }
   
-  public static <T extends Comparable<? super T>> void mSortIsort(T[] a){
+  public static <T extends Comparable<? super T>> void mSortISort(T[] a){
     if(a.length <= 1) return;
     T[] b = a.clone();
-    mSortIsortRic(a, 0, a.length, b);
+    mSortISortRic(a, 0, a.length, b);
   }
   
-  private static <T extends Comparable<? super T>> void mSortIsortRic(T[] a, int inf, int sup, T[] b){
+  private static <T extends Comparable<? super T>> void mSortISortRic(T[] a, int inf, int sup, T[] b){
     if(inf >= sup) return;
     int soglia = 7;
     if((sup-inf) < soglia){
@@ -568,8 +568,8 @@ public class Sorting {
       int first = inf, last = sup-1;
       if(first < last){
         int middle = (first + last) >>> 1;
-        mSortIsortRic(b, first, middle, a);
-        mSortIsortRic(b, middle+1, last, a);
+        mSortISortRic(b, first, middle, a);
+        mSortISortRic(b, middle+1, last, a);
         mergeAlt(b, first, middle, last, a);
       }
     }
@@ -583,7 +583,7 @@ public class Sorting {
    * Versione parallela di una delle versioni precedenti.
    * @param a 
    */
-  public static void parallelMergesort(int[] a){
+  public static void parallelMergeSort(int[] a){
     int n= a.length - 1;
     int cores = Runtime.getRuntime().availableProcessors();
     ForkJoinPool pool = ForkJoinPool.commonPool();
@@ -733,12 +733,12 @@ public class Sorting {
    * dell'InsertionSort al di sotto di una certa soglia.
    * @param a 
    */
-  public static void qSortHoareIsort(int[] a){
+  public static void qSortHoareISort(int[] a){
     if(a.length <= 1) return;
-    qSortHoareIsortRic(a, 0, a.length);
+    qSortHoareISortRic(a, 0, a.length);
   }
   
-  private static void qSortHoareIsortRic(int[] a, int inf, int sup){
+  private static void qSortHoareISortRic(int[] a, int inf, int sup){
     if(inf >= sup) return;
     int soglia = 7;
     if((sup-inf) <= soglia)      
@@ -767,7 +767,7 @@ public class Sorting {
  // <editor-fold defaultstate="collapsed" desc=" Quick Sort Parallel ">
 
   
-  public static void parallelQuicksort(int[] a){
+  public static void parallelQuickSort(int[] a){
     int n= a.length - 1;
     int cores = Runtime.getRuntime().availableProcessors();
     ForkJoinPool pool = ForkJoinPool.commonPool();
