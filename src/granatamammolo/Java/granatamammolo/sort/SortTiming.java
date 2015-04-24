@@ -1,5 +1,6 @@
 package granatamammolo.Java.granatamammolo.sort;
 
+import java.io.File;
 import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -193,7 +194,7 @@ public class SortTiming {
    * Results are written in CSV format.
    */
   static public void writeResults(String filename, Timings timings) throws IOException  {
-    PrintWriter writer = new PrintWriter("./"+filename, "UTF-8");
+    PrintWriter writer = new PrintWriter(filename, "UTF-8");
     writer.println("sep="+Timings.SEP);
     writer.println(timings.toCsvString());
     writer.close();
@@ -212,18 +213,15 @@ public class SortTiming {
    * Si testino infine i metodi sort e parallelSort della classe Arrays della libreria di
    * Java, che hanno un’ottimizzazione molto spinta e sono quindi presumibilmente
    * i più veloci di tutti.
-   * @param args
-   * @throws ReflectiveOperationException
-   * @throws IOException 
    */
   public static void main(String[] args) throws ReflectiveOperationException, IOException {
     String[] quadratic = { "iSort", "sSort" };          // si può aggiungere: iSortBin
     String[] optimal = { "qSortHoare", "mSortAlt" };    // si può aggiungere: mSortBasic, mSortISort, mSortNoGarbage, parallelMergeSort
                                                         // si può aggiungere: parallelQuickSort, qSortBasic, qSortHoareISort
-
+    
     ArrayBuilder builder = new ArrayBuilder(Integer.MIN_VALUE, Integer.MAX_VALUE);
-
+    
     writeResults("quadratic.csv", measureAlgorithms(quadratic, (int) 1E5, (int) 1E6, (int) 5E4 , builder));
-    writeResults("optimal.csv", measureAlgorithms(optimal, (int) 1E6, (int) 20E6, (int) 1E6, builder));
+//    writeResults("optimal.csv", measureAlgorithms(optimal, (int) 1E6, (int) 20E6, (int) 1E6, builder));
   }
 }
