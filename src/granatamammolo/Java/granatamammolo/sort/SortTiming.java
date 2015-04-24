@@ -1,6 +1,8 @@
 package granatamammolo.Java.granatamammolo.sort;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.lang.reflect.Member;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -194,10 +196,12 @@ public class SortTiming {
    * Results are written in CSV format.
    */
   static public void writeResults(String filename, Timings timings) throws IOException  {
-    PrintWriter writer = new PrintWriter(filename, "UTF-8");
+    PrintWriter writer = new PrintWriter(new FileWriter(filename));
     writer.println("sep="+Timings.SEP);
     writer.println(timings.toCsvString());
+    writer.flush();
     writer.close();
+    
   }
   
   /**
@@ -220,8 +224,13 @@ public class SortTiming {
                                                         // si può aggiungere: parallelQuickSort, qSortBasic, qSortHoareISort
     
     ArrayBuilder builder = new ArrayBuilder(Integer.MIN_VALUE, Integer.MAX_VALUE);
-    
-    writeResults("quadratic.csv", measureAlgorithms(quadratic, (int) 1E5, (int) 1E6, (int) 5E4 , builder));
-    writeResults("optimal.csv", measureAlgorithms(optimal, (int) 1E6, (int) 20E6, (int) 1E6, builder));
+
+    //TOSEE: ORIGINALI:
+//    writeResults("quadratic.csv", measureAlgorithms(quadratic, (int) 1E5, (int) 1E6, (int) 5E4 , builder));
+//    writeResults("optimal.csv", measureAlgorithms(optimal, (int) 1E6, (int) 20E6, (int) 1E6, builder));
+    //TOSEE: Usa questi per vedere se ti fa i file, poi rimetti gli originali
+    writeResults("quadratic.csv", measureAlgorithms(quadratic, (int) 10, (int) 150, (int) 5 , builder));
+    writeResults("optimal.csv", measureAlgorithms(optimal, (int) 10, (int) 150, (int) 5, builder));
+
   }
 }

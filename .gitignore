@@ -22,3 +22,6 @@ hs_err_pid*
 Makefile
 /src/Lezione/LezC/build/
 /src/Lezione/LezC/dist/
+/src/Lezione/Sort/nbproject/private/
+/src/Lezione/Sort/build/
+/src/Lezione/Sort/dist/
