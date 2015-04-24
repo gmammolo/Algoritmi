@@ -11,7 +11,7 @@ package granatamammolo.Java.priorityqueue;
  * @param <E>
  * @param <P> extends Comparable
  */
-public interface PriorityQueue<E, P extends Comparable<? super P>> {
+public interface PriorityQueue<E, P extends Comparable<P>> {
     
     boolean add(E element, P priority);
     
