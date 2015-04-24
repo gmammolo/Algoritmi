@@ -227,7 +227,13 @@ public class SortTiming {
                                                         // si può aggiungere: parallelQuickSort, qSortBasic, qSortHoareISort
 
     ArrayBuilder builder = new ArrayBuilder(Integer.MIN_VALUE, Integer.MAX_VALUE);
-    writeResults("quadratic.csv", measureAlgorithms(quadratic, 100000, 100000000, 10000, builder));
-    writeResults("optimal.csv", measureAlgorithms(optimal, (int) 100000, (int) 100000000, (int) 10000, builder));
+
+    //TOSEE: ORIGINALI:
+//    writeResults("quadratic.csv", measureAlgorithms(quadratic, (int) 1E5, (int) 1E6, (int) 5E4 , builder));
+//    writeResults("optimal.csv", measureAlgorithms(optimal, (int) 1E6, (int) 20E6, (int) 1E6, builder));
+    //TOSEE: Usa questi per vedere se ti fa i file, poi rimetti gli originali
+        writeResults("quadratic.csv", measureAlgorithms(quadratic, (int) 10, (int) 100, (int) 5 , builder));
+    writeResults("optimal.csv", measureAlgorithms(optimal, (int) 10, (int) 100, (int) 5, builder));
+    
   }
 }
