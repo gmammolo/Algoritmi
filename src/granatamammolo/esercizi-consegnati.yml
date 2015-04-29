@@ -6,6 +6,8 @@
       - granatamammolo:
         - binarysearch:
             punti: 3
-        - sort:           // da terminare con heapsort (+fede - far funzionare timing) 
+        - sort:           // da terminare con heapsort (+fede - far funzionare timing) + tosee per l'ottimizzazione
         	punti: 10
-  somma-punti: 13
+        - priorityqueue:
+          punti: 6
+  somma-punti: 19

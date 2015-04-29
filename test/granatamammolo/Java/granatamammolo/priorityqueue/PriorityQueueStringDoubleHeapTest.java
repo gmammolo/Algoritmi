@@ -9,9 +9,9 @@ import static org.junit.Assert.*;
  *
  * @author Federica
  */
-public class PriorityQueueStringDoubleSimpleTest {
+public class PriorityQueueStringDoubleHeapTest {
   
-  public PriorityQueueStringDoubleSimpleTest() {
+  public PriorityQueueStringDoubleHeapTest() {
   }
   
   @BeforeClass
@@ -21,10 +21,10 @@ public class PriorityQueueStringDoubleSimpleTest {
   @AfterClass
   public static void tearDownClass() {
   }
-  
-////////////////////////////////////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////////////////////////////
   /**
-   * Test of add method, of class PriorityQueueStringDoubleSimple.
+   * Test of add method, of class PriorityQueueStringDoubleHeap.
    * Casi da testare:
    * - elemento già esistente
    * - elemento non esistente e inserimento in prima posizione
@@ -34,7 +34,7 @@ public class PriorityQueueStringDoubleSimpleTest {
   @Test
   public void testAdd_ExistingElement() {
     System.out.println("testAdd_ExistingElement");
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     instance.add("Cucinare", 2.0);
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);
@@ -45,7 +45,7 @@ public class PriorityQueueStringDoubleSimpleTest {
   @Test
   public void testAdd_NotExistingElem_FirstPosition(){
     System.out.println("testAdd_NotExistingElem_FirstPosition");
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     instance.add("Cucinare", 2.0);    
     instance.add("Lavare i denti", 1.0);
     instance.add("Fare la doccia", 0.0);
@@ -56,7 +56,7 @@ public class PriorityQueueStringDoubleSimpleTest {
   @Test
   public void testAdd_NotExistingElem_LastPosition(){
     System.out.println("testAdd_NotExistingElem_LastPosition");
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();   
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();   
     instance.add("Lavare i denti", 1.0);
     instance.add("Fare la doccia", 0.0);
     boolean result = instance.add("Cucinare", 2.0);
@@ -70,7 +70,7 @@ public class PriorityQueueStringDoubleSimpleTest {
   @Test
   public void testAdd_NotExistingElem_MiddlePosition(){
     System.out.println("testAdd_NotExistingElem_MiddlePosition");
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();   
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();   
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);;
@@ -79,17 +79,18 @@ public class PriorityQueueStringDoubleSimpleTest {
     assertEquals("Lavare i denti", res);
   }
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
   /**
-   * Test of first method, of class PriorityQueueStringDoubleSimple.
+   * Test of first method, of class PriorityQueueStringDoubleHeap.
    * Casi da testare:
    * - Coda vuota
    * - Coda con qualche elemento
    */
+  
   @Test
-  public void testFirst_EmptyQueue() {
+  public void testFirst_EmptyQueue() {      // TOSEE_GIUSE: se decidi di mantenere l'eccezione, dimmelo che lo modifico
     System.out.println("testFirst_EmptyQueue");
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     String expResult = null;
     String result = instance.first();
     assertEquals(expResult, result);
@@ -98,7 +99,7 @@ public class PriorityQueueStringDoubleSimpleTest {
   @Test
   public void testFirst_FullQueue() {
     System.out.println("testFirst_FullQueue");
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -107,18 +108,19 @@ public class PriorityQueueStringDoubleSimpleTest {
     assertEquals(expResult, result);
   }
 
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
   /**
-   * Test of removeFirst method, of class PriorityQueueStringDoubleSimple.
+   * Test of removeFirst method, of class PriorityQueueStringDoubleHeap.
    * Casi da testare:
    * - coda vuota
    * - coda con qualche elemento
    */
+
   @Test
-  public void testRemoveFirst_EmptyQueue() {
+  public void testRemoveFirst_EmptyQueue() {    // TOSEE_GIUSE: se decidi di mantenere l'eccezione, dimmelo che lo modifico
     System.out.println("testRemoveFirst_EmptyQueue");
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     String expResult = null;
     String result = instance.removeFirst();
     assertEquals(expResult, result);
@@ -127,7 +129,7 @@ public class PriorityQueueStringDoubleSimpleTest {
   @Test
   public void testRemoveFirst_FullQueue() {
     System.out.println("testRemoveFirst_FullQueue");
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -136,18 +138,20 @@ public class PriorityQueueStringDoubleSimpleTest {
     assertEquals(expResult, result);
   }
   
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
   /**
-   * Test of isEmpty method, of class PriorityQueueStringDoubleSimple.
+   * Test of isEmpty method, of class PriorityQueueStringDoubleHeap.
    * Casi da testare:
    * - la coda è vuota
    * - la coda non è vuota
    */
+  
+  
   @Test
   public void testIsEmpty_EmptyQueue() {
     System.out.println("testIsEmpty_EmptyQueue");
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     boolean expResult = true;
     boolean result = instance.isEmpty();
     assertEquals(expResult, result);
@@ -156,7 +160,7 @@ public class PriorityQueueStringDoubleSimpleTest {
   @Test
   public void testIsEmpty_FullQueue() {
     System.out.println("testIsEmpty_FullQueue");
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -164,10 +168,10 @@ public class PriorityQueueStringDoubleSimpleTest {
     assertEquals(false, result);
   }
   
-////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
   /**
-   * Test of delete method, of class PriorityQueueStringDoubleSimple.
+   * Test of delete method, of class PriorityQueueStringDoubleHeap.
    * Casi da testare:
    * - coda vuota
    * - elemento non presente
@@ -178,7 +182,7 @@ public class PriorityQueueStringDoubleSimpleTest {
   @Test
   public void testDelete_EmptyQueue() {
     System.out.println("testDelete_EmptyQueue");
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     String element = "Cucinare";
     boolean result = instance.delete(element);
     assertEquals(false, result);
@@ -187,7 +191,7 @@ public class PriorityQueueStringDoubleSimpleTest {
   @Test
   public void testDelete_NotExistingElement() {
     System.out.println("testDelete_NotExistingElement");
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -199,7 +203,7 @@ public class PriorityQueueStringDoubleSimpleTest {
   @Test
   public void testDelete_ExistingElement_FirstPosition() {
     System.out.println("testDelete_ExistingElement_FirstPosition");
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -213,7 +217,7 @@ public class PriorityQueueStringDoubleSimpleTest {
   @Test
   public void testDelete_ExistingElement_LastPosition() {
     System.out.println("testDelete_ExistingElement_LastPosition");
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -229,7 +233,7 @@ public class PriorityQueueStringDoubleSimpleTest {
   @Test
   public void testDelete_ExistingElement_MiddlePosition() {
     System.out.println("testDelete_ExistingElement_MiddlePosition");
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -248,10 +252,10 @@ public class PriorityQueueStringDoubleSimpleTest {
     assertEquals(expResult, res);
   }
 
-///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////
   
   /**
-   * Test of setPriority method, of class PriorityQueueStringDoubleSimple.
+   * Test of setPriority method, of class PriorityQueueStringDoubleHeap.
    * Casi da testare:
    * - nuova priorità uguale alla precedente
    * - nuova priorità minore di zero
@@ -261,37 +265,37 @@ public class PriorityQueueStringDoubleSimpleTest {
   @Test
   public void testSetPriority_UnderZero() {       //TOSEE_GIUSE (x giuse - nuova convenzione) decidi se priorità minore di zero è da accettare, per me no
     System.out.println("testSetPriority_UnderZero");        
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
     boolean result = instance.setPriority("Lavare i denti", -1.0);
     assertEquals(false, result);
-    // TOSEE_GIUSE : vorrei testare la nuova priorità
+     //TOSEE_GIUSE : vorrei testare la nuova priorità
   }
   
   @Test
   public void testSetPriority_RepeatPriority() {       
     System.out.println("testSetPriority_UnderZero");        
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
     boolean result = instance.setPriority("Lavare i denti", 1.0);
     assertEquals(true, result);
-    // TOSEE_GIUSE : vorrei testare la priorità
+    // TOSEE_GIUSE : vorrei testare il valore della priorità dell'elemento
   }
   
   @Test
   public void testSetPriority_RightPriority() {       
     System.out.println("testSetPriority_UnderZero");        
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
     boolean result = instance.setPriority("Lavare i denti", 3.0);
     assertEquals(true, result);
-    // TOSEE_GIUSE : vorrei testare la nuova priorità
+    // TOSEE_GIUSE :vorrei testare il valore della priorità dell'elemento
   }
   
   @Test
@@ -299,9 +303,10 @@ public class PriorityQueueStringDoubleSimpleTest {
     System.out.println("testSetPriority_NotExistingElement");
     String element = "primo";
     double priority = 0.0;
-    PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
+    PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     boolean expResult = false;
     boolean result = instance.setPriority(element, priority);
     assertEquals(expResult, result);
   }
+  
 }
