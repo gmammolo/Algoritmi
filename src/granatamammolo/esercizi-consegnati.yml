@@ -10,4 +10,6 @@
         	punti: 10
         - priorityqueue:
           punti: 6
+        - dictionary:     // - AVL O SEARCH TREE
+          punti: 4 oppure 8;
   somma-punti: 19

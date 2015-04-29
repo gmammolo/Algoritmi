@@ -88,7 +88,7 @@ public class PriorityQueueStringDoubleHeapTest {
    */
   
   @Test
-  public void testFirst_EmptyQueue() {      // TOSEE_GIUSE: se decidi di mantenere l'eccezione, dimmelo che lo modifico
+  public void testFirst_EmptyQueue() {      
     System.out.println("testFirst_EmptyQueue");
     PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     String expResult = null;
@@ -118,7 +118,7 @@ public class PriorityQueueStringDoubleHeapTest {
    */
 
   @Test
-  public void testRemoveFirst_EmptyQueue() {    // TOSEE_GIUSE: se decidi di mantenere l'eccezione, dimmelo che lo modifico
+  public void testRemoveFirst_EmptyQueue() {    
     System.out.println("testRemoveFirst_EmptyQueue");
     PriorityQueueStringDoubleHeap instance = new PriorityQueueStringDoubleHeap();
     String expResult = null;
