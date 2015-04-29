@@ -225,7 +225,7 @@ public class SortTiming {
     
     ArrayBuilder builder = new ArrayBuilder(Integer.MIN_VALUE, Integer.MAX_VALUE);
 
-    //TOSEE: ORIGINALI:
+    //ORIGINALI:
     writeResults("quadratic.csv", measureAlgorithms(quadratic, (int) 1E5, (int) 1E6, (int) 5E4 , builder));
     writeResults("optimal.csv", measureAlgorithms(optimal, (int) 1E6, (int) 20E6, (int) 1E6, builder));
 

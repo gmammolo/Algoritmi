@@ -486,7 +486,7 @@ public class Sorting {
   
   /**
    * Implementazione del Merge Sort versione alternata per mezzo dei tipi generici.
-   * @param <T> extends Comparable //TOSEE: è giusta, se noti l'ho lasciata  el'ho modificata inserendo una nuova descrizione
+   * @param <T> extends Comparable 
    * @param a Array da ordinare.
    */
   public static <T extends Comparable<? super T>> void mSortAlt (T[ ] a ){
