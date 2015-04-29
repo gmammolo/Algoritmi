@@ -226,11 +226,8 @@ public class SortTiming {
     ArrayBuilder builder = new ArrayBuilder(Integer.MIN_VALUE, Integer.MAX_VALUE);
 
     //TOSEE: ORIGINALI:
-//    writeResults("quadratic.csv", measureAlgorithms(quadratic, (int) 1E5, (int) 1E6, (int) 5E4 , builder));
-//    writeResults("optimal.csv", measureAlgorithms(optimal, (int) 1E6, (int) 20E6, (int) 1E6, builder));
-    //TOSEE: Usa questi per vedere se ti fa i file, poi rimetti gli originali
-    writeResults("quadratic.csv", measureAlgorithms(quadratic, (int) 10, (int) 150, (int) 5 , builder));
-    writeResults("optimal.csv", measureAlgorithms(optimal, (int) 10, (int) 150, (int) 5, builder));
+    writeResults("quadratic.csv", measureAlgorithms(quadratic, (int) 1E5, (int) 1E6, (int) 5E4 , builder));
+    writeResults("optimal.csv", measureAlgorithms(optimal, (int) 1E6, (int) 20E6, (int) 1E6, builder));
 
   }
 }
