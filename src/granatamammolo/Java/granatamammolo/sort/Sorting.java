@@ -363,13 +363,7 @@ public class Sorting {
   protected static void mergeOptimized(int[] a, int first, int middle, int last, int[] aux){
     int i = first, j = middle+1;
     int k = first;
-    // TOSEE: NON VEDO QUESTA OTTIMIZZAZIONE :
-    //Se quando si deve effettuare la fusione l'ultimo elemento del segmento sinistro è minore o 
-    //uguale al primo elemento del segmento di destra, la sequenza dei due segmenti è già un
-    //segmento ordinato e quindi la fusione non è necessaria.
-    // RISPOSTA: vero, non ci avevo pensato però ho paura ad osare con le modifiche dei metodi dati da lui :/
-    //RI-RISPOSTA: si, ma in teoria il laboratorio serve proprio per quello... se questa ottimizzazione la descrive
-    //sulle slide mi sembra un po strano non metterla
+    if(a[j-1] <= a[j])  return;         // TOSEE_GIUSE ecco l'ottimizzazione che dicevi
     while(i <= middle && j <= last){
       if(a[i] <= a[j])
         aux[k++] = a[i++];
@@ -421,12 +415,7 @@ public class Sorting {
   private static <T extends Comparable<? super T>> void mergeOptimized(T[] a, int first, int middle, int last, T[] aux){
     int i = first, j = middle+1;
     int k = first;
-    // TOSEE: NON VEDO QUESTA OTTIMIZZAZIONE :
-    //Se quando si deve effettuare la fusione l'ultimo elemento del segmento sinistro è minore o 
-    //uguale al primo elemento del segmento di destra, la sequenza dei due segmenti è già un
-    //segmento ordinato e quindi la fusione non è necessaria.
-    // RISPOSTA: vero, non ci avevo pensato però ho paura ad osare con le modifiche dei metodi dati da lui :/
-    //RI-RISPOSTA: idem sopra
+    if(a[j-1].compareTo(a[j]) <= 0)  return;
     while(i <= middle && j <= last){
       if(a[i].compareTo(a[j]) <= 0)
         aux[k++] = a[i++];
@@ -468,12 +457,8 @@ public class Sorting {
   }
   
   private static void mergeAlt(int[] a, int first, int middle, int last, int[] c) {
-    int i = first, j = middle+1, k = 0;     
-    // TOSEE: NON VEDO QUESTA OTTIMIZZAZIONE :
-    //Se quando si deve effettuare la fusione l'ultimo elemento del segmento sinistro è minore o 
-    //uguale al primo elemento del segmento di destra, la sequenza dei due segmenti è già un
-    //segmento ordinato e quindi la fusione non è necessaria.
-    // RISPOSTA vero, non ci avevo pensato però ho paura ad osare con le modifiche dei metodi dati da lui :/
+    int i = first, j = middle+1, k = 0;  
+    if(a[j-1] <= a[j])  return;
     while(i <= middle && j <= last) {
       if(a[i] <= a[j]) c[k++] = a[i++];
       else             c[k++] = a[j++];
@@ -506,12 +491,7 @@ public class Sorting {
   
   private static <T extends Comparable<? super T>> void mergeAlt(T[] a, int first, int middle, int last, T[] c) {
     int i = first, j = middle+1, k = 0; 
-    
-    // TOSEE: NON VEDO QUESTA OTTIMIZZAZIONE :
-    //Se quando si deve effettuare la fusione l'ultimo elemento del segmento sinistro è minore o 
-    //uguale al primo elemento del segmento di destra, la sequenza dei due segmenti è già un
-    //segmento ordinato e quindi la fusione non è necessaria.
-    // RISPOSTA vero, non ci avevo pensato però ho paura ad osare con le modifiche dei metodi dati da lui :/
+    if(a[j-1].compareTo(a[j]) <= 0)  return;
     while(i <= middle && j <= last) {
       if(a[i].compareTo(a[j]) <= 0) c[k++] = a[i++];
       else                          c[k++] = a[j++];
