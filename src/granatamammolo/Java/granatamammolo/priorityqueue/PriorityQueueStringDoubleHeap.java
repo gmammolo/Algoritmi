@@ -73,7 +73,7 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
     */
     private int getLeft(int index) {
       int left= 2*index +1;
-      return (left <= heap.size()) ? left : -1 ;
+      return (left < heap.size()) ? left : -1 ;
     }
         
     /**
@@ -83,7 +83,7 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
     */
     private int getRight(int index) {
       int right =  2*index+2;
-      return (right <= heap.size()) ? right : -1 ;
+      return (right < heap.size()) ? right : -1 ;
     }
 
     /**
@@ -106,12 +106,12 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
       heap.set(i, pv);
     }
         
-    private void moveDown(int i) {        // TOSEE_GIUSE: credo che l'errore sia qui, perchè tutti i test che falliscono hanno in comune questo metodo
+    private void moveDown(int i) {  
       if(i >= heap.size() || i < 0)  throw new IllegalArgumentException();
       PairValue pv = heap.get(i);
       while((getLeft(i) + getRight(i)) >= -1 ) { // ha almeno un figlio
         int minleaf = getLeft(i);
-        if(heap.get(getRight(i)).getPriority() < heap.get(getLeft(i)).getPriority() )
+        if(getRight(i) != -1 && heap.get(getRight(i)).getPriority() < heap.get(getLeft(i)).getPriority() )
           minleaf = getRight(i);
         heap.set(i, heap.get(minleaf));
         i=minleaf;
@@ -127,16 +127,18 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
       return true;
     }
 
-    private String first() {    // TOSEE_GIUSE deve tornare null come da consegna
-      if(heap.size() == 0)  throw new IllegalArgumentException();
+    private String first() {    
+      if(heap.size() == 0) return null;
       return heap.get(0).getElement();
     }
 
-    private String removeFirst() {  // TOSEE_GIUSE deve tornare null come da consegna
-      if(heap.size() == 0)  throw new IllegalArgumentException();
+    private String removeFirst() {
+      if(heap.size() == 0)  return null;
       PairValue first = heap.get(0);
       heap.set(0, heap.get(heap.size() - 1));
-      moveDown(0);
+      heap.remove(heap.size() - 1);
+      if(heap.size() > 0 )
+        moveDown(0);
       return first.getElement();
 
     }
@@ -145,36 +147,25 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
       return heap.isEmpty();
     }
 
-    private int binarySearch(String element) {
-      int ini = 0, fin = heap.size() - 1;
-      if (fin == -1 || element.compareTo(heap.get(0).getElement()) < 0 )
-        return -1;
-      if (element.compareTo(heap.get(fin).getElement()) > 0)
-        return -(heap.size() + 1);
-      while (ini <= fin) {
-        int i = (ini + fin) >>> 1;
-        if (element.compareTo(heap.get(i).getElement() )< 0 ) {
-          fin = i - 1;
-        } else if (element.compareTo(heap.get(i).getElement()) > 0) {
-          ini = i + 1;
-        } else {
-          return i;
+    private int search(String element) {
+        for(int i=0 ; i< heap.size() ; i++) {
+            if(element == heap.get(i).getElement()) return i;
         }
-      }
-      return -(ini+1);
+        return -1;
     }
 
     private boolean delete(String element) {
       //if(!heap.contains(element)) return false;
-      int index = binarySearch(element);
+      int index = search(element);
       if(index < 0) return false;
       heap.set(index, heap.get(heap.size() - 1));
       moveDown(index);
+      heap.remove(heap.size() - 1);
       return true;
     }
 
     private boolean setPriority(String element, double priority) {
-      int index = binarySearch(element);
+      int index = search(element);
       if(index < 0) return false;
       heap.set(index, new PairValue(element, priority));
       return true;
@@ -195,7 +186,9 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
     
     @Override
     public boolean add(String element, double priority) {
-      return albero.add(element,priority);
+        if(priority < 0)
+            throw new IllegalArgumentException("La priorita' deve essere positiva");
+        return albero.add(element,priority);
     }
 
     @Override
@@ -220,7 +213,9 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
 
     @Override
     public boolean setPriority(String element, double priority) {
-      return albero.setPriority(element, priority);
+        if(priority < 0)
+            throw new IllegalArgumentException("La priorita' deve essere positiva");
+        return albero.setPriority(element, priority);
     }
     
 }

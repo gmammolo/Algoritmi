@@ -89,6 +89,8 @@ public class PriorityQueueStringDoubleSimple implements PriorityQueueStringDoubl
     
   @Override
   public boolean add(String element, double priority) {
+    if(priority < 0)
+        throw new IllegalArgumentException("La priorita' deve essere positiva");
     if(elements.contains(new PairValue(element, 0)))
       return false;
 
@@ -122,6 +124,8 @@ public class PriorityQueueStringDoubleSimple implements PriorityQueueStringDoubl
 
   @Override
   public boolean setPriority(String element, double priority) {
+    if(priority < 0)
+        throw new IllegalArgumentException("La priorita' deve essere positiva");
     int index = elements.indexOf(new PairValue(element, 0));
     if(index < 0)
       return false;

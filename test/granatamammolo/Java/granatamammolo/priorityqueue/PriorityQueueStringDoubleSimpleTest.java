@@ -258,8 +258,8 @@ public class PriorityQueueStringDoubleSimpleTest {
    * - nuova priorità corretta
    * - priorità di un elemento non presente
    */
-  @Test
-  public void testSetPriority_UnderZero() {       //TOSEE_GIUSE (x giuse - nuova convenzione) decidi se priorità minore di zero è da accettare, per me no
+  @Test(expected = IllegalArgumentException.class)  
+  public void testSetPriority_UnderZero() {   
     System.out.println("testSetPriority_UnderZero");        
     PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
     instance.add("Fare la doccia", 0.0);
@@ -267,7 +267,6 @@ public class PriorityQueueStringDoubleSimpleTest {
     instance.add("Cucinare", 2.0);
     boolean result = instance.setPriority("Lavare i denti", -1.0);
     assertEquals(false, result);
-    // TOSEE_GIUSE : vorrei testare la nuova priorità
   }
   
   @Test
