@@ -624,7 +624,7 @@ public class Sorting {
       }
     }
     swap(a, i, inf);
-    qSortBasicRic(a, inf, i);
+    qSortBasicRic(a, inf, i-1);
     qSortBasicRic(a, i+1, sup);
   }
   
@@ -645,7 +645,7 @@ public class Sorting {
       }
     }
     swap(a, i, inf);
-    qSortBasicRic(a, inf, i);
+    qSortBasicRic(a, inf, i-1);
     qSortBasicRic(a, i+1, sup);
   }
   // </editor-fold> 
