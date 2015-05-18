@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package granatamammolo.Java.priorityqueue;
+package granatamammolo.Java.granatamammolo.priorityqueue;
 
 /**
  *
@@ -12,6 +12,7 @@ package granatamammolo.Java.priorityqueue;
  * @param <P> extends Comparable
  */
 public interface PriorityQueue<E, P extends Comparable<P>> {
+    
     
     boolean add(E element, P priority);
     
