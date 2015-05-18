@@ -1,6 +1,7 @@
 package granatamammolo.Java.granatamammolo.priorityqueue;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -59,11 +60,13 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
       }
       
     }
-        
+      
+    HashMap<String,Integer> position;
     ArrayList<PairValue> heap;
          
     public binaryTree(int initialCapacity) {
-        heap = new ArrayList<>(initialCapacity);    
+        heap = new ArrayList<>(initialCapacity);  
+        position = new HashMap<>(initialCapacity);
     }   
          
     /**
@@ -101,9 +104,11 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
       PairValue pv = heap.get(i);
       while (i>0 && pv.getPriority() < heap.get(getParent(i)).getPriority() ) {
         heap.set(i, heap.get(getParent(i)) );
+        position.put(heap.get(getParent(i)).element, i);
         i=getParent(i);
       }
       heap.set(i, pv);
+      position.put(pv.element, i);
     }
         
     private void moveDown(int i) {  
@@ -114,13 +119,15 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
         if(getRight(i) != -1 && heap.get(getRight(i)).getPriority() < heap.get(getLeft(i)).getPriority() )
           minleaf = getRight(i);
         heap.set(i, heap.get(minleaf));
+        position.put(heap.get(minleaf).element, i);
         i=minleaf;
       }
-      heap.set(i, pv);            
+      heap.set(i, pv);  
+      position.put(pv.element, i);
     }
 
     private boolean add(String element, double priority) {
-      if(heap.contains(new PairValue(element, priority)))
+      if(position.containsKey(element))
         return false;
       heap.add(new PairValue(element, priority));
       moveUp(heap.size()-1);
@@ -147,17 +154,9 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
       return heap.isEmpty();
     }
 
-    private int search(String element) {
-        for(int i=0 ; i< heap.size() ; i++) {
-            if(element == heap.get(i).getElement()) return i;
-        }
-        return -1;
-    }
-
     private boolean delete(String element) {
-      //if(!heap.contains(element)) return false;
-      int index = search(element);
-      if(index < 0) return false;
+      Integer index = position.get(element);
+      if(index == null ) return false;
       heap.set(index, heap.get(heap.size() - 1));
       moveDown(index);
       heap.remove(heap.size() - 1);
@@ -165,8 +164,8 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
     }
 
     private boolean setPriority(String element, double priority) {
-      int index = search(element);
-      if(index < 0) return false;
+      Integer index = position.get(element);
+      if(index == null) return false;
       heap.set(index, new PairValue(element, priority));
       return true;
     }
@@ -213,8 +212,8 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
 
     @Override
     public boolean setPriority(String element, double priority) {
-        if(priority < 0)
-            throw new IllegalArgumentException("La priorita' deve essere positiva");
+        if(priority <= 0)
+            return false;
         return albero.setPriority(element, priority);
     }
     

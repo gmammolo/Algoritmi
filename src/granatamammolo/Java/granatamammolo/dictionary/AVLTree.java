@@ -8,6 +8,11 @@ import static java.lang.Math.*;
  */
 public class AVLTree <K, V> implements SortedDictionary  {
 
+    @Override
+    public Object find(Object key) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
   protected static class Node <K, V> {
     K key;
     V value;
@@ -49,10 +54,10 @@ public class AVLTree <K, V> implements SortedDictionary  {
     return (this.root != null);
   }
   
-  @Override
-  public V find(K key) {
-    
-  }
+//  @Override
+//  public V find(K key) {
+//    
+//  }
   
   @Override
   public Comparable minKey() {
