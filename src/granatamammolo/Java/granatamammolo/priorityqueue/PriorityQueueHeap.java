@@ -8,60 +8,63 @@ import java.util.Objects;
  *
  * @author giuseppe
  */
-public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
+public class PriorityQueueHeap<E, P extends Comparable <P>> implements PriorityQueue{
+
+
   
   private class binaryTree {
         
     private class PairValue {
-      private String element;
-      private double priority;
+      private E element;
+      private P priority;
 
-      public PairValue(String element, double priority) {
+      public PairValue(E element, P priority) {
         this.element = element;
         this.priority = priority;
       }
 
-      public String getElement() {
-        return element;
-      }
+          public E getElement() {
+              return element;
+          }
 
-      public void setElement(String element) {
-        this.element = element;
-      }
+          public void setElement(E element) {
+              this.element = element;
+          }
 
-      public double getPriority() {
-        return priority;
-      }
+          public P getPriority() {
+              return priority;
+          }
 
-      public void setPriority(double priority) {
-        this.priority = priority;
-      }
+          public void setPriority(P priority) {
+              this.priority = priority;
+          }
 
-      @Override
-      public int hashCode() {
-        int hash = 3;
-        hash = 23 * hash + Objects.hashCode(this.element);
-        return hash;
-      }
+          @Override
+          public int hashCode() {
+              int hash = 7;
+              hash = 61 * hash + Objects.hashCode(this.element);
+              return hash;
+          }
 
-      @Override
-      public boolean equals(Object obj) {
-        if (obj == null) {
-          return false;
-        }
-        if (getClass() != obj.getClass()) {
-          return false;
-        }
-        final PairValue other = (PairValue) obj;
-        if (!Objects.equals(this.element, other.element)) {
-          return false;
-        }
-        return true;
-      }
+          @Override
+          public boolean equals(Object obj) {
+              if (obj == null) {
+                  return false;
+              }
+              if (getClass() != obj.getClass()) {
+                  return false;
+              }
+              final PairValue other = (PairValue) obj;
+              if (!Objects.equals(this.element, other.element)) {
+                  return false;
+              }
+              return true;
+          }
+      
       
     }
       
-    HashMap<String,Integer> position;
+    HashMap<E,Integer> position;
     ArrayList<PairValue> heap;
          
     public binaryTree(int initialCapacity) {
@@ -102,7 +105,7 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
     private void moveUp(int i) {
       if(i >= heap.size() || i < 0) throw new IllegalArgumentException();
       PairValue pv = heap.get(i);
-      while (i>0 && pv.getPriority() < heap.get(getParent(i)).getPriority() ) {
+      while (i>0 && pv.getPriority().compareTo(heap.get(getParent(i)).getPriority()) < 0 ) {
         heap.set(i, heap.get(getParent(i)) );
         position.put(heap.get(getParent(i)).element, i);
         i=getParent(i);
@@ -116,7 +119,7 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
       PairValue pv = heap.get(i);
       while((getLeft(i) + getRight(i)) >= -1 ) { // ha almeno un figlio
         int minleaf = getLeft(i);
-        if(getRight(i) != -1 && heap.get(getRight(i)).getPriority() < heap.get(getLeft(i)).getPriority() )
+        if(getRight(i) != -1 && heap.get(getRight(i)).getPriority().compareTo(heap.get(getLeft(i)).getPriority()) < 0 )
           minleaf = getRight(i);
         heap.set(i, heap.get(minleaf));
         position.put(heap.get(minleaf).element, i);
@@ -126,7 +129,7 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
       position.put(pv.element, i);
     }
 
-    private boolean add(String element, double priority) {
+    private boolean add(E element, P priority) {
       if(position.containsKey(element))
         return false;
       heap.add(new PairValue(element, priority));
@@ -134,12 +137,12 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
       return true;
     }
 
-    private String first() {    
+    private E first() {    
       if(heap.size() == 0) return null;
       return heap.get(0).getElement();
     }
 
-    private String removeFirst() {
+    private E removeFirst() {
       if(heap.size() == 0)  return null;
       PairValue first = heap.get(0);
       heap.set(0, heap.get(heap.size() - 1));
@@ -154,7 +157,7 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
       return heap.isEmpty();
     }
 
-    private boolean delete(String element) {
+    private boolean delete(E element) {
       Integer index = position.get(element);
       if(index == null ) return false;
       heap.set(index, heap.get(heap.size() - 1));
@@ -163,7 +166,7 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
       return true;
     }
 
-    private boolean setPriority(String element, double priority) {
+    private boolean setPriority(E element, P priority) {
       Integer index = position.get(element);
       if(index == null) return false;
       heap.set(index, new PairValue(element, priority));
@@ -174,29 +177,23 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
     
     binaryTree albero;
     
-    public PriorityQueueStringDoubleHeap() {
+    public PriorityQueueHeap() {
       this(16);
     }
     
-    public PriorityQueueStringDoubleHeap(int capacity) {
+    public PriorityQueueHeap(int capacity) {
       albero = new binaryTree(capacity);
     }
     
     
-    @Override
-    public boolean add(String element, double priority) {
-        if(priority < 0)
-            throw new IllegalArgumentException("La priorita' deve essere positiva");
-        return albero.add(element,priority);
-    }
 
     @Override
-    public String first() {
+    public E first() {
       return albero.first();
     }
 
     @Override
-    public String removeFirst() {
+    public E removeFirst() {
       return albero.removeFirst();
     }
 
@@ -205,16 +202,44 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
       return albero.isEmpty();
     }
 
-    @Override
-    public boolean delete(String element) {
-      return albero.delete(element);
+
+    
+        @Override
+    public boolean add(Object element, Comparable priority) {
+        E elem;
+        P prior;
+        try {
+            elem = (E) element;
+            prior = (P) priority;
+        } catch(ClassCastException e) {
+            return false;
+        }
+        
+        return albero.add(elem,prior);
     }
 
     @Override
-    public boolean setPriority(String element, double priority) {
-        if(priority <= 0)
+    public boolean delete(Object element) {
+        E elem;
+        try {
+            elem = (E) element;
+        } catch(ClassCastException e) {
             return false;
-        return albero.setPriority(element, priority);
+        }
+        return albero.delete(elem);
     }
-    
+
+    @Override
+    public boolean setPriority(Object element, Comparable priority) {
+        E elem;
+        P prior;
+        try {
+            elem = (E) element;
+            prior = (P) priority;
+        } catch(ClassCastException e) {
+            return false;
+        }
+        
+        return albero.setPriority(elem, prior);
+    }
 }
