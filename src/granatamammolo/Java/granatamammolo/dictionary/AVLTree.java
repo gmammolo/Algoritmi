@@ -7,7 +7,8 @@ import static java.lang.Math.*;
  * @author Federica
  */
 public class AVLTree <K, V> implements SortedDictionary  {
-
+// dictionary implementato come hashmap
+  // quindi dentro key la chiave, mentre dentro value il nodo con valore e nodo dx e sx
   protected static class Node <K, V> {
     K key;
     V value;
@@ -49,12 +50,12 @@ public class AVLTree <K, V> implements SortedDictionary  {
     return (this.root != null);
   }
   
-  @Override
+  
   public V find(K key) {
     
   }
   
-  @Override
+  
   public Comparable minKey() {
     throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
