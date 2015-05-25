@@ -118,7 +118,7 @@ public class PriorityQueueSimple<E, P extends Comparable <P>> implements Priorit
         return false;
     }
       
-    if(elements.contains(new PairValue(elem, null)))
+    if(element == null || elements.contains(new PairValue(elem, null)))
       return false;
 
     int index = binarySearch(prior);

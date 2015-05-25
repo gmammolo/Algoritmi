@@ -39,7 +39,7 @@ public class SearchTreeTest {
         System.out.println("printInOrder");
         SearchTree instance = new SearchTree();
         String res = instance.printInOrder();
-        assertEquals("", res);
+        assertEquals("[]", res);
     }
 
         @Test
@@ -179,16 +179,6 @@ public class SearchTreeTest {
         String expResult = "12";
         assertEquals(expResult, ret);
         assertEquals(expResult, tree.elementOfMaxKey());
-    }
-    
-    @Test
-    public void testRemove() {
-        System.out.println("remove");
-        Object key = null;
-        SearchTree instance = new SearchTree();
-        instance.remove(key);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
     @Test
