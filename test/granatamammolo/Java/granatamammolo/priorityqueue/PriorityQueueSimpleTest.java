@@ -114,8 +114,6 @@ public class PriorityQueueSimpleTest {
     boolean expResult = false;
     boolean result = instance.isEmpty();
     assertEquals(expResult, result);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
   }
   @Test
   public void testIsEmpty_EmptyQueue() {
@@ -317,8 +315,7 @@ public class PriorityQueueSimpleTest {
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
-    boolean result = instance.setPriority("Lavare i denti", -1.0);
-    assertEquals(false, result);
+    instance.setPriority("Lavare i denti", -1.0);
   }
   
   @Test
