@@ -32,58 +32,53 @@ public class SearchTreeTest {
     }
 
     /**
-     * Test of printPreOrder method, of class SearchTree.
-     */
-    @Test
-    public void testPrintPreOrder() {
-        System.out.println("printPreOrder");
-        SearchTree.Node node = null;
-        SearchTree instance = new SearchTree();
-        instance.printPreOrder(node);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
      * Test of printInOrder method, of class SearchTree.
      */
     @Test
+    public void testPrintInOrderEmpty() {
+        System.out.println("printInOrder");
+        SearchTree instance = new SearchTree();
+        String res = instance.printInOrder();
+        assertEquals("", res);
+    }
+
+        @Test
     public void testPrintInOrder() {
         System.out.println("printInOrder");
-        SearchTree.Node node = null;
-        SearchTree instance = new SearchTree();
-        instance.printInOrder(node);
-
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        System.out.println(tree.printInOrder());
+        //exp= [ (1)  (2)  (3)  (5)  (8)  (9) ]
+        String res = tree.printInOrder();
+        assertEquals("[ (1)  (2)  (3)  (5)  (8)  (9) ]", res);
     }
 
-    /**
-     * Test of isEmpty method, of class SearchTree.
-     */
+    
+
     @Test
-    public void testIsEmpty() {
+    public void testIsEmptyEmpty() {
         System.out.println("isEmpty");
-        SearchTree instance = new SearchTree();
-        boolean expResult = false;
+        SearchTree<Integer,String> instance = new SearchTree<>();
+        boolean expResult = true;
         boolean result = instance.isEmpty();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
+        @Test
+    public void testIsEmptyNotEmpty() {
+        System.out.println("isEmpty");
+        boolean expResult = false;
+        boolean result = tree.isEmpty();
+        assertEquals(expResult, result);
+    }
+
+    
     /**
      * Test of minKey method, of class SearchTree.
      */
     @Test
     public void testMinKey() {
         System.out.println("minKey");
-        SearchTree instance = new SearchTree();
-        Comparable expResult = null;
-        Comparable result = instance.minKey();
+        Integer expResult = 1;
+        Comparable result = tree.minKey();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -92,12 +87,9 @@ public class SearchTreeTest {
     @Test
     public void testMaxKey() {
         System.out.println("maxKey");
-        SearchTree instance = new SearchTree();
-        Comparable expResult = null;
-        Comparable result = instance.maxKey();
+        Integer expResult = 9;
+        Comparable result = tree.maxKey();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -106,12 +98,9 @@ public class SearchTreeTest {
     @Test
     public void testElementOfMinKey() {
         System.out.println("elementOfMinKey");
-        SearchTree instance = new SearchTree();
-        Object expResult = null;
-        Object result = instance.elementOfMinKey();
+        String expResult = "1";
+        Object result = tree.elementOfMinKey();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -120,48 +109,78 @@ public class SearchTreeTest {
     @Test
     public void testElementOfMaxKey() {
         System.out.println("elementOfMaxKey");
-        SearchTree instance = new SearchTree();
-        Object expResult = null;
-        Object result = instance.elementOfMaxKey();
+        String expResult = "9";
+        Object result = tree.elementOfMaxKey();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of find method, of class SearchTree.
      */
     @Test
-    public void testFind() {
+    public void testFindNormal() {
         System.out.println("find");
-        Object key = null;
+        Integer key = 3;
+        String expResult = "3";
+        Object result = tree.find(key);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testFindVoid() {
+        System.out.println("find");
+        Integer key = 3;
         SearchTree instance = new SearchTree();
-        Object expResult = null;
+        String expResult = null;
         Object result = instance.find(key);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
      * Test of add method, of class SearchTree.
      */
     @Test
-    public void testAdd() {
+    public void testAddVoid() {
         System.out.println("add");
-        Object key = null;
-        Object value = null;
-        SearchTree instance = new SearchTree();
-        Object expResult = null;
-        Object result = instance.add(key, value);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        SearchTree<Integer,String> instance = new SearchTree<>();
+        
+        String ret = instance.add(1, "1");
+        String expResult = "1";
+        assertEquals(expResult, ret);
+        assertEquals(expResult, instance.find(1));
     }
 
-    /**
-     * Test of remove method, of class SearchTree.
-     */
+    @Test
+    public void testAddNormal() {
+        System.out.println("add");
+        
+        String ret = tree.add(6, "6");
+        String expResult = "6";
+        assertEquals(expResult, ret);
+        assertEquals(expResult, tree.find(6));
+    }
+    
+    @Test
+    public void testAddMinElement() {
+        System.out.println("add");
+        
+        String ret = tree.add(0, "0");
+        String expResult = "0";
+        assertEquals(expResult, ret);
+        assertEquals(expResult, tree.elementOfMinKey());
+    }
+    
+    
+        @Test
+    public void testAddMaxElement() {
+        System.out.println("add");
+        
+        String ret = tree.add(12, "12");
+        String expResult = "12";
+        assertEquals(expResult, ret);
+        assertEquals(expResult, tree.elementOfMaxKey());
+    }
+    
     @Test
     public void testRemove() {
         System.out.println("remove");
@@ -170,6 +189,31 @@ public class SearchTreeTest {
         instance.remove(key);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
+    }
+    
+    @Test
+    public void testRemoveVoid() {
+        System.out.println("remove");
+        Integer key = 1;
+        SearchTree instance = new SearchTree();
+        instance.remove(key);
+        assertEquals(null, instance.find(key));
+    }
+    
+    @Test
+    public void testRemoveExist() {
+        System.out.println("remove");
+        Integer key = 1;
+        tree.remove(key);
+        assertEquals(null, tree.find(key));
+    }
+    
+     @Test
+    public void testRemoveNotExist() {
+        System.out.println("remove");
+        Integer key = 7;
+        tree.remove(key);
+        assertEquals(null, tree.find(key));
     }
     
 }
