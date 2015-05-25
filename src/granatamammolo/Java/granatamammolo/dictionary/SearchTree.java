@@ -31,23 +31,16 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
   public SearchTree(K key, V value){
     root = new Node(key, value, null, null);
   }
-  
-  public void printPreOrder(Node node){
-    System.out.print("( Key - Value )\n");
-    if(node != null) {
-      System.out.print("(" + node.key + " - " + node.value + ")");
-      printPreOrder(node.left);
-      printPreOrder(node.right);
-    }
-  }
+
   
   public void printInOrder(Node node){
+    String s = "";
     if(node != null) {
-      System.out.print("(" + node.key + " - " + node.value + ")");
-      printPreOrder(node.left);
-      System.out.print("( Key - Value )\n");
-      printPreOrder(node.right);
+      s += node.value;
+      printInOrder(node.left);
+      printInOrder(node.right);
     }
+    System.out.println(s);
   }
   
   int height(Node node){
