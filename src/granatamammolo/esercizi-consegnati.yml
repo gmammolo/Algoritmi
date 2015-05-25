@@ -8,8 +8,12 @@
             punti: 3
         - sort:           // da terminare con heapsort (+fede - far funzionare timing) + tosee per l'ottimizzazione
         	punti: 10
-        - priorityqueue:    // test sui generici
+        - priorityqueue:    
           punti: 6
         - dictionary:     
           punti: 4
-  somma-punti: 23
+        - unionFind:
+          punti: 16
+        - graph:
+          punti: 6
+  somma-punti: 23 (+16 + 6)

@@ -31,16 +31,15 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
   public SearchTree(K key, V value){
     root = new Node(key, value, null, null);
   }
-
   
-  public void printInOrder(Node node){
+  public String printInOrder(Node node){
     String s = "";
     if(node != null) {
-      s += node.value;
       printInOrder(node.left);
+      s += node.value;
       printInOrder(node.right);
     }
-    System.out.println(s);
+    return s;
   }
   
   int height(Node node){
@@ -138,7 +137,7 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
     }else{  // TOSEE_GIUSE ho trovato un'altra chiave che è uguale a quella che sto inserendo -> errore
       return null;
     }
-    return node = newNode;
+    return newNode.value;
   }
 
   @Override
