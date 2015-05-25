@@ -130,7 +130,7 @@ public class PriorityQueueHeap<E, P extends Comparable <P>> implements PriorityQ
     }
 
     private boolean add(E element, P priority) {
-      if(position.containsKey(element))
+      if(position.containsKey(element) || priority == null)
         return false;
       heap.add(new PairValue(element, priority));
       moveUp(heap.size()-1);

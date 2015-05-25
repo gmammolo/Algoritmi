@@ -104,14 +104,11 @@ public class PriorityQueueSimpleTest {
    * - la coda è vuota
    * - la coda non è vuota
    */
-   @Test    // TOSEE_GIUSE!!!!! Il primo testIsEmpty è quello di default
-   // e non considera vuota la mera creazione dell'istanza
-   // io nell'altro test invece gli avevo fatto restituire true!!!
-   // che si fa?
+  @Test    
   public void testIsEmpty() {
     System.out.println("isEmpty");
     PriorityQueueSimple instance = new PriorityQueueSimple();
-    boolean expResult = false;
+    boolean expResult = true;
     boolean result = instance.isEmpty();
     assertEquals(expResult, result);
   }
@@ -316,6 +313,8 @@ public class PriorityQueueSimpleTest {
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
     instance.setPriority("Lavare i denti", -1.0);
+    //TOSEE_FEDE: questi sono tipi generici: non saprei come mettercelo un controllo per evitare i valori
+    //negativi o meglio non credo si possa mettere... Se si vuole questo tipo di controllo si crea una classe che estende la mia
   }
   
   @Test

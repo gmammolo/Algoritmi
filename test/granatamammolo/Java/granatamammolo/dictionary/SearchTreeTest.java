@@ -39,7 +39,7 @@ public class SearchTreeTest {
         System.out.println("printInOrder");
         SearchTree instance = new SearchTree();
         String res = instance.printInOrder();
-        assertEquals("", res);
+        assertEquals("[]", res);
     }
 
         @Test
