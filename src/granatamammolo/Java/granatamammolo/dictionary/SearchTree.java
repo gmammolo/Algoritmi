@@ -84,6 +84,7 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
    */
   @Override
   public Object elementOfMinKey() {
+    if(root == null) return null;
     return getMin(root).value;
   }
 
@@ -93,6 +94,7 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
    */
   @Override
   public Object elementOfMaxKey() {
+    if(root == null) return null;
     return getMax(root).value;
   }
 
