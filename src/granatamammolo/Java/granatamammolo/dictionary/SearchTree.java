@@ -31,7 +31,6 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
   public SearchTree(K key, V value){
     root = new Node(key, value, null, null);
   }
-
   
   public String printInOrder(){
     return "["+printInOrder(root)+"]";
@@ -142,7 +141,7 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
     }else{  // TOSEE_GIUSE ho trovato un'altra chiave che è uguale a quella che sto inserendo -> errore
       return null;
     }
-    return node = newNode;
+    return newNode.value;
   }
 
   @Override
