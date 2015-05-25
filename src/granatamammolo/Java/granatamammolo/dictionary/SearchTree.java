@@ -59,57 +59,43 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
   }
   
   /**
-   * Considerata l'implementazione utilizzata, la chiave minima corrisponde
-   * alla radice dell'albero. Senza rimozione TOSEE_GIUSE
-   * @return chiave minima = radice 
+   * Senza rimozione del nodo.
+   * @return chiave minima dell'albero
    */
   @Override
   public Comparable minKey() {
-    Node min = this.root;
-    // (se ci fosse la rimozione) bilanciamento con root vuota TOSEE_GIUSE 
-    return (Comparable) min.key;
+    if(root == null) return null;
+    return (K) getMin(root).key;
   }
 
   /**
-   * 
+   * Senza rimozione del nodo.
    * @return chiave di valore massimo.
    */
   @Override
   public Comparable maxKey() {
     if(root == null) return null;
-    return maxKey(root.key, root);
-  }
-  
-  private Comparable maxKey(K max, Node node){
-    K nodeK = (K) node.key;
-    if(node != null){
-      if(nodeK.compareTo(max) > 0) max = nodeK;
-      maxKey(max, node.left);
-      maxKey(max, node.right);
-    }
-    return max;
+    return (K) getMax(root).key;
   }
 
   /**
-   * Considerata l'implementazione utilizzata, la chiave minima corrisponde
-   * alla radice dell'albero. Senza rimozione TOSEE_GIUSE
-   * @return chiave minima = radice 
+   * Senza rimozione del nodo.
+   * @return valore associato alla chiave minima nell'albero. 
    */
   @Override
   public Object elementOfMinKey() {
-    Node min = this.root;
-    // (se ci fosse la rimozione) bilanciamento con root vuota TOSEE_GIUSE 
-    return (Comparable) min.value;
+    if(root == null) return null;
+    return getMin(root).value;
   }
 
   /**
-   * 
-   * @return valore associato alla chiave massima.
+   * Senza rimozione del nodo.
+   * @return valore associato alla chiave massima nell'albero. 
    */
   @Override
   public Object elementOfMaxKey() {
-    K maxK = (K) this.maxKey();
-    return find(maxK);
+    if(root == null) return null;
+    return getMax(root).value;
   }
 
   /**
@@ -119,10 +105,10 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
    */
   @Override
   public Object find(Object key) {
-    K keyK = (K) key;     // TOSEE_GIUSE: per scansare il problema dell'object ho fatto così, spero gli vada bene!!
+    K keyK = (K) key;     // TOSEE
     Node node = this.root;
     while(node != null) {
-      K nodeKey = (K) node.key;    // TOSEE_GIUSE perchè gli devo fare il cast?????? il metodo ritorna già un tipo K!!
+      K nodeKey = (K) node.key;    
       if(keyK.compareTo(nodeKey) < 0)    node = node.left;
       else if(keyK.compareTo(nodeKey) > 0) node = node.right;
       else return node.value;
@@ -156,6 +142,8 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
         node.right = newNode;
       else
         add(newNode, node.right);
+    }else{  // TOSEE_GIUSE ho trovato un'altra chiave che è uguale a quella che sto inserendo -> errore
+      return null;
     }
     return node = newNode;
   }
@@ -178,9 +166,22 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
         else if(node.right == null)
           node = node.left;
         else
-          node.value = ???
+          node.value = getMin(node.right).value;
       }
     }
+    return node;
+  }
+  
+  private Node getMin(Node node){
+    if(node.left != null)
+      return getMin(node.left);
+    return node;
+  }
+  
+  private Node getMax(Node node){
+    if(node.right != null)
+      return getMin(node.right);
+    return node;
   }
 
 }
