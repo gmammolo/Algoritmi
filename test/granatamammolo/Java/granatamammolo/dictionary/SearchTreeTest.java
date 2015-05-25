@@ -182,16 +182,6 @@ public class SearchTreeTest {
     }
     
     @Test
-    public void testRemove() {
-        System.out.println("remove");
-        Object key = null;
-        SearchTree instance = new SearchTree();
-        instance.remove(key);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
-    @Test
     public void testRemoveVoid() {
         System.out.println("remove");
         Integer key = 1;

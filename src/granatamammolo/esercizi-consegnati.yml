@@ -12,8 +12,8 @@
           punti: 6
         - dictionary:     
           punti: 4
-        - unionFind:
-          punti: 16
-        - graph:
+        - unionfind:    // da implementare
+          punti: 10
+        - graph:        // da implementare
           punti: 6
-  somma-punti: 23 (+16 + 6)
+  somma-punti: 23 (+10 + 6)
