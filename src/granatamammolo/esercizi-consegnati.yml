@@ -8,8 +8,8 @@
             punti: 3
         - sort:           // da terminare con heapsort (+fede - far funzionare timing) + tosee per l'ottimizzazione
         	punti: 10
-        - priorityqueue:
+        - priorityqueue:    // test sui generici
           punti: 6
-        - dictionary:     // - AVL O SEARCH TREE
-          punti: 4 oppure 8;
-  somma-punti: 19
+        - dictionary:     
+          punti: 4
+  somma-punti: 23

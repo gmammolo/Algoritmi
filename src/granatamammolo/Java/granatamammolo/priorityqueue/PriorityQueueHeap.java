@@ -23,43 +23,43 @@ public class PriorityQueueHeap<E, P extends Comparable <P>> implements PriorityQ
         this.priority = priority;
       }
 
-          public E getElement() {
-              return element;
-          }
+      public E getElement() {
+        return element;
+      }
 
-          public void setElement(E element) {
-              this.element = element;
-          }
+      public void setElement(E element) {
+        this.element = element;
+      }
 
-          public P getPriority() {
-              return priority;
-          }
+      public P getPriority() {
+        return priority;
+      }
 
-          public void setPriority(P priority) {
-              this.priority = priority;
-          }
+      public void setPriority(P priority) {
+        this.priority = priority;
+      }
 
-          @Override
-          public int hashCode() {
-              int hash = 7;
-              hash = 61 * hash + Objects.hashCode(this.element);
-              return hash;
-          }
+      @Override
+      public int hashCode() {
+        int hash = 7;
+        hash = 61 * hash + Objects.hashCode(this.element);
+        return hash;
+      }
 
-          @Override
-          public boolean equals(Object obj) {
-              if (obj == null) {
-                  return false;
-              }
-              if (getClass() != obj.getClass()) {
-                  return false;
-              }
-              final PairValue other = (PairValue) obj;
-              if (!Objects.equals(this.element, other.element)) {
-                  return false;
-              }
-              return true;
-          }
+      @Override
+      public boolean equals(Object obj) {
+        if (obj == null) {
+          return false;
+        }
+        if (getClass() != obj.getClass()) {
+          return false;
+        }
+        final PairValue other = (PairValue) obj;
+        if (!Objects.equals(this.element, other.element)) {
+          return false;
+        }
+        return true;
+      }
       
       
     }
