@@ -144,7 +144,7 @@ public class SearchTreeTest {
         System.out.println("add");
         SearchTree<Integer,String> instance = new SearchTree<>();
         
-        String ret = instance.add(1, "1");
+        String ret =(String) instance.add(1, "1");
         String expResult = "1";
         assertEquals(expResult, ret);
         assertEquals(expResult, instance.find(1));
@@ -154,7 +154,7 @@ public class SearchTreeTest {
     public void testAddNormal() {
         System.out.println("add");
         
-        String ret = tree.add(6, "6");
+        String ret =(String) tree.add(6, "6");
         String expResult = "6";
         assertEquals(expResult, ret);
         assertEquals(expResult, tree.find(6));
@@ -164,7 +164,7 @@ public class SearchTreeTest {
     public void testAddMinElement() {
         System.out.println("add");
         
-        String ret = tree.add(0, "0");
+        String ret =(String) tree.add(0, "0");
         String expResult = "0";
         assertEquals(expResult, ret);
         assertEquals(expResult, tree.elementOfMinKey());
@@ -175,7 +175,7 @@ public class SearchTreeTest {
     public void testAddMaxElement() {
         System.out.println("add");
         
-        String ret = tree.add(12, "12");
+        String ret =(String) tree.add(12, "12");
         String expResult = "12";
         assertEquals(expResult, ret);
         assertEquals(expResult, tree.elementOfMaxKey());
