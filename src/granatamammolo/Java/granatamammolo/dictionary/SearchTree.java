@@ -52,7 +52,7 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
   }
   
   public boolean isEmpty() {
-    return (this.root != null);
+    return (root == null);
   }
   
   /**
@@ -121,7 +121,7 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
    */
   @Override
   public Object add(Object key, Object value) {
-    Node node = new Node((K) key, (V) value, null, null);
+    Node node = new Node(key, value, null, null);
     if(root == null)  return root = node;    
     return add(node, root);
   }

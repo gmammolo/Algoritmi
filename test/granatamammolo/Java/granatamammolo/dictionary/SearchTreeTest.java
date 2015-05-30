@@ -61,12 +61,12 @@ public class SearchTreeTest {
         boolean result = instance.isEmpty();
     }
 
-        @Test
+    @Test
     public void testIsEmptyNotEmpty() {
-        System.out.println("isEmpty");
-        boolean expResult = false;
-        boolean result = tree.isEmpty();
-        assertEquals(expResult, result);
+      System.out.println("isEmpty");
+      boolean expResult = false;
+      boolean result = tree.isEmpty();
+      assertEquals(expResult, result);
     }
 
     
@@ -141,13 +141,13 @@ public class SearchTreeTest {
      */
     @Test
     public void testAddVoid() {
-        System.out.println("add");
-        SearchTree<Integer,String> instance = new SearchTree<>();
-        
-        String ret =(String) instance.add(1, "1");
-        String expResult = "1";
-        assertEquals(expResult, ret);
-        assertEquals(expResult, instance.find(1));
+      System.out.println("add");
+      SearchTree<Integer,String> instance = new SearchTree<>();
+
+      String ret = (String) instance.add(1, "1");
+      String expResult = "1";
+      assertEquals(expResult, ret);
+      assertEquals(expResult, instance.find(1));
     }
 
     @Test
@@ -192,18 +192,19 @@ public class SearchTreeTest {
     
     @Test
     public void testRemoveExist() {
-        System.out.println("remove");
-        Integer key = 1;
-        tree.remove(key);
-        assertEquals(null, tree.find(key));
+      System.out.println("remove");
+      Integer key = 1;
+      tree.remove(key);
+      System.out.println("test" + tree.printInOrder());
+      assertEquals(null, tree.find(key));
     }
     
      @Test
     public void testRemoveNotExist() {
-        System.out.println("remove");
-        Integer key = 7;
-        tree.remove(key);
-        assertEquals(null, tree.find(key));
+      System.out.println("remove");
+      Integer key = 7;
+      tree.remove(key);
+      assertEquals(null, tree.find(key));
     }
     
 }
