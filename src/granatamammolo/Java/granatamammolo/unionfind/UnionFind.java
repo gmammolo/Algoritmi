@@ -1,31 +1,50 @@
 package granatamammolo.Java.granatamammolo.unionfind;
 
+import java.util.HashMap;
+
 /**
  *
  * @author Giuseppe
+ * @param <T> type Generico
  */
 public class UnionFind<T> { // esercizio da 10 punti
   
+    
+  protected  HashMap<T,Node<T>> elemMap;
+    
   /**
    * Crea la struttura dati.
    */
-  UnionFind(){
-    
+  public UnionFind(){
+    elemMap = new HashMap<>();
   }
   
   /**
    * Crea un nuovo set contenente solo l'elemento T, solleva una
    * eccezione in caso elem sia già presente.
+   * @param elem
+   * @throws IllegalAccessException 
    */
-  void makeSet(T elem){
-    
+  public void makeSet(T elem) throws IllegalAccessException{
+    if(elemMap.containsKey(elem))
+      throw new IllegalAccessException("Elemento già presente in un nodo");
+    elemMap.put(elem, new Node<>(elem));
   }
   
   /**
    * Restituisce il rappresentante dell'insieme in cui si trova e.
+   * @param e
+   * @return 
    */
-  T find (T e){
-    return null; // da modificare
+  public T find (T e){
+    Node n = elemMap.get(e);
+    if(n==null)
+      throw new IllegalArgumentException();
+    if(n.parent == null)
+      return (T)n.elem;
+    else
+      n.parent = elemMap.get(find((T)n.parent.elem));
+    return (T)n.parent.elem;
   }
   
   /**
@@ -35,50 +54,52 @@ public class UnionFind<T> { // esercizio da 10 punti
    * non fa nulla, altrimenti unisce gli insiemi di cui "a" e "b" fanno
    * parte e restituisce true.
    */
-  boolean union(int a, int b){
-    return false; // da modificare
-  }
-}
-//  esercizio da 6 punti (se cambi idea e vuoi fare questo invece di quello da 10)
-//Gli elementi degli insiemi sono di tipo int e variano in un range
-//[0...n].  il valore di n viene passato al costruttore
-//della classe UnionFind
+  public boolean kruskalUnion(T a, T b){
+    T root1 = find(a);
+    T root2 = find(b);
+    if(root1 == root2) 
+      return false;
     
-/**
-//   * Crea la struttura dati e imposta la capacità a n.
-//   */
-//  UnionFind(int n){
-//    
-//  }
-//  
-//  /**
-//   * Restituisce la capacità.
-//   */
-//  int getCapacity(){
-//    return 0; // da modificare
-//  }
-//  
-//  /**
-//   * Cambia la capacità; se newN < getCapacity() solleva una eccezione.
-//   */
-//  void setCapacity(int newN) throws IllegalArgumentException {
-//    
-//  }
-//  
-//  /**
-//   * Restituisce il rappresentante dell'insieme in cui si trova "e".
-//   */
-//  int find(int e){
-//    return 0; // da modificare
-//  }
-//  
-//  /**
-//   * Kruskal-Union
-//   * Unisce l'insieme che contiene "a" e l'insieme che contiene "b".
-//   * Se "a" e "b" fanno parte dello stesso insieme restituisce false e 
-//   * non fa nulla, altrimenti unisce gli insiemi di cui "a" e "b" fanno
-//   * parte e restituisce true.
-//   */
-//  boolean union(int a, int b){
-//    return false; // da modificare
-//  }
+    if(elemMap.get(root1).rango >= elemMap.get(root2).rango )
+      union(root1, root2);
+    else
+      union(root2, root1);
+    
+    return true;
+  }
+
+
+  protected void union(T a, T b )
+  {
+    Node<T> root1 = elemMap.get(a);
+    Node<T> root2 = elemMap.get(b);
+            
+    root2.parent = root1;
+    root1.rango += root2.rango; 
+  }
+  
+  protected class Node<T> {
+    
+    Node<T> parent;
+    T elem;
+    int rango;
+    
+    
+    public Node()
+    {
+      this(null);
+    }
+    
+    public Node(T e)
+    {
+      elem = e;
+      rango = 1;
+      parent = null;
+    }
+    
+    
+    
+      
+  }
+
+}
