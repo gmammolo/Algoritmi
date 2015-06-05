@@ -29,11 +29,28 @@ public interface Graph<V , E>{
      */
     boolean addEdge (V  vertex1 , V vertex2 , E data ) ;
     
-    
+    /**
+     * Restituisce true sse vertex fa parte del grafo .
+     * @param vertex
+     * @return 
+     */
     boolean hasVertex (V vertex ) ;
     
+    /**
+     * Restituisce true sel’ arco ( vertex1 , vertex2 ) fa
+     * parte del grafo .
+     * @param vertex1
+     * @param vertex2
+     * @return 
+     */
     boolean hasEdge (V vertex1 ,V vertex2 ) ;
     
+    /**
+     * Restituisce il dato associato all’ arco vertex1 −> vertex2
+     * @param vertex1
+     * @param vertex2
+     * @return 
+     */
     E getData (V vertex1 ,V vertex2 ) ;
     
     /**
