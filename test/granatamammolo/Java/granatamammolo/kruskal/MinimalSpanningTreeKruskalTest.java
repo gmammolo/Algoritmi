@@ -7,7 +7,6 @@ package granatamammolo.Java.granatamammolo.kruskal;
 
 
 import granatamammolo.Java.granatamammolo.graph.UndirectedGraph;
-import granatamammolo.Java.granatamammolo.kruskal.MinimalSpanningTreeKruskal.Edge;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.DoubleSupplier;
@@ -56,7 +55,10 @@ public class MinimalSpanningTreeKruskalTest {
 //    List<MinimalSpanningTreeKruska.Edge> expResult = null;
     List<Edge> result = instance.build(g);
     ArrayList<Edge> expResult = new ArrayList<>();
-//    expResult.add(new MinimalSpanningTreeKruskal<String,DoubleValue>.Edge("A", "B", new DoubleValue(1)));
+    expResult.add(new Edge<String,DoubleValue>("A", "B", new DoubleValue(1)));
+    expResult.add(new Edge<String,DoubleValue>("B", "D", new DoubleValue(1)));
+    expResult.add(new Edge<String,DoubleValue>("A", "C", new DoubleValue(2)));
+    expResult.add(new Edge<String,DoubleValue>("C", "E", new DoubleValue(3)));
     assertEquals(expResult, result);
    //System.out.println( g.toDot("Grafo"));
     
