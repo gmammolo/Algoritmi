@@ -52,7 +52,6 @@ public class MinimalSpanningTreeKruskalTest {
   public void testBuild() throws Exception {
     System.out.println("build");
     MinimalSpanningTreeKruskal instance = new MinimalSpanningTreeKruskal();
-//    List<MinimalSpanningTreeKruska.Edge> expResult = null;
     List<Edge> result = instance.build(g);
     ArrayList<Edge> expResult = new ArrayList<>();
     expResult.add(new Edge<String,DoubleValue>("A", "B", new DoubleValue(1)));
@@ -60,7 +59,6 @@ public class MinimalSpanningTreeKruskalTest {
     expResult.add(new Edge<String,DoubleValue>("A", "C", new DoubleValue(2)));
     expResult.add(new Edge<String,DoubleValue>("C", "E", new DoubleValue(3)));
     assertEquals(expResult, result);
-   //System.out.println( g.toDot("Grafo"));
     
   }
   

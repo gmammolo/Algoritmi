@@ -790,6 +790,66 @@ public class Sorting {
   
 // </editor-fold>
   
+ // <editor-fold defaultstate="collapsed" desc=" Heap Sort Parallel ">
+  
+  public static <T extends Comparable <? super T>> void hSort (T [ ] a ) {
+        hSort(a,0,a.length-1);
+  }
+
+  protected static <T extends Comparable <? super T>> void hSort (T [ ] a , int first, int last ) {
+    int n = first + last-1;
+    for(int j=(n)/2; j >=first; j--) {
+      moveDown(a, first, j, last +1);
+    }
+    
+    for(int i=last ; i > first ; i--) {
+      T tmp = a[first];
+      a[first] = a[i];
+      a[i] = tmp;
+      moveDown(a,first,first,i-1);
+    }
+  }
+  
+  protected static <T extends Comparable <? super T>> void moveDown(T[] a, int first, int i, int last ) {
+    T elem = a[i];
+    int j;
+    while((j = 2*i +1 - first) < last) {
+      if( j+1 < last &&  a[j+1].compareTo(a[j]) > 0 ) j++;
+      if(elem.compareTo(a[j]) >= 0) break;
+      a[i] = a[j];
+      i=j;
+    }
+    a[i] = elem;
+  }
+  
+  
+// </editor-fold>
+  
+    
+ // <editor-fold defaultstate="collapsed" desc=" IntroSort Parallel ">
+    public static <T extends Comparable <? super T>> void IntroSort (T [ ] a ) {
+      int n = a.length;
+      random = new Random();
+      int log = 31 - Integer.numberOfLeadingZeros(n);
+      IntroSort(a, 0, n-1, 2*log);
+    }
+    
+    protected static <T extends Comparable <? super T>> void IntroSort (T [ ] a , int fst, int lst, int lev ) {
+      int  soglia = 10;
+      if(lst - fst < soglia) qSortHoareRic(a, fst, lst);
+      else if(lev ==0) hSort(a, fst, lst);
+      else {
+        int j=lst + fst / 2;
+        int i = j++;
+        IntroSort(a, fst, j, lev-1);
+        IntroSort(a, i, lst, lev-1);
+      }
+    }
+    
+    
+// </editor-fold>
+  
+  
  // <editor-fold defaultstate="collapsed" desc=" Metodi di supporto ">
   /**
    * Metodo di supporto per scambio di posizione di due valori in un array.

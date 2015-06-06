@@ -698,4 +698,76 @@ public class SortingTest {
     }
     
     // </editor-fold>
+
+ // <editor-fold defaultstate="collapsed" desc=" HSortParallel">
+    @Test
+    public void testHSort_OrderArrays() {
+        System.out.println("testHSort_OrderArrays");
+        String[] a = string_order.clone();
+        Sorting.hSort(a);
+        assertArrayEquals(string_order, a);
+    }
+    
+    @Test
+    public void testHSort_UnorderArrays() {
+        System.out.println("testHSort_UnorderArrays");
+        String[] a = string_unorder.clone();
+        Sorting.hSort(a);
+        assertArrayEquals(string_order, a );
+    }
+    
+    @Test
+    public void testHSort_VoidArrays() {
+        System.out.println("testHSort_VoidArrays");
+        String[] a = string_void.clone();
+        Sorting.hSort(a);
+        assertArrayEquals(string_void, a);
+    }
+    
+    @Test
+    public void testHSort_SingleArrays() {
+        System.out.println("testHSort_SingleArrays");
+        String[] a = string_single.clone();
+        Sorting.hSort(a);
+        assertArrayEquals(string_single, a);
+    }
+    
+    // </editor-fold>
+
+    
+     // <editor-fold defaultstate="collapsed" desc=" IntroSortParallel">
+    @Test
+    public void testIntroSort_OrderArrays() {
+        System.out.println("testIntroSort_OrderArrays");
+        String[] a = string_order.clone();
+        Sorting.IntroSort(a);
+        assertArrayEquals(string_order, a);
+    }
+    
+    @Test
+    public void testIntroSort_UnorderArrays() {
+        System.out.println("testIntroSort_UnorderArrays");
+        String[] a = string_unorder.clone();
+        Sorting.IntroSort(a);
+        assertArrayEquals(string_order, a );
+    }
+    
+    @Test
+    public void testIntroSort_VoidArrays() {
+        System.out.println("testIntroSort_VoidArrays");
+        String[] a = string_void.clone();
+        Sorting.IntroSort(a);
+        assertArrayEquals(string_void, a);
+    }
+    
+    @Test
+    public void testIntroSort_SingleArrays() {
+        System.out.println("testIntroSort_SingleArrays");
+        String[] a = string_single.clone();
+        Sorting.IntroSort(a);
+        assertArrayEquals(string_single, a);
+    }
+    
+    // </editor-fold>
+
 }

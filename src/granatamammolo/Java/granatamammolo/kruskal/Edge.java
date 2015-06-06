@@ -9,10 +9,12 @@ import java.util.Objects;
 import java.util.function.DoubleSupplier;
 
 /**
- *
+ * E' una classe ausiliaria che rappresenta un nodo pesato bidirezionale.
+ * il nodo A -> B viene riconosciuto come nodo B -> A.
+ * Comodo in un contesto di grafi non direzionali, per ottenere ad esempio
+ * una lista dei nodi di un grafo  senza ripetizioni.
  * @author Giuseppe
  */
-
   public class Edge<V, E extends DoubleSupplier> {
     V v1 ;
     V v2 ;
