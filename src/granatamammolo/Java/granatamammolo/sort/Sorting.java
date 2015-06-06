@@ -790,7 +790,7 @@ public class Sorting {
   
 // </editor-fold>
   
- // <editor-fold defaultstate="collapsed" desc=" Heap Sort Parallel ">
+ // <editor-fold defaultstate="collapsed" desc=" Heap Sort ">
   
   public static <T extends Comparable <? super T>> void hSort (T [ ] a ) {
         hSort(a,0,a.length-1);
@@ -826,7 +826,7 @@ public class Sorting {
 // </editor-fold>
   
     
- // <editor-fold defaultstate="collapsed" desc=" IntroSort Parallel ">
+ // <editor-fold defaultstate="collapsed" desc=" IntroSort ">
     public static <T extends Comparable <? super T>> void IntroSort (T [ ] a ) {
       int n = a.length;
       random = new Random();
@@ -837,10 +837,22 @@ public class Sorting {
     protected static <T extends Comparable <? super T>> void IntroSort (T [ ] a , int fst, int lst, int lev ) {
       int  soglia = 10;
       if(lst - fst < soglia) qSortHoareRic(a, fst, lst);
-      else if(lev ==0) hSort(a, fst, lst);
+      else if(lev ==0) hSort(a, fst, lst );
       else {
-        int j=lst + fst / 2;
-        int i = j++;
+        int i=fst,j=lst;
+        T pivot = a[random.nextInt(lst - fst + 1) + fst];
+        do{
+         while(a[i].compareTo(pivot) < 0)
+           i++;
+         while(a[j].compareTo(pivot) > 0)
+           j--;
+         if(i <= j){
+           swap(a, i, j);
+           i++;
+           j--;
+         }
+       }while(i <= j);
+       assert(i == j+1 || i == j+2);
         IntroSort(a, fst, j, lev-1);
         IntroSort(a, i, lst, lev-1);
       }
