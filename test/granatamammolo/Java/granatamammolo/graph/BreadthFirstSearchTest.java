@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  */
 public class BreadthFirstSearchTest {
   
-  SparseGraph<String, Integer> g;
+  UndirectedGraph<String, Integer> g;
   SimpleCallback callback;
   public BreadthFirstSearchTest() {
   }
@@ -24,7 +24,7 @@ public class BreadthFirstSearchTest {
   @Before
   public void setUp() {
     callback = new SimpleCallback();
-    g = new SparseGraph<>();
+    g = new UndirectedGraph<>();
     g.addVertex("A");
     g.addVertex("B");
     g.addVertex("C");

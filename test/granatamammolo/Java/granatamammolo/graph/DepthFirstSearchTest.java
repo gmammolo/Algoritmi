@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  */
 public class DepthFirstSearchTest {
   
-  SparseGraph<String, Integer> g;
+  UndirectedGraph<String, Integer> g;
   SimpleCallback callback;
   
   public DepthFirstSearchTest() {
@@ -25,7 +25,7 @@ public class DepthFirstSearchTest {
   @Before
   public void setUp() {
     callback = new SimpleCallback();
-    g = new SparseGraph<>();
+    g = new UndirectedGraph<>();
     g.addVertex("A");
     g.addVertex("B");
     g.addVertex("C");

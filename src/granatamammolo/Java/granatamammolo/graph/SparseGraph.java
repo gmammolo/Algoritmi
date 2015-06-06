@@ -5,14 +5,11 @@
  */
 package granatamammolo.Java.granatamammolo.graph;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Objects;
-import java.util.PriorityQueue;
 import java.util.Set;
 
 /**
@@ -45,12 +42,6 @@ public class SparseGraph<V,E> implements Graph<V,E> {
       return false;
     Node startNode = eleMap.get(vertex1);
     Node endNode = new Node(vertex2);
-    startNode.neighbors.put(endNode, data);
-    startNode.gradeOut++;
-    endNode.gradeIn++;
-    
-    startNode = eleMap.get(vertex2);
-    endNode = new Node(vertex1);
     startNode.neighbors.put(endNode, data);
     startNode.gradeOut++;
     endNode.gradeIn++;
@@ -89,7 +80,6 @@ public class SparseGraph<V,E> implements Graph<V,E> {
     if(n==null)
       return res;
     Iterator it =  n.neighbors.entrySet().iterator();
-
     while (it.hasNext())
     {
       Entry<Node<V>,E> pair = (Entry)it.next();
@@ -107,7 +97,7 @@ public class SparseGraph<V,E> implements Graph<V,E> {
       for(V v: this.getNeighbors(u)) {
         list.add(u,v);
       }
-    }
+    } 
     for(int i=0; i<list.size();i++) {
       V u= list.getFirst(i);
       V v= list.getSecond(i);
