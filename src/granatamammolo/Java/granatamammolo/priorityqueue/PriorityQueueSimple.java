@@ -7,19 +7,15 @@ import java.util.Objects;
  *
  * @author giuseppe
  */
-public class PriorityQueueSimple<E, P extends Comparable <P>> implements PriorityQueue{
+public class PriorityQueueSimple<E, P extends Comparable <P>> implements PriorityQueue<E,P>{
 
-  private final ArrayList<PairValue> elements;
+  protected final ArrayList<PairValue> elements;
 
-  // TOSEE_GIUSE se nei test volessi (e mi serve) testare la nuova priorità (getPriority), non lo si può fare
-  // perchè io di là non ho l'oggetto pair value --> bisogna inserirlo nella classe esterna. Inoltre i metodi in pair
-  // value, a meno che li utilizzi tu, non servono.
-  // metto dei commenti nei test su dove vorrei cosa
   public PriorityQueueSimple(){
       elements = new ArrayList<>();
   }
 
-  private class PairValue{
+  protected class PairValue{
     E element;
     P priority;
 
@@ -71,7 +67,7 @@ public class PriorityQueueSimple<E, P extends Comparable <P>> implements Priorit
   }
     
 
-  private int binarySearch(P x) {
+  protected int binarySearch(P x) {
     int ini = 0, fin = elements.size() - 1;
     if (fin == -1 || x.compareTo(elements.get(0).getPriority()) < 0 )
       return -1;
@@ -108,54 +104,32 @@ public class PriorityQueueSimple<E, P extends Comparable <P>> implements Priorit
   }
 
   @Override
-  public boolean add(Object element, Comparable priority) {
-    E elem;
-    P prior;
-    try {
-        elem = (E) element;
-        prior = (P) priority;
-    } catch(ClassCastException e) {
-        return false;
-    }
+  public boolean add(E element, P priority) {
       
-    if(element == null || elements.contains(new PairValue(elem, null)))
+    if(element == null || elements.contains(new PairValue(element, null)))
       return false;
 
-    int index = binarySearch(prior);
+    int index = binarySearch(priority);
     if (index < 0) 
       index = -(index + 1);
-    elements.add(index, new PairValue(elem, prior));
+    elements.add(index, new PairValue(element, priority));
     return true;
   }
   
       
 
   @Override
-  public boolean delete(Object element) {
-    E elem;
-    try {
-        elem = (E) element;
-    } catch(ClassCastException e) {
-        return false;
-    }
-    return elements.remove(new PairValue((E) element, null));
+  public boolean delete(E element) {
+    return elements.remove(new PairValue(element, null));
   }
 
   @Override
-  public boolean setPriority(Object element, Comparable priority) {
-    E elem;
-    P prior;
-    try {
-        elem = (E) element;
-        prior = (P) priority;
-    } catch(ClassCastException e) {
-        return false;
-    }
-    int index = elements.indexOf(new PairValue(elem, null));
+  public boolean setPriority(E element, P priority) {
+    int index = elements.indexOf(new PairValue(element, null));
     if(index < 0)
       return false;
     elements.remove(index);
-    elements.add(new PairValue(elem, prior));
+    add(element, priority);
     return true;
   }
   

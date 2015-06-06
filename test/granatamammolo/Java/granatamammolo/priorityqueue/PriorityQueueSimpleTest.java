@@ -304,29 +304,22 @@ public class PriorityQueueSimpleTest {
    * - nuova priorità minore di zero
    * - nuova priorità corretta
    * - priorità di un elemento non presente
-   */
-  @Test(expected = IllegalArgumentException.class)  
-  public void testSetPriority_UnderZero() {   
-    System.out.println("testSetPriority_UnderZero");        
-    PriorityQueueSimple instance = new PriorityQueueSimple();
-    instance.add("Fare la doccia", 0.0);
-    instance.add("Lavare i denti", 1.0);    
-    instance.add("Cucinare", 2.0);
-    instance.setPriority("Lavare i denti", -1.0);
-    //TOSEE_FEDE: questi sono tipi generici: non saprei come mettercelo un controllo per evitare i valori
-    //negativi o meglio non credo si possa mettere... Se si vuole questo tipo di controllo si crea una classe che estende la mia
-  }
-  
+   */  
   @Test
   public void testSetPriority_RepeatPriority() {       
     System.out.println("testSetPriority_UnderZero");        
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     instance.add("Fare la doccia", 0.0);
-    instance.add("Lavare i denti", 1.0);    
+    instance.add("Fare il bucato", 1.0);
+    instance.add("Lavare i denti", 5.0);    
     instance.add("Cucinare", 2.0);
     boolean result = instance.setPriority("Lavare i denti", 1.0);
+    instance.removeFirst();
+    //2° posizione
+    String res = instance.removeFirst();
     assertEquals(true, result);
-    // TOSEE_GIUSE : vorrei testare la priorità
+    assertEquals("Lavare i denti", res);
+
   }
   
   @Test
@@ -338,7 +331,10 @@ public class PriorityQueueSimpleTest {
     instance.add("Cucinare", 2.0);
     boolean result = instance.setPriority("Lavare i denti", 3.0);
     assertEquals(true, result);
-    // TOSEE_GIUSE : vorrei testare la nuova priorità
+    instance.removeFirst();
+    instance.removeFirst();
+    //3 posizione
+    assertEquals("Lavare i denti", instance.removeFirst());
   }
   
   @Test

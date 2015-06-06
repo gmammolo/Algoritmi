@@ -363,7 +363,7 @@ public class Sorting {
   protected static void mergeOptimized(int[] a, int first, int middle, int last, int[] aux){
     int i = first, j = middle+1;
     int k = first;
-    if(a[j-1] <= a[j])  return;         // TOSEE_GIUSE ecco l'ottimizzazione che dicevi
+    if(a[j-1] <= a[j])  return; 
     while(i <= middle && j <= last){
       if(a[i] <= a[j])
         aux[k++] = a[i++];
@@ -835,7 +835,7 @@ public class Sorting {
     }
     
     protected static <T extends Comparable <? super T>> void IntroSort (T [ ] a , int fst, int lst, int lev ) {
-      int  soglia = 10;
+      int  soglia = 100;
       if(lst - fst < soglia) qSortHoareRic(a, fst, lst);
       else if(lev ==0) hSort(a, fst, lst );
       else {

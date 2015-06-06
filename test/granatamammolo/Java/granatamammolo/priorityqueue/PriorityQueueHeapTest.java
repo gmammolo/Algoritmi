@@ -299,16 +299,6 @@ public class PriorityQueueHeapTest {
     assertEquals(expResult, result);
   }
   
-  @Test //(expected = IllegalArgumentException.class)  
-  public void testSetPriority_UnderZero() {  
-    System.out.println("testSetPriority_UnderZero");        
-    PriorityQueueHeap instance = new PriorityQueueHeap();
-    instance.add("Fare la doccia", 0.0);
-    instance.add("Lavare i denti", 1.0);    
-    instance.add("Cucinare", 2.0);
-    boolean result = instance.setPriority("Lavare i denti", -1.0);
-    assertEquals(false, result);
-  }
   
   @Test
   public void testSetPriority_RepeatPriority() {       
@@ -330,7 +320,10 @@ public class PriorityQueueHeapTest {
     instance.add("Cucinare", 2.0);
     boolean result = instance.setPriority("Lavare i denti", 3.0);
     assertEquals(true, result);
-    // TOSEE_GIUSE :vorrei testare il valore della priorità dell'elemento
+    instance.removeFirst();
+    instance.removeFirst();
+    //3 posizione
+    assertEquals("Lavare i denti", instance.removeFirst());
   }
   
   @Test

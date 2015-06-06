@@ -302,7 +302,9 @@ public class PriorityQueueStringDoubleSimpleTest {
     instance.add("Cucinare", 2.0);
     boolean result = instance.setPriority("Lavare i denti", 1.0);
     assertEquals(true, result);
-    // TOSEE_GIUSE : vorrei testare la priorità
+    instance.removeFirst();
+    //2* posto
+    assertEquals("Lavare i denti", instance.removeFirst());
   }
   
   @Test
@@ -314,7 +316,10 @@ public class PriorityQueueStringDoubleSimpleTest {
     instance.add("Cucinare", 2.0);
     boolean result = instance.setPriority("Lavare i denti", 3.0);
     assertEquals(true, result);
-    // TOSEE_GIUSE : vorrei testare la nuova priorità
+    instance.removeFirst();
+    instance.removeFirst();
+    //3* posizione
+    assertEquals("Lavare i denti",instance.removeFirst());
   }
   
   @Test

@@ -160,13 +160,15 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
       heap.set(index, heap.get(heap.size() - 1));
       moveDown(index);
       heap.remove(heap.size() - 1);
+      position.remove(element);
       return true;
     }
 
     private boolean setPriority(String element, double priority) {
       Integer index = position.get(element);
       if(index == null) return false;
-      heap.set(index, new PairValue(element, priority));
+      delete(element);
+      add(element, priority);
       return true;
     }
          

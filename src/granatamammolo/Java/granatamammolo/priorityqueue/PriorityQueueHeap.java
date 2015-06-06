@@ -7,14 +7,15 @@ import java.util.Objects;
 /**
  *
  * @author giuseppe
+ * @param <E>
+ * @param <P>
  */
-public class PriorityQueueHeap<E, P extends Comparable <P>> implements PriorityQueue{
+public class PriorityQueueHeap<E, P extends Comparable<P>> implements PriorityQueue<E, P> {
 
-
-  
   private class binaryTree {
-        
+
     private class PairValue {
+
       private E element;
       private P priority;
 
@@ -60,95 +61,108 @@ public class PriorityQueueHeap<E, P extends Comparable <P>> implements PriorityQ
         }
         return true;
       }
-      
-      
+
     }
-      
-    HashMap<E,Integer> position;
+
+    HashMap<E, Integer> position;
     ArrayList<PairValue> heap;
-         
+
     public binaryTree(int initialCapacity) {
-        heap = new ArrayList<>(initialCapacity);  
-        position = new HashMap<>(initialCapacity);
-    }   
-         
-    /**
-    * Restituisce l'indice del figlio sinistro dell'elemento all'indice index.
-    * @param index indice dell'elemento su cui operare.
-    * @return int indice del figlio sinistro o -1 se non ha un figlio sinistro.
-    */
-    private int getLeft(int index) {
-      int left= 2*index +1;
-      return (left < heap.size()) ? left : -1 ;
-    }
-        
-    /**
-    * Restituisce l'indice del figlio destro dell'elemento all'indice index.
-    * @param index indice dell'elemento su cui  operare.
-    * @return int indice del figlio destro 0 -1 se non ha il figlio destro.
-    */
-    private int getRight(int index) {
-      int right =  2*index+2;
-      return (right < heap.size()) ? right : -1 ;
+      heap = new ArrayList<>(initialCapacity);
+      position = new HashMap<>(initialCapacity);
     }
 
     /**
-    * Restituisce l'indice del padre.
-    * @param index indice dell'elemento su cui operare.
-    * @return indice del padre o -1 se non ha un padre.
-    */
+     * Restituisce l'indice del figlio sinistro dell'elemento all'indice index.
+     *
+     * @param index indice dell'elemento su cui operare.
+     * @return int indice del figlio sinistro o -1 se non ha un figlio sinistro.
+     */
+    private int getLeft(int index) {
+      int left = 2 * index + 1;
+      return (left < heap.size()) ? left : -1;
+    }
+
+    /**
+     * Restituisce l'indice del figlio destro dell'elemento all'indice index.
+     *
+     * @param index indice dell'elemento su cui operare.
+     * @return int indice del figlio destro 0 -1 se non ha il figlio destro.
+     */
+    private int getRight(int index) {
+      int right = 2 * index + 2;
+      return (right < heap.size()) ? right : -1;
+    }
+
+    /**
+     * Restituisce l'indice del padre.
+     *
+     * @param index indice dell'elemento su cui operare.
+     * @return indice del padre o -1 se non ha un padre.
+     */
     private int getParent(int index) {
-      int parent = (index-1)/2;
-      return (parent >= 0 ) ? parent : -1;
+      int parent = (index - 1) / 2;
+      return (parent >= 0) ? parent : -1;
     }
 
     private void moveUp(int i) {
-      if(i >= heap.size() || i < 0) throw new IllegalArgumentException();
+      if (i >= heap.size() || i < 0) {
+        throw new IllegalArgumentException();
+      }
       PairValue pv = heap.get(i);
-      while (i>0 && pv.getPriority().compareTo(heap.get(getParent(i)).getPriority()) < 0 ) {
-        heap.set(i, heap.get(getParent(i)) );
+      while (i > 0 && pv.getPriority().compareTo(heap.get(getParent(i)).getPriority()) < 0) {
+        heap.set(i, heap.get(getParent(i)));
         position.put(heap.get(getParent(i)).element, i);
-        i=getParent(i);
+        i = getParent(i);
       }
       heap.set(i, pv);
       position.put(pv.element, i);
     }
-        
-    private void moveDown(int i) {  
-      if(i >= heap.size() || i < 0)  throw new IllegalArgumentException();
+
+    private void moveDown(int i) {
+      if (i >= heap.size() || i < 0) {
+        throw new IllegalArgumentException();
+      }
       PairValue pv = heap.get(i);
-      while((getLeft(i) + getRight(i)) >= -1 ) { // ha almeno un figlio
+      while ((getLeft(i) + getRight(i)) >= -1) { // ha almeno un figlio
         int minleaf = getLeft(i);
-        if(getRight(i) != -1 && heap.get(getRight(i)).getPriority().compareTo(heap.get(getLeft(i)).getPriority()) < 0 )
+        if (getRight(i) != -1 && heap.get(getRight(i)).getPriority().compareTo(heap.get(getLeft(i)).getPriority()) < 0) {
           minleaf = getRight(i);
+        }
         heap.set(i, heap.get(minleaf));
         position.put(heap.get(minleaf).element, i);
-        i=minleaf;
+        i = minleaf;
       }
-      heap.set(i, pv);  
+      heap.set(i, pv);
       position.put(pv.element, i);
     }
 
     private boolean add(E element, P priority) {
-      if(position.containsKey(element) || priority == null)
+      if (position.containsKey(element) || priority == null) {
         return false;
+      }
       heap.add(new PairValue(element, priority));
-      moveUp(heap.size()-1);
+      moveUp(heap.size() - 1);
       return true;
     }
 
-    private E first() {    
-      if(heap.size() == 0) return null;
+    private E first() {
+      if (heap.size() == 0) {
+        return null;
+      }
       return heap.get(0).getElement();
     }
 
     private E removeFirst() {
-      if(heap.size() == 0)  return null;
+      if (heap.size() == 0) {
+        return null;
+      }
       PairValue first = heap.get(0);
       heap.set(0, heap.get(heap.size() - 1));
       heap.remove(heap.size() - 1);
-      if(heap.size() > 0 )
+      if (heap.size() > 0) {
         moveDown(0);
+      }
       return first.getElement();
 
     }
@@ -159,7 +173,9 @@ public class PriorityQueueHeap<E, P extends Comparable <P>> implements PriorityQ
 
     private boolean delete(E element) {
       Integer index = position.get(element);
-      if(index == null ) return false;
+      if (index == null) {
+        return false;
+      }
       heap.set(index, heap.get(heap.size() - 1));
       moveDown(index);
       heap.remove(heap.size() - 1);
@@ -168,78 +184,52 @@ public class PriorityQueueHeap<E, P extends Comparable <P>> implements PriorityQ
 
     private boolean setPriority(E element, P priority) {
       Integer index = position.get(element);
-      if(index == null) return false;
+      if (index == null) {
+        return false;
+      }
       heap.set(index, new PairValue(element, priority));
       return true;
     }
-         
+
   }
-    
-    binaryTree albero;
-    
-    public PriorityQueueHeap() {
-      this(16);
-    }
-    
-    public PriorityQueueHeap(int capacity) {
-      albero = new binaryTree(capacity);
-    }
-    
-    
 
-    @Override
-    public E first() {
-      return albero.first();
-    }
+  binaryTree albero;
 
-    @Override
-    public E removeFirst() {
-      return albero.removeFirst();
-    }
+  public PriorityQueueHeap() {
+    this(16);
+  }
 
-    @Override
-    public boolean isEmpty() {
-      return albero.isEmpty();
-    }
+  public PriorityQueueHeap(int capacity) {
+    albero = new binaryTree(capacity);
+  }
 
+  @Override
+  public E first() {
+    return albero.first();
+  }
 
-    
-        @Override
-    public boolean add(Object element, Comparable priority) {
-        E elem;
-        P prior;
-        try {
-            elem = (E) element;
-            prior = (P) priority;
-        } catch(ClassCastException e) {
-            return false;
-        }
-        
-        return albero.add(elem,prior);
-    }
+  @Override
+  public E removeFirst() {
+    return albero.removeFirst();
+  }
 
-    @Override
-    public boolean delete(Object element) {
-        E elem;
-        try {
-            elem = (E) element;
-        } catch(ClassCastException e) {
-            return false;
-        }
-        return albero.delete(elem);
-    }
+  @Override
+  public boolean isEmpty() {
+    return albero.isEmpty();
+  }
 
-    @Override
-    public boolean setPriority(Object element, Comparable priority) {
-        E elem;
-        P prior;
-        try {
-            elem = (E) element;
-            prior = (P) priority;
-        } catch(ClassCastException e) {
-            return false;
-        }
-        
-        return albero.setPriority(elem, prior);
-    }
+  @Override
+  public boolean add(E element, P priority) {
+    return albero.add(element, priority);
+  }
+
+  @Override
+  public boolean delete(E element) {
+    return albero.delete(element);
+  }
+
+  @Override
+  public boolean setPriority(E element, P priority) {
+    return albero.setPriority(element, priority);
+  }
 }

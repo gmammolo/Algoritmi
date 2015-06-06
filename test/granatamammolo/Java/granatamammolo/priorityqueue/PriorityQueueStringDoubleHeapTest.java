@@ -293,7 +293,10 @@ public class PriorityQueueStringDoubleHeapTest {
     instance.add("Cucinare", 2.0);
     boolean result = instance.setPriority("Lavare i denti", 3.0);
     assertEquals(true, result);
-    // TOSEE_GIUSE :vorrei testare il valore della priorità dell'elemento
+    instance.removeFirst();
+    instance.removeFirst();
+    //3* posizione
+    assertEquals("Lavare i denti", instance.removeFirst());
   }
   
   @Test

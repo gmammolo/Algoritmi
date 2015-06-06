@@ -6,7 +6,15 @@ import static java.lang.Math.*;
  *
  * @author Federica
  */
-public class SearchTree <K extends Comparable <K>, V> implements SortedDictionary  {
+public class SearchTree <K extends Comparable <K>, V> implements SortedDictionary<K,V>  {
+
+
+
+
+
+
+
+
 
   protected static class Node <K, V> {
     K key;
@@ -59,10 +67,10 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
    * Senza rimozione del nodo.
    * @return chiave minima dell'albero
    */
-  @Override
-  public Comparable minKey() {
+    @Override
+  public K minKey() {
     if(root == null) return null;
-    return (K) getMin(root).key;
+    return getMin(root).key;
   }
 
   /**
@@ -70,17 +78,18 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
    * @return chiave di valore massimo.
    */
   @Override
-  public Comparable maxKey() {
+  public K maxKey() {
     if(root == null) return null;
-    return (K) getMax(root).key;
+    return getMax(root).key;
   }
+
 
   /**
    * Senza rimozione del nodo.
    * @return valore associato alla chiave minima nell'albero. 
    */
-  @Override
-  public Object elementOfMinKey() {
+    @Override
+  public V elementOfMinKey() {
     if(root == null) return null;
     return getMin(root).value;
   }
@@ -89,8 +98,9 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
    * Senza rimozione del nodo.
    * @return valore associato alla chiave massima nell'albero. 
    */
+  
   @Override
-  public Object elementOfMaxKey() {
+  public V elementOfMaxKey() {
     if(root == null) return null;
     return getMax(root).value;
   }
@@ -101,9 +111,9 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
    * @return valore se la chiave è presente, null altrimenti.
    */
   @Override
-  public Object find(Object key) {
+  public V find(K key) {
     K keyK = (K) key;     // TOSEE
-    Node node = this.root;
+    Node<K,V> node = this.root;
     while(node != null) {
       K nodeKey = (K) node.key;    
       if(keyK.compareTo(nodeKey) < 0)    node = node.left;
@@ -120,15 +130,18 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
    * @return il nodo aggiunto.
    */
   @Override
-  public Object add(Object key, Object value) {
-    Node node = new Node(key, value, null, null);
-    if(root == null)  return root = node;    
+  public V add(K key, V value) {
+    Node<K,V> node = new Node(key, value, null, null);
+    if(root == null) {
+       root = node;
+       return root.value;
+    }    
     return add(node, root);
   }
   
-  private Object add(Node newNode, Node node){
-    K key = (K) newNode.key;
-    K nodeKey = (K) node.key;
+  protected V add(Node<K,V> newNode, Node<K,V> node){
+    K key =  newNode.key;
+    K nodeKey =  node.key;
     if(key.compareTo(nodeKey) < 0){
       if(node.left == null)
         node.left = newNode;
@@ -139,24 +152,25 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
         node.right = newNode;
       else
         add(newNode, node.right);
-    }else{  // TOSEE_GIUSE ho trovato un'altra chiave che è uguale a quella che sto inserendo -> errore
+    }else{ 
       return null;
     }
     return newNode.value;
   }
 
   @Override
-  public void remove(Object key) {
-    root = remove((K) key, root);
+  public void remove(K key) {
+   root = remove( key, root);
   }
+
   
-  private Node remove(K key, Node node){
+  protected Node<K,V> remove(K key, Node<K,V> node){
     if(node != null){
-      K nodeK = (K) node.key;
+      K nodeK = node.key;
       if(key.compareTo(nodeK) < 0)
-        remove(key, node.left);
+        node.left =  remove(key, node.left);
       else if(key.compareTo(nodeK) > 0)
-        remove(key, node.right);
+        node.right = remove(key, node.right);
       else{
         if(node.left == null)
           node = node.right;
@@ -169,15 +183,15 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
     return node;
   }
   
-  private Node getMin(Node node){
+  protected Node<K,V> getMin(Node node){
     if(node.left != null)
       return getMin(node.left);
     return node;
   }
   
-  private Node getMax(Node node){
+  protected Node<K,V> getMax(Node node){
     if(node.right != null)
-      return getMin(node.right);
+      return getMax(node.right);
     return node;
   }
 
