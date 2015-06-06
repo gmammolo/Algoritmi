@@ -6,6 +6,7 @@
 package granatamammolo.Java.granatamammolo.graph;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 import org.junit.Before;
 import org.junit.Test;
@@ -126,38 +127,51 @@ public class SparseGraphTest {
    * Test of getVertices method, of class SparseGraph.
    */
   @Test
-  public void testGetVertices() {
+  public void testGetVerticesEmpty() {
     System.out.println("getVertices");
     SparseGraph instance = new SparseGraph();
-    Set expResult = null;
+    HashSet<String> expResult = new HashSet();
     Set result = instance.getVertices();
     assertEquals(expResult, result);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
   }
 
+  
+    @Test
+  public void testGetVertices() {
+    System.out.println("getVertices");
+    HashSet<String> expResult = new HashSet();
+    expResult.add("A");
+    expResult.add("B");
+    expResult.add("C");
+    expResult.add("D");
+    expResult.add("E");
+    Set result = g.getVertices();
+    assertEquals (expResult,result);
+  }
+
+  
   /**
    * Test of getNeighbors method, of class SparseGraph.
    */
   @Test
   public void testGetNeighbors() {
     System.out.println("getNeighbors");
-    SparseGraph instance = new SparseGraph();
-    Collection expResult = null;
-    Collection result = instance.getNeighbors("A");
-    assertEquals(expResult, result);
-    // TODO review the generated test code and remove the default call to fail.
-    fail("The test case is a prototype.");
+    HashSet<String> expResult = new HashSet<>();
+    expResult.add("B");
+    expResult.add("C");
+    expResult.add("D");
+    Collection result = g.getNeighbors("A");
+    assertEquals(expResult,result);
   }
 
   /**
    * Test of toDot method, of class SparseGraph.
    */
-//  @Test
-//  public void testToDot() {
-//    System.out.println("toDot");
-//    String name = "Grafo";
-//    System.out.println( g.toDot(name));
-//  }
+  @Test
+  public void testToDot() {
+    System.out.println("toDot");
+    String name = "Grafo";
+    System.out.println( g.toDot(name));
+  }
   
 }
