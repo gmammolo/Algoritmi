@@ -65,4 +65,7 @@ public interface Graph<V , E>{
      * @return 
      */
     Collection<V> getNeighbors (V vertex ) ;
+    
+    
+    String toDot(String Name);
 }

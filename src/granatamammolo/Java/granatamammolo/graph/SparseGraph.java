@@ -5,8 +5,10 @@
  */
 package granatamammolo.Java.granatamammolo.graph;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Objects;
@@ -26,7 +28,7 @@ public class SparseGraph<V,E> implements Graph<V,E> {
   
   public SparseGraph()
   {
-    
+    eleMap = new HashMap<>();
   }
 
   @Override
@@ -43,6 +45,12 @@ public class SparseGraph<V,E> implements Graph<V,E> {
       return false;
     Node startNode = eleMap.get(vertex1);
     Node endNode = new Node(vertex2);
+    startNode.neighbors.put(endNode, data);
+    startNode.gradeOut++;
+    endNode.gradeIn++;
+    
+    startNode = eleMap.get(vertex2);
+    endNode = new Node(vertex1);
     startNode.neighbors.put(endNode, data);
     startNode.gradeOut++;
     endNode.gradeIn++;
@@ -74,10 +82,14 @@ public class SparseGraph<V,E> implements Graph<V,E> {
   }
 
   @Override
-  public Collection<V> getNeighbors(V vertex) {
+  public HashSet<V> getNeighbors(V vertex) {
     
-    Iterator it =  eleMap.get(vertex).neighbors.entrySet().iterator();
-    PriorityQueue<V> res = new PriorityQueue<V>();
+    HashSet<V> res = new HashSet<V>();
+    Node<V> n = eleMap.get(vertex);
+    if(n==null)
+      return res;
+    Iterator it =  n.neighbors.entrySet().iterator();
+
     while (it.hasNext())
     {
       Entry<Node<V>,E> pair = (Entry)it.next();
@@ -87,7 +99,23 @@ public class SparseGraph<V,E> implements Graph<V,E> {
     
   }
  
-  
+  @Override
+  public String toDot(String name){
+    String s="graph "+name+" { \n";
+    UniquePairList<V> list = new UniquePairList<>();
+    for(V u: this.getVertices()) {
+      for(V v: this.getNeighbors(u)) {
+        list.add(u,v);
+      }
+    }
+    for(int i=0; i<list.size();i++) {
+      V u= list.getFirst(i);
+      V v= list.getSecond(i);
+      s+= "\t"+u.toString()+" -- "+v.toString()+" [label=\""+getData(u, v).toString()+"\" color=\"red\" style=bold]; \n";
+    }
+    
+    return s+"}\n";
+  }
   
   
   protected class Node<V> {
@@ -106,7 +134,7 @@ public class SparseGraph<V,E> implements Graph<V,E> {
     public Node(V e)
     {
       elem = e;
-      neighbors = null;
+      neighbors = new HashMap<>();
     }
 
     public int getGrade() {
