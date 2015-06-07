@@ -62,6 +62,7 @@ public class SortTiming {
 
     /**
      * Create a new experiment and appends it to the experiments list.
+     * @param size size of array
      */
     public void addExperiment(int size) {
       sizes.add(size);
@@ -80,7 +81,10 @@ public class SortTiming {
     /**
      * Joins all elements of the given array list into a
      * string. The elements will be separated by a comma symbol.
+     * @param <E> type of values
      * @param values the object whose string representation should be joined.
+     * @return Joins all elements of the given array list into a
+     * string.
      */
     private <E> String join(ArrayList<E> values) {
       String result = "";
@@ -173,6 +177,7 @@ public class SortTiming {
    * @param minSize the minimum size of arrays used to test the algorithms
    * @param maxSize the maximum size of arrays used to test the algorithms
    * @param stepSize the step size to be used while generating the random arrays
+   * @param builder -
    * @return a Timings class containing the results of the experimentation
    */
   static public Timings measureAlgorithms(String[] algorithms, int minSize, int maxSize, int stepSize, ArrayBuilder builder) throws ReflectiveOperationException {
@@ -195,6 +200,9 @@ public class SortTiming {
   /**
    * Writes into filename the results stored in the given Timings object.
    * Results are written in CSV format.
+   * @param filename filename to write result
+   * @param timings timer
+   * @throws java.io.IOException
    */
   static public void writeResults(String filename, Timings timings) throws IOException  {
     PrintWriter writer = new PrintWriter(new FileWriter(filename));

@@ -29,7 +29,7 @@ public interface PriorityQueueStringDouble {
   String removeFirst();
     
   /**
-  * 
+  * Indica se la coda è vuota
   * @return  <code>true</code> se la coda è vuota, <code>false</code> altrimenti
   */
   boolean isEmpty();

@@ -5,7 +5,7 @@ import java.util.HashMap;
 /**
  *
  * @author Giuseppe
- * @param <T> type Generico
+ * @param <T> Tipo dell' elemento da inserire nell' insieme 
  */
 public class UnionFind<T> { // esercizio da 10 punti
   
@@ -20,10 +20,10 @@ public class UnionFind<T> { // esercizio da 10 punti
   }
   
   /**
-   * Crea un nuovo set contenente solo l'elemento T, solleva una
+   * Crea un nuovo insieme contenente solo l'elemento T, solleva una
    * eccezione in caso elem sia già presente.
-   * @param elem
-   * @throws IllegalAccessException 
+   * @param elem elemento da inserire nell' insieme
+   * @throws IllegalAccessException elemento fa parte già di un insieme
    */
   public void makeSet(T elem) throws IllegalAccessException{
     if(elemMap.containsKey(elem))
@@ -33,8 +33,8 @@ public class UnionFind<T> { // esercizio da 10 punti
   
   /**
    * Restituisce il rappresentante dell'insieme in cui si trova e.
-   * @param e
-   * @return 
+   * @param e elemento da cercare negli insieme
+   * @return il rappresentante dell' insieme
    */
   public T find (T e){
     Node n = elemMap.get(e);
@@ -53,6 +53,10 @@ public class UnionFind<T> { // esercizio da 10 punti
    * Se "a" e "b" fanno parte dello stesso insieme restituisce false e 
    * non fa nulla, altrimenti unisce gli insiemi di cui "a" e "b" fanno
    * parte e restituisce true.
+   * @param a primo elemento da fondere
+   * @param b secondo elemento da fondere
+   * @return <code>true</code> in caso di successo, <code>false</code> se i due 
+   * elementi fanno parte dello stesso insieme
    */
   public boolean kruskalUnion(T a, T b){
     T root1 = find(a);
@@ -78,6 +82,10 @@ public class UnionFind<T> { // esercizio da 10 punti
     root1.rango += root2.rango; 
   }
   
+  /**
+   * Classe contenente il nodo, usata per creare gli insiemi
+   * @param <T> Parametro dell' elemento 
+   */
   protected class Node<T> {
     
     Node<T> parent;

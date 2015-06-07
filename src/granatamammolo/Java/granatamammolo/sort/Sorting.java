@@ -271,9 +271,9 @@ public class Sorting {
   /**
    * Metodo privato ricorsivo richiamato inizialmente da mSortBasic.
    * @see mSortBasic
-   * @param a
-   * @param first 
-   * @param last 
+   * @param a array da ordinare 
+   * @param first indice primo elemento
+   * @param last indice ultimo elemento
    */
   private static void mSortBasicRic(int[] a, int first, int last){
     if(first < last){
@@ -332,10 +332,10 @@ public class Sorting {
   /**
    * Metodo ausiliario privato per mSortNoGarbage
    * @see mSortNoGarbage
-   * @param a
-   * @param first
-   * @param last
-   * @param aux 
+   * @param a array da ordinare
+   * @param first indice primo elemento
+   * @param last indice ultimo elemento
+   * @param aux array ausiliario
    */
   protected static void mSortNoGarbageRic(int[] a, int first, int last, int[] aux){
     if(first < last){
@@ -397,11 +397,11 @@ public class Sorting {
   /**
    * Metodo Ausiliario privato usato da msortNoGarbage
    * @see mSortNoGarbage 
-   * @param <T> extends Comparable
-   * @param a
-   * @param first
-   * @param last
-   * @param aux 
+   * @param <T> extends Comparable 
+   * @param a array da ordinare
+   * @param first indice primo elemento
+   * @param last indice ultimo elemento
+   * @param aux array ausiliario
    */
    private static <T extends Comparable<? super T>> void mSortNoGarbageRic(T[] a, int first, int last, T[] aux){
     if(first < last){
@@ -561,7 +561,7 @@ public class Sorting {
   
   /**
    * Versione parallela di una delle versioni precedenti.
-   * @param a 
+   * @param a array da ordinare
    */
   public static void parallelMergeSort(int[] a){
     int n= a.length - 1;
@@ -711,7 +711,7 @@ public class Sorting {
   /**
    * Implementazione del QuickSort versione Hoare, ottimizzato con l'esecuzione
    * dell'InsertionSort al di sotto di una certa soglia.
-   * @param a 
+   * @param a  array da ordinare
    */
   public static void qSortHoareISort(int[] a){
     if(a.length <= 1) return;

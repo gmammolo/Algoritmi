@@ -8,7 +8,9 @@ package granatamammolo.Java.granatamammolo.kruskal;
 import java.util.function.DoubleSupplier;
 
 /**
- *
+ * Estensione del DoubleSupplier.
+ * Accetta un numero intero o double.
+ * Questa classe è stata creata per fare il test.
  * @author Giuseppe
  */
 public class DoubleValue implements DoubleSupplier{

@@ -7,8 +7,8 @@ import java.util.Objects;
 /**
  *
  * @author giuseppe
- * @param <E>
- * @param <P>
+ * @param <E> Tipo dell' elemento da inserire
+ * @param <P> Tipo della priorità
  */
 public class PriorityQueueHeap<E, P extends Comparable<P>> implements PriorityQueue<E, P> {
 

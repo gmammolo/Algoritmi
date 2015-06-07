@@ -56,6 +56,7 @@ public class SortTiming {
 
     /**
      * Create a new experiment and appends it to the experiments list.
+     * @param size -
      */
     public void addExperiment(int size) {
       sizes.add(size);
@@ -75,6 +76,9 @@ public class SortTiming {
      * Joins all elements of the given array list into a
      * string. The elements will be separated by a comma symbol.
      * @param values the object whose string representation should be joined.
+     * @param <E> type of values
+     * @return Joins all elements of the given array list into a
+     * string.
      */
     private <E> String join(ArrayList<E> values) {
       String result = "";
@@ -147,6 +151,7 @@ public class SortTiming {
    * @param m the method to be invoked
    * @param array the parameter to be passed on m invokation
    * @return the time elapsed from invokation of m(array) to its completion
+   * @throws java.lang.ReflectiveOperationException Exception
    */
   protected static double testTimes(Method m, int[] array) throws ReflectiveOperationException {
     final long startTime = System.nanoTime();
@@ -167,7 +172,9 @@ public class SortTiming {
    * @param minSize the minimum size of arrays used to test the algorithms
    * @param maxSize the maximum size of arrays used to test the algorithms
    * @param stepSize the step size to be used while generating the random arrays
+   * @param builder -
    * @return a Timings class containing the results of the experimentation
+   * @throws java.lang.ReflectiveOperationException -
    */
   static public Timings measureAlgorithms(String[] algorithms, int minSize, int maxSize, int stepSize, ArrayBuilder builder) throws ReflectiveOperationException {
     Timings timings = new Timings(algorithms);
@@ -189,6 +196,9 @@ public class SortTiming {
   /**
    * Writes into filename the results stored in the given Timings object.
    * Results are written in CSV format.
+   * @param filename file to write result
+   * @param timings timer
+   * @throws java.io.IOException -
    */
   static public void writeResults(String filename, Timings timings) throws IOException  {
     PrintWriter writer = new PrintWriter(new FileWriter(filename));
@@ -212,6 +222,9 @@ public class SortTiming {
    * Si testino infine i metodi sort e parallelSort della classe Arrays della libreria di
    * Java, che hanno un’ottimizzazione molto spinta e sono quindi presumibilmente
    * i più veloci di tutti.
+   * @param args -
+   * @throws java.lang.ReflectiveOperationException -
+   * @throws java.io.IOException -
    */
   public static void main(String[] args) throws ReflectiveOperationException, IOException {
     String[] quadratic = { "iSort", "sSort" };          // si può aggiungere: iSortBin

@@ -3,17 +3,12 @@ package granatamammolo.Java.granatamammolo.dictionary;
 import static java.lang.Math.*;
 
 /**
- *
+ * Albero di Ricerca semplice
  * @author Federica
+ * @param <K> tipo della chiave del dizionario
+ * @param <V> tipo del valore del dizionario
  */
 public class SearchTree <K extends Comparable <K>, V> implements SortedDictionary<K,V>  {
-
-
-
-
-
-
-
 
 
   protected static class Node <K, V> {
@@ -30,6 +25,9 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
 
   }
   
+  /**
+   * Root dell' albero di ricerca semplice
+   */
   protected Node<K,V> root;
   
   public SearchTree(){
@@ -40,12 +38,15 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
     root = new Node(key, value, null, null);
   }
   
-  
+  /**
+   * Stampa l'albero in ordine
+   * @return una Stringa contentente la stampa dell' albero
+   */
   public String printInOrder(){
     return "["+printInOrder(root)+"]";
   }
   
-  public String printInOrder(Node node){
+  private String printInOrder(Node node){
     String s = "";
     if(node != null) {
       s += printInOrder(node.left);
@@ -55,28 +56,27 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
     return s;
   }
   
-  int height(Node node){
+  /**
+   * Restituisce il peso di un Nodo
+   * @param node nodo di cui si vuole sapere il peso. La foglia vale 1.
+   * @return Peso del nodo
+   */
+  protected static int height(Node node){
     return (node == null) ? -1 : 1 + max(height(node.left), height(node.right));
   }
   
+  @Override
   public boolean isEmpty() {
     return (root == null);
   }
   
-  /**
-   * Senza rimozione del nodo.
-   * @return chiave minima dell'albero
-   */
+
     @Override
   public K minKey() {
     if(root == null) return null;
     return getMin(root).key;
   }
 
-  /**
-   * Senza rimozione del nodo.
-   * @return chiave di valore massimo.
-   */
   @Override
   public K maxKey() {
     if(root == null) return null;
@@ -84,32 +84,21 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
   }
 
 
-  /**
-   * Senza rimozione del nodo.
-   * @return valore associato alla chiave minima nell'albero. 
-   */
+
     @Override
   public V elementOfMinKey() {
     if(root == null) return null;
     return getMin(root).value;
   }
 
-  /**
-   * Senza rimozione del nodo.
-   * @return valore associato alla chiave massima nell'albero. 
-   */
-  
+
   @Override
   public V elementOfMaxKey() {
     if(root == null) return null;
     return getMax(root).value;
   }
 
-  /**
-   * Restituisce il valore associato alla chiave cercata.
-   * @param key
-   * @return valore se la chiave è presente, null altrimenti.
-   */
+
   @Override
   public V find(K key) {
     K keyK = (K) key;     // TOSEE
@@ -123,12 +112,7 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
     return null;
   }
 
-  /**
-   * Aggiunta di un valore value con chiave key.
-   * @param key
-   * @param value
-   * @return il nodo aggiunto.
-   */
+
   @Override
   public V add(K key, V value) {
     Node<K,V> node = new Node(key, value, null, null);
@@ -139,7 +123,7 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
     return add(node, root);
   }
   
-  protected V add(Node<K,V> newNode, Node<K,V> node){
+  private V add(Node<K,V> newNode, Node<K,V> node){
     K key =  newNode.key;
     K nodeKey =  node.key;
     if(key.compareTo(nodeKey) < 0){
@@ -164,7 +148,7 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
   }
 
   
-  protected Node<K,V> remove(K key, Node<K,V> node){
+  private Node<K,V> remove(K key, Node<K,V> node){
     if(node != null){
       K nodeK = node.key;
       if(key.compareTo(nodeK) < 0)
@@ -183,12 +167,22 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
     return node;
   }
   
-  protected Node<K,V> getMin(Node node){
+  /**
+  * Restituisce il nodo minore della struttura.
+  * @param node node di partenza
+  * @return nodo minore
+  */
+  protected  Node<K,V> getMin(Node node){
     if(node.left != null)
       return getMin(node.left);
     return node;
   }
   
+  /**
+   * Restituisce il nodo maggiore della struttura.
+   * @param node node di partenza
+   * @return nodo maggiore
+   */
   protected Node<K,V> getMax(Node node){
     if(node.right != null)
       return getMax(node.right);
