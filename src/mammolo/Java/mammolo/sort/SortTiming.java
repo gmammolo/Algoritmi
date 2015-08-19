@@ -228,16 +228,13 @@ public class SortTiming {
    */
   public static void main(String[] args) throws ReflectiveOperationException, IOException {
     String[] quadratic = { "iSort", "sSort" };          // si può aggiungere: iSortBin
-    String[] optimal = { "qSortHoare", "mSortAlt" };    // si può aggiungere: mSortBasic, mSortISort, mSortNoGarbage, parallelMergeSort
+    String[] optimal = { "mSortNoGarbage" , "qSortHoare", "qSortBandiera" , "IntroSort" };    // si può aggiungere: mSortBasic, mSortISort, mSortNoGarbage, parallelMergeSort
                                                         // si può aggiungere: parallelQuickSort, qSortBasic, qSortHoareISort
     
     ArrayBuilder builder = new ArrayBuilder(Integer.MIN_VALUE, Integer.MAX_VALUE);
 
-    //ORIGINALI:
     writeResults("quadratic.csv", measureAlgorithms(quadratic, (int) 1E5, (int) 1E6, (int) 5E4 , builder));
     writeResults("optimal.csv", measureAlgorithms(optimal, (int) 1E6, (int) 20E6, (int) 1E6, builder));
 
-//    writeResults("quadratic.csv", measureAlgorithms(quadratic, (int) 10, (int) 150, (int) 5 , builder));
-//    writeResults("optimal.csv", measureAlgorithms(optimal, (int) 10, (int) 150, (int) 5, builder));
   }
 }
