@@ -16,144 +16,142 @@ import java.util.Set;
  *
  * @author Giuseppe
  */
-public class SparseGraph<V,E> implements Graph<V,E> {
+public class SparseGraph<V, E> implements Graph<V, E> {
 
-  
-  
-  HashMap<V,Node<V>> eleMap;
-  
-  
-  public SparseGraph()
-  {
-    eleMap = new HashMap<>();
-  }
+	HashMap<V, Node<V>> eleMap;
 
-  @Override
-  public boolean addVertex(V vertex)  {
-    if(eleMap.containsKey(vertex))
-      return false;
-    eleMap.put(vertex, new Node<V>(vertex));
-    return true;
-  }
+	public SparseGraph() {
+		eleMap = new HashMap<>();
+	}
 
-  @Override
-  public boolean addEdge(V vertex1, V vertex2, E data) {
-     if(!eleMap.containsKey(vertex1) || !eleMap.containsKey(vertex2))
-      return false;
-    Node<V> startNode = eleMap.get(vertex1);
-    Node<V> endNode = new Node<V>(vertex2);
-    startNode.neighbors.put(endNode, data);
-    startNode.gradeOut++;
-    endNode.gradeIn++;
-    return true;
-  }
+	@Override
+	public boolean addVertex(V vertex) {
+		if (eleMap.containsKey(vertex))
+			return false;
+		eleMap.put(vertex, new Node<V>(vertex));
+		return true;
+	}
 
-  @Override
-  public boolean hasVertex(V vertex) {
-    return eleMap.containsKey(vertex);
-  }
+	@Override
+	public boolean addEdge(V vertex1, V vertex2, E data) {
+		if (!eleMap.containsKey(vertex1) || !eleMap.containsKey(vertex2))
+			return false;
+		Node<V> startNode = eleMap.get(vertex1);
+		Node<V> endNode = new Node<V>(vertex2);
+		startNode.neighbors.put(endNode, data);
+		startNode.gradeOut++;
+		endNode.gradeIn++;
+		return true;
+	}
 
-  @Override
-  public boolean hasEdge(V vertex1, V vertex2) {
-    if(!eleMap.containsKey(vertex1) || !eleMap.containsKey(vertex2))
-      return false;
-    return eleMap.get(vertex1).neighbors.containsKey(new Node<V>(vertex2));
-  }
+	@Override
+	public boolean hasVertex(V vertex) {
+		return eleMap.containsKey(vertex);
+	}
 
-  @Override
-  public E getData(V vertex1, V vertex2) {
-    if(!eleMap.containsKey(vertex1) || !eleMap.containsKey(vertex2))
-        return null;
-    return eleMap.get(vertex1).neighbors.get(new Node<V>(vertex2));
-  }
+	@Override
+	public boolean hasEdge(V vertex1, V vertex2) {
+		if (!eleMap.containsKey(vertex1) || !eleMap.containsKey(vertex2))
+			return false;
+		return eleMap.get(vertex1).neighbors.containsKey(new Node<V>(vertex2));
+	}
 
-  @Override
-  public Set<V> getVertices() {
-    return eleMap.keySet();
-  }
+	@Override
+	public E getData(V vertex1, V vertex2) {
+		if (!eleMap.containsKey(vertex1) || !eleMap.containsKey(vertex2))
+			return null;
+		return eleMap.get(vertex1).neighbors.get(new Node<V>(vertex2));
+	}
 
-  @Override
-  public HashSet<V> getNeighbors(V vertex) {
-    
-    HashSet<V> res = new HashSet<V>();
-    Node<V> n = eleMap.get(vertex);
-    if(n==null)
-      return res;
-    Iterator<?> it =  n.neighbors.entrySet().iterator();
-    while (it.hasNext())
-    {
-      Entry<Node<V>,E> pair = (Entry)it.next();
-      res.add(pair.getKey().elem);
-    }
-    return res;
-    
-  }
- 
-  @Override
-  public String toDot(String name){
-    String s="graph "+name+" { \n";
-    UniquePairList<V> list = new UniquePairList<>();
-    for(V u: this.getVertices()) {
-      for(V v: this.getNeighbors(u)) {
-        list.add(u,v);
-      }
-    } 
-    for(int i=0; i<list.size();i++) {
-      V u= list.getFirst(i);
-      V v= list.getSecond(i);
-      s+= "\t"+u.toString()+" -- "+v.toString()+" [label=\""+getData(u, v).toString()+"\" color=\"red\" style=bold]; \n";
-    }
-    
-    return s+"}\n";
-  }
-  
-  
-  protected class Node<V> {
-    
-    HashMap<Node<V>,E> neighbors;
-    V elem;
-    int gradeOut;
-    int gradeIn;
-    
-    
-    public Node()
-    {
-      this(null);
-    }
-    
-    public Node(V e)
-    {
-      elem = e;
-      neighbors = new HashMap<>();
-    }
+	@Override
+	public Set<V> getVertices() {
+		return eleMap.keySet();
+	}
 
-    public int getGrade() {
-      return gradeOut+gradeIn;
-    }
+	@SuppressWarnings("unchecked")
+	@Override
+	public HashSet<V> getNeighbors(V vertex) {
 
-    @Override
-    public int hashCode() {
-      int hash = 5;
-      hash = 53 * hash + Objects.hashCode(this.elem);
-      return hash;
-    }
+		HashSet<V> res = new HashSet<V>();
+		Node<V> n = eleMap.get(vertex);
+		if (n == null)
+			return res;
+		Iterator<?> it = n.neighbors.entrySet().iterator();
+		while (it.hasNext()) {
+			// Node<V>.neighbors contiene sicuramente un elemento
+			// Entry<Node<V>,E>
+			// Altrimenti si avrebbero errori prima di questo punto
+			Entry<Node<V>, E> pair = (Entry<Node<V>, E>) it.next();
+			res.add(pair.getKey().elem);
+		}
+		return res;
 
-    @Override
-    public boolean equals(Object obj) {
-      if (obj == null) {
-        return false;
-      }
-        
-      if (getClass() != obj.getClass()) {
-        return false;
-      }
-      final Node<?> other = (Node<?>) obj;
-      if (!Objects.equals(this.elem, other.elem)) {
-        return false;
-      }
-      return true;
-    }
-    
-  }
-  
+	}
+
+	@Override
+	public String toDot(String name) {
+		String s = "graph " + name + " { \n";
+		UniquePairList<V> list = new UniquePairList<>();
+		for (V u : this.getVertices()) {
+			for (V v : this.getNeighbors(u)) {
+				list.add(u, v);
+			}
+		}
+		for (int i = 0; i < list.size(); i++) {
+			V u = list.getFirst(i);
+			V v = list.getSecond(i);
+			s += "\t" + u.toString() + " -- " + v.toString() + " [label=\"" + getData(u, v).toString()
+					+ "\" color=\"red\" style=bold]; \n";
+		}
+
+		return s + "}\n";
+	}
+
+	@SuppressWarnings("hiding")
+	protected class Node<V> {
+
+		HashMap<Node<V>, E> neighbors;
+		V elem;
+		int gradeOut;
+		int gradeIn;
+
+		public Node() {
+			this(null);
+		}
+
+		public Node(V e) {
+			elem = e;
+			neighbors = new HashMap<>();
+		}
+
+		public int getGrade() {
+			return gradeOut + gradeIn;
+		}
+
+		@Override
+		public int hashCode() {
+			int hash = 5;
+			hash = 53 * hash + Objects.hashCode(this.elem);
+			return hash;
+		}
+
+		@SuppressWarnings("unchecked")
+		@Override
+		public boolean equals(Object obj) {
+			if (obj == null) {
+				return false;
+			}
+
+			if (getClass() != obj.getClass()) {
+				return false;
+			}
+			final Node<?> other = (Node<?>) obj;
+			if (!Objects.equals(this.elem, other.elem)) {
+				return false;
+			}
+			return true;
+		}
+
+	}
+
 }

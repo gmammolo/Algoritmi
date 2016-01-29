@@ -22,7 +22,7 @@ public class UniquePairList<V> {
 
 
   public boolean add(V a, V b) {
-    UniquePairValue<V> pair = new UniquePairValue(a,b);
+    UniquePairValue<V> pair = new UniquePairValue<>(a,b);
     if(list.contains(pair ))
       return false;
     list.add(pair);
@@ -42,11 +42,11 @@ public class UniquePairList<V> {
     return list.get(index).second;
   }
   
-  protected class UniquePairValue<V> {
-    V first;
-    V second;
+  protected class UniquePairValue<W> {
+    W first;
+    W second;
     
-    public UniquePairValue(V f, V s) {
+    public UniquePairValue(W f, W s) {
       first =f;
       second = s;
     }
@@ -57,7 +57,8 @@ public class UniquePairList<V> {
       return hash;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public boolean equals(Object obj) {
       if (obj == null) {
         return false;
@@ -65,7 +66,7 @@ public class UniquePairList<V> {
       if (getClass() != obj.getClass()) {
         return false;
       }
-      final UniquePairValue<?> other = (UniquePairValue<?>) obj;
+      final UniquePairValue<?> other = ((UniquePairValue<?>) obj);
       
       if(Objects.equals(this.first, other.first) && Objects.equals(this.second, other.second))
         return true;

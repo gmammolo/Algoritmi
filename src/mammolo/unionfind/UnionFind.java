@@ -86,7 +86,8 @@ public class UnionFind<T> { // esercizio da 10 punti
    * Classe contenente il nodo, usata per creare gli insiemi
    * @param <T> Parametro dell' elemento 
    */
-  protected class Node<T> {
+  @SuppressWarnings("hiding")
+protected class Node<T> {
     
     Node<T> parent;
     T elem;

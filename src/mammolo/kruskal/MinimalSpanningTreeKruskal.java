@@ -22,10 +22,10 @@ public class MinimalSpanningTreeKruskal<V, E extends DoubleSupplier> {
   /**
    * Classe che estende il Comparator per confrontare e ordinare gli Edge nell' arraylist
    */
-  class EdgeComparator implements Comparator<Edge> {
+  class EdgeComparator implements Comparator<Edge<V,E>> {
 
     @Override
-    public int compare(Edge t1, Edge t2) {
+    public int compare(Edge<V,E> t1, Edge<V,E> t2) {
       if(t1.data.getAsDouble()-t2.data.getAsDouble()>0.0)
         return 1;
       else if(t1.data.getAsDouble()-t2.data.getAsDouble()<0.0)
@@ -62,7 +62,7 @@ public class MinimalSpanningTreeKruskal<V, E extends DoubleSupplier> {
     int i = 0,counter=0;
     while(counter < n-1)
     {
-      Edge arco = priQueue.get(i);
+      Edge<V,E> arco = priQueue.get(i);
       if(union.kruskalUnion((V)arco.v1, (V)arco.v2))
       {
         ris.add(arco);

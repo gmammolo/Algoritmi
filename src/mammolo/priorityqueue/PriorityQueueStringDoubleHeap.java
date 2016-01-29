@@ -25,6 +25,7 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
         return element;
       }
 
+      @SuppressWarnings("unused")
       public void setElement(String element) {
         this.element = element;
       }
@@ -33,6 +34,7 @@ public class PriorityQueueStringDoubleHeap implements PriorityQueueStringDouble{
         return priority;
       }
 
+      @SuppressWarnings("unused")
       public void setPriority(double priority) {
         this.priority = priority;
       }

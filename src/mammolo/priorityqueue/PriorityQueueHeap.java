@@ -28,6 +28,7 @@ public class PriorityQueueHeap<E, P extends Comparable<P>> implements PriorityQu
         return element;
       }
 
+      @SuppressWarnings("unused")
       public void setElement(E element) {
         this.element = element;
       }
@@ -36,6 +37,7 @@ public class PriorityQueueHeap<E, P extends Comparable<P>> implements PriorityQu
         return priority;
       }
 
+      @SuppressWarnings("unused")
       public void setPriority(P priority) {
         this.priority = priority;
       }
@@ -47,7 +49,8 @@ public class PriorityQueueHeap<E, P extends Comparable<P>> implements PriorityQu
         return hash;
       }
 
-      @Override
+      @SuppressWarnings("unchecked")
+	@Override
       public boolean equals(Object obj) {
         if (obj == null) {
           return false;

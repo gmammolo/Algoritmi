@@ -23,7 +23,6 @@ public class DepthFirstSearch<V,E> implements GraphSearch<V, E>{
     HashMap<V,Boolean> visited;
     HashMap<V,V> father;
     list = graph.getVertices();
-    int n = list.size();
     visited = new HashMap<>();
     father = new HashMap<>();
     for(V vert : list) {

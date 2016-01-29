@@ -47,7 +47,8 @@ public class PriorityQueueSimple<E, P extends Comparable <P>> implements Priorit
             return hash;
         }
 
-        @Override
+        @SuppressWarnings("unchecked")
+		@Override
         public boolean equals(Object obj) {
             if (obj == null) {
                 return false;

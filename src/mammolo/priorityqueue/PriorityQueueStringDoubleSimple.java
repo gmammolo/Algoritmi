@@ -11,10 +11,6 @@ public class PriorityQueueStringDoubleSimple implements PriorityQueueStringDoubl
 
   private final ArrayList<PairValue> elements;
 
-  // TOSEE_GIUSE se nei test volessi (e mi serve) testare la nuova priorità (getPriority), non lo si può fare
-  // perchè io di là non ho l'oggetto pair value --> bisogna inserirlo nella classe esterna. Inoltre i metodi in pair
-  // value, a meno che li utilizzi tu, non servono.
-  // metto dei commenti nei test su dove vorrei cosa
   public PriorityQueueStringDoubleSimple(){
       elements = new ArrayList<>();
   }
@@ -32,6 +28,7 @@ public class PriorityQueueStringDoubleSimple implements PriorityQueueStringDoubl
       return element;
     }
 
+    @SuppressWarnings("unused")
     public void setElement(String element) {
       this.element = element;
     }
@@ -40,7 +37,8 @@ public class PriorityQueueStringDoubleSimple implements PriorityQueueStringDoubl
       return priority;
     }
 
-    public void setPriority(double priority) {
+    @SuppressWarnings("unused")
+	public void setPriority(double priority) {
         this.priority = priority;
     }
 

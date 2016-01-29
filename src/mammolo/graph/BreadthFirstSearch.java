@@ -23,9 +23,7 @@ public class BreadthFirstSearch<V,E> implements GraphSearch<V, E>{
   
   @Override
   public void search(Graph<V, E> graph, V source, SearchCallback<V, E> callback) {
-    //TOSEE_Giu: Non sono sicurissimo di aver posizionato bene i due metodi del callback
     Collection<V> list = graph.getVertices();
-    int n = list.size();
     PriorityQueue<V> q = new PriorityQueue<>();
     HashMap<V,Boolean> visited= new HashMap<>();
     HashMap<V,V> father= new HashMap<>();

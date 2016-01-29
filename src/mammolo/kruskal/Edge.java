@@ -35,7 +35,8 @@ import java.util.function.DoubleSupplier;
       return hash;
     }
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     public boolean equals(Object obj) {
       if (obj == null) {
         return false;
@@ -43,7 +44,7 @@ import java.util.function.DoubleSupplier;
       if (getClass() != obj.getClass()) {
         return false;
       }
-      final Edge other = (Edge) obj;
+      final Edge<V,E> other = (Edge<V,E>) obj;
       if (Objects.equals(this.v1, other.v1) && Objects.equals(this.v2, other.v2) ) {
         return true;
       }
