@@ -182,6 +182,7 @@ public class PriorityQueueHeap<E, P extends Comparable<P>> implements PriorityQu
       heap.set(index, heap.get(heap.size() - 1));
       moveDown(index);
       heap.remove(heap.size() - 1);
+      position.remove(element);
       return true;
     }
 
@@ -190,7 +191,9 @@ public class PriorityQueueHeap<E, P extends Comparable<P>> implements PriorityQu
       if (index == null) {
         return false;
       }
-      heap.set(index, new PairValue(element, priority));
+      delete(element);
+      add(element, priority);
+      //heap.set(index, new PairValue(element, priority));
       return true;
     }
 

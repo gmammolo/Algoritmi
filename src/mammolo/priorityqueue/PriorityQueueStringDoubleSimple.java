@@ -89,6 +89,8 @@ public class PriorityQueueStringDoubleSimple implements PriorityQueueStringDoubl
   public boolean add(String element, double priority) {
     if(priority < 0)
         throw new IllegalArgumentException("La priorita' deve essere positiva");
+    if(element == null || priority == Double.NaN)
+    	return false;
     if(elements.contains(new PairValue(element, 0)))
       return false;
 
@@ -128,7 +130,7 @@ public class PriorityQueueStringDoubleSimple implements PriorityQueueStringDoubl
     if(index < 0)
       return false;
     elements.remove(index);
-    elements.add(new PairValue(element, priority));
+    add(element, priority);
     return true;
   }
   
