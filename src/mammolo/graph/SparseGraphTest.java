@@ -50,8 +50,7 @@ public class SparseGraphTest {
   @Test
   public void testAddVertex() {
     System.out.println("addVertex");
-    Object vertex = null;
-    SparseGraph instance = new SparseGraph();
+    SparseGraph<String, Double> instance = new SparseGraph<>();
     instance.addVertex("A");
     boolean expResult = true;
     assertEquals(expResult, instance.hasVertex("A"));
@@ -63,10 +62,10 @@ public class SparseGraphTest {
   @Test
   public void testAddEdge() {
     System.out.println("addEdge");
-    Object vertex1 = "A";
-    Object vertex2 = "B";
-    Object data = 5;
-    SparseGraph instance = new SparseGraph();
+    String vertex1 = "A";
+    String vertex2 = "B";
+    Double data = 5.0;
+    SparseGraph<String,Double> instance = new SparseGraph<>();
     instance.addVertex(vertex1);
     instance.addVertex(vertex2);
     boolean result = instance.addEdge(vertex1, vertex2, data);
@@ -130,9 +129,9 @@ public class SparseGraphTest {
   @Test
   public void testGetVerticesEmpty() {
     System.out.println("getVertices");
-    SparseGraph instance = new SparseGraph();
-    HashSet<String> expResult = new HashSet();
-    Set result = instance.getVertices();
+    SparseGraph<String,Double> instance = new SparseGraph<>();
+    HashSet<String> expResult = new HashSet<String>();
+    Set<String> result = instance.getVertices();
     assertEquals(expResult, result);
   }
 
@@ -140,13 +139,13 @@ public class SparseGraphTest {
     @Test
   public void testGetVertices() {
     System.out.println("getVertices");
-    HashSet<String> expResult = new HashSet();
+    HashSet<String> expResult = new HashSet<>();
     expResult.add("A");
     expResult.add("B");
     expResult.add("C");
     expResult.add("D");
     expResult.add("E");
-    Set result = g.getVertices();
+    Set<String> result = g.getVertices();
     assertEquals (expResult,result);
   }
 

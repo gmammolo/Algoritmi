@@ -34,7 +34,7 @@ public class PriorityQueueHeapTest {
   @Test
   public void testFirst_EmptyQueue() {      
     System.out.println("testFirst_EmptyQueue");
-    PriorityQueueHeap instance = new PriorityQueueHeap();
+    PriorityQueueHeap<String,Double> instance = new PriorityQueueHeap<>();
     Object expResult = null;
     Object result = instance.first();
     assertEquals(expResult, result);
@@ -43,7 +43,7 @@ public class PriorityQueueHeapTest {
   @Test
   public void testFirst_FullQueue() {
     System.out.println("testFirst_FullQueue");
-    PriorityQueueHeap instance = new PriorityQueueHeap();
+    PriorityQueueHeap<String,Double> instance = new PriorityQueueHeap<>();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -64,7 +64,7 @@ public class PriorityQueueHeapTest {
   @Test
   public void testRemoveFirst_EmptyQueue() {    
     System.out.println("testRemoveFirst_EmptyQueue");
-    PriorityQueueHeap instance = new PriorityQueueHeap();
+    PriorityQueueHeap<String,Double> instance = new PriorityQueueHeap<>();
     Object expResult = null;
     Object result = instance.removeFirst();
     assertEquals(expResult, result);
@@ -73,7 +73,7 @@ public class PriorityQueueHeapTest {
   @Test
   public void testRemoveFirst_FullQueue() {
     System.out.println("testRemoveFirst_FullQueue");
-    PriorityQueueHeap instance = new PriorityQueueHeap();
+    PriorityQueueHeap<String,Double> instance = new PriorityQueueHeap<>();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -94,7 +94,7 @@ public class PriorityQueueHeapTest {
   @Test
   public void testIsEmpty_EmptyQueue() {
     System.out.println("testIsEmpty_EmptyQueue");
-    PriorityQueueHeap instance = new PriorityQueueHeap();
+    PriorityQueueHeap<String,Double> instance = new PriorityQueueHeap<>();
     boolean expResult = true;
     boolean result = instance.isEmpty();
     assertEquals(expResult, result);
@@ -103,7 +103,7 @@ public class PriorityQueueHeapTest {
   @Test
   public void testIsEmpty_FullQueue() {
     System.out.println("testIsEmpty_FullQueue");
-    PriorityQueueHeap instance = new PriorityQueueHeap();
+    PriorityQueueHeap<String,Double> instance = new PriorityQueueHeap<>();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -147,7 +147,7 @@ public class PriorityQueueHeapTest {
   @Test
   public void testAdd_NotExistingElem_FirstPosition(){
     System.out.println("testAdd_NotExistingElem_FirstPosition");
-    PriorityQueueHeap instance = new PriorityQueueHeap();
+    PriorityQueueHeap<String,Double> instance = new PriorityQueueHeap<>();
     instance.add("Cucinare", 2.0);    
     instance.add("Lavare i denti", 1.0);
     instance.add("Fare la doccia", 0.0);
@@ -158,7 +158,7 @@ public class PriorityQueueHeapTest {
   @Test
   public void testAdd_NotExistingElem_LastPosition(){
     System.out.println("testAdd_NotExistingElem_LastPosition");
-    PriorityQueueHeap instance = new PriorityQueueHeap();   
+    PriorityQueueHeap<String,Double> instance = new PriorityQueueHeap<>();   
     instance.add("Lavare i denti", 1.0);
     instance.add("Fare la doccia", 0.0);
     boolean result = instance.add("Cucinare", 2.0);
@@ -172,7 +172,7 @@ public class PriorityQueueHeapTest {
   @Test
   public void testAdd_NotExistingElem_MiddlePosition(){
     System.out.println("testAdd_NotExistingElem_MiddlePosition");
-    PriorityQueueHeap instance = new PriorityQueueHeap();  
+    PriorityQueueHeap<String,Double> instance = new PriorityQueueHeap<>();  
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);;
@@ -197,8 +197,8 @@ public class PriorityQueueHeapTest {
   @Test
   public void testDelete_NullElement() {
     System.out.println("delete_NullElement");
-    Object element = null;
-    PriorityQueueHeap instance = new PriorityQueueHeap();
+    String element = null;
+    PriorityQueueHeap<String,Double> instance = new PriorityQueueHeap<>();
     boolean expResult = false;
     boolean result = instance.delete(element);
     assertEquals(expResult, result);
@@ -207,7 +207,7 @@ public class PriorityQueueHeapTest {
   @Test
   public void testDelete_EmptyQueue() {
     System.out.println("testDelete_EmptyQueue");
-    PriorityQueueHeap instance = new PriorityQueueHeap();
+    PriorityQueueHeap<String,Double> instance = new PriorityQueueHeap<>();
     String element = "Cucinare";
     boolean result = instance.delete(element);
     assertEquals(false, result);
@@ -216,7 +216,7 @@ public class PriorityQueueHeapTest {
   @Test
   public void testDelete_NotExistingElement() {
     System.out.println("testDelete_NotExistingElement");
-    PriorityQueueHeap instance = new PriorityQueueHeap();
+    PriorityQueueHeap<String,Double> instance = new PriorityQueueHeap<>();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -228,7 +228,7 @@ public class PriorityQueueHeapTest {
   @Test
   public void testDelete_ExistingElement_FirstPosition() {
     System.out.println("testDelete_ExistingElement_FirstPosition");
-    PriorityQueueHeap instance = new PriorityQueueHeap();
+    PriorityQueueHeap<String,Double> instance = new PriorityQueueHeap<>();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -242,7 +242,7 @@ public class PriorityQueueHeapTest {
   @Test
   public void testDelete_ExistingElement_LastPosition() {
     System.out.println("testDelete_ExistingElement_LastPosition");
-    PriorityQueueHeap instance = new PriorityQueueHeap();
+    PriorityQueueHeap<String,Double> instance = new PriorityQueueHeap<>();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -258,7 +258,7 @@ public class PriorityQueueHeapTest {
   @Test
   public void testDelete_ExistingElement_MiddlePosition() {
     System.out.println("testDelete_ExistingElement_MiddlePosition");
-    PriorityQueueHeap instance = new PriorityQueueHeap();
+    PriorityQueueHeap<String,Double> instance = new PriorityQueueHeap<>();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -292,9 +292,9 @@ public class PriorityQueueHeapTest {
   @Test
   public void testSetPriority_NullElement() {
     System.out.println("setPriority_NullElement");
-    Object element = null;
-    Comparable priority = null;
-    PriorityQueueHeap instance = new PriorityQueueHeap();
+    String element = null;
+    Double priority = null;
+    PriorityQueueHeap<String, Double> instance = new PriorityQueueHeap<>();
     boolean expResult = false;
     boolean result = instance.setPriority(element, priority);
     assertEquals(expResult, result);
@@ -304,7 +304,7 @@ public class PriorityQueueHeapTest {
   @Test
   public void testSetPriority_RepeatPriority() {       
     System.out.println("testSetPriority_UnderZero");        
-    PriorityQueueHeap instance = new PriorityQueueHeap();
+    PriorityQueueHeap<String, Double> instance = new PriorityQueueHeap<>();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -315,7 +315,7 @@ public class PriorityQueueHeapTest {
   @Test
   public void testSetPriority_RightPriority() {       
     System.out.println("testSetPriority_UnderZero");        
-    PriorityQueueHeap instance = new PriorityQueueHeap();
+    PriorityQueueHeap<String, Double> instance = new PriorityQueueHeap<>();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -332,7 +332,7 @@ public class PriorityQueueHeapTest {
     System.out.println("testSetPriority_NotExistingElement");
     String element = "primo";
     double priority = 0.0;
-    PriorityQueueHeap instance = new PriorityQueueHeap();
+    PriorityQueueHeap<String,Double> instance = new PriorityQueueHeap<>();
     boolean expResult = false;
     boolean result = instance.setPriority(element, priority);
     assertEquals(expResult, result);

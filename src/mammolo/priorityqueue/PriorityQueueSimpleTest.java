@@ -36,7 +36,7 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testFirst_NullElement() {
     System.out.println("first_NullElement");
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     Object expResult = null;
     Object result = instance.first();
     assertEquals(expResult, result);
@@ -45,7 +45,7 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testFirst_EmptyQueue() {
     System.out.println("testFirst_EmptyQueue");
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     String expResult = null;
     Object result = instance.first();
     assertEquals(expResult, result);
@@ -54,7 +54,7 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testFirst_FullQueue() {
     System.out.println("testFirst_FullQueue");
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -75,7 +75,7 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testRemoveFirst_EmptyQueue() {
     System.out.println("removeFirst_EmptyQueue");
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     Object expResult = null;
     Object result = instance.removeFirst();
     assertEquals(expResult, result);
@@ -84,7 +84,7 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testRemoveFirst_FullQueue() {
     System.out.println("testRemoveFirst_FullQueue");
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -108,7 +108,7 @@ public class PriorityQueueSimpleTest {
   @Test    
   public void testIsEmpty() {
     System.out.println("isEmpty");
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     boolean expResult = true;
     boolean result = instance.isEmpty();
     assertEquals(expResult, result);
@@ -116,7 +116,7 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testIsEmpty_EmptyQueue() {
     System.out.println("testIsEmpty_EmptyQueue");
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     boolean expResult = true;
     boolean result = instance.isEmpty();
     assertEquals(expResult, result);
@@ -125,7 +125,7 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testIsEmpty_FullQueue() {
     System.out.println("testIsEmpty_FullQueue");
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -146,9 +146,9 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testAdd_NullElement() {
     System.out.println("add_NullElement");
-    Object element = null;
-    Comparable priority = null;
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    String element = null;
+    Double priority = null;
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     boolean expResult = false;
     boolean result = instance.add(element, priority);
     assertEquals(expResult, result);
@@ -157,7 +157,7 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testAdd_ExistingElement() {
     System.out.println("testAdd_ExistingElement");
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     instance.add("Cucinare", 2.0);
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);
@@ -168,7 +168,7 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testAdd_NotExistingElem_FirstPosition(){
     System.out.println("testAdd_NotExistingElem_FirstPosition");
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     instance.add("Cucinare", 2.0);    
     instance.add("Lavare i denti", 1.0);
     instance.add("Fare la doccia", 0.0);
@@ -179,7 +179,7 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testAdd_NotExistingElem_LastPosition(){
     System.out.println("testAdd_NotExistingElem_LastPosition");
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     instance.add("Lavare i denti", 1.0);
     instance.add("Fare la doccia", 0.0);
     boolean result = instance.add("Cucinare", 2.0);
@@ -193,7 +193,7 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testAdd_NotExistingElem_MiddlePosition(){
     System.out.println("testAdd_NotExistingElem_MiddlePosition");
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);;
@@ -216,8 +216,8 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testDelete_NullElement() {
     System.out.println("delete_NullElement");
-    Object element = null;
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    String element = null;
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     boolean expResult = false;
     boolean result = instance.delete(element);
     assertEquals(expResult, result);
@@ -226,7 +226,7 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testDelete_EmptyQueue() {
     System.out.println("testDelete_EmptyQueue");
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     String element = "Cucinare";
     boolean result = instance.delete(element);
     assertEquals(false, result);
@@ -235,7 +235,7 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testDelete_NotExistingElement() {
     System.out.println("testDelete_NotExistingElement");
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -247,7 +247,7 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testDelete_ExistingElement_FirstPosition() {
     System.out.println("testDelete_ExistingElement_FirstPosition");
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -261,7 +261,7 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testDelete_ExistingElement_LastPosition() {
     System.out.println("testDelete_ExistingElement_LastPosition");
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -277,7 +277,7 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testDelete_ExistingElement_MiddlePosition() {
     System.out.println("testDelete_ExistingElement_MiddlePosition");
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -326,7 +326,7 @@ public class PriorityQueueSimpleTest {
   @Test
   public void testSetPriority_RightPriority() {       
     System.out.println("testSetPriority_UnderZero");        
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     instance.add("Fare la doccia", 0.0);
     instance.add("Lavare i denti", 1.0);    
     instance.add("Cucinare", 2.0);
@@ -342,8 +342,8 @@ public class PriorityQueueSimpleTest {
   public void testSetPriority_NotExistingElement() {
     System.out.println("testSetPriority_NotExistingElement");
     String element = "primo";
-    Comparable priority = 0.0;
-    PriorityQueueSimple instance = new PriorityQueueSimple();
+    Double priority = 0.0;
+    PriorityQueueSimple<String,Double> instance = new PriorityQueueSimple<>();
     boolean expResult = false;
     boolean result = instance.setPriority(element, priority);
     assertEquals(expResult, result);
