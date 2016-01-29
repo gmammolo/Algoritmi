@@ -34,7 +34,7 @@ public class SortedArrayListTest {
   @Test
   public void testBinarySearchClassic() {
     System.out.println("binarySearch: elemento presente");
-    SortedArrayList instance = new SortedArrayList(6);
+    SortedArrayList<String> instance = new SortedArrayList<>(6);
     instance.insert("Alice");
     instance.insert("Gianmarco");
     instance.insert("Isidoro");
@@ -48,7 +48,7 @@ public class SortedArrayListTest {
   @Test
   public void testBinarySearchElementoNonPresente() { 
     System.out.println("binarySearch: elemento non presente");
-    SortedArrayList instance = new SortedArrayList(6);
+    SortedArrayList<String> instance = new SortedArrayList<>(6);
     instance.insert("Alice");
     instance.insert("Norberto");
     instance.insert("Isidoro");
@@ -62,7 +62,7 @@ public class SortedArrayListTest {
   @Test
   public void testBinarySearchEmptyArray() {
     System.out.println("binarySearch: array vuoto");
-    SortedArrayList instance = new SortedArrayList(6);
+    SortedArrayList<String> instance = new SortedArrayList<>(6);
     int result = instance.binarySearch("Arianna");
     assertEquals(-1, result);
   }
@@ -70,7 +70,7 @@ public class SortedArrayListTest {
   @Test
   public void testBinarySearchSingleCell() {
     System.out.println("binarySearch: array di un solo elemento");
-    SortedArrayList instance = new SortedArrayList(1);
+    SortedArrayList<String> instance = new SortedArrayList<>(1);
     instance.insert("Alice");
     int result = instance.binarySearch("Alice");
     assertEquals(0, result);
@@ -80,7 +80,7 @@ public class SortedArrayListTest {
   public void testBinarySearchFirstPositionElement() {   
     System.out.println("binarySearch: elemento non presente - andrebbe inserito"
             + " nella prima posizione");
-    SortedArrayList instance = new SortedArrayList(6);
+    SortedArrayList<String> instance = new SortedArrayList<>(6);
     instance.insert("Arianna");
     instance.insert("Norberto");
     instance.insert("Isidoro");
@@ -95,7 +95,7 @@ public class SortedArrayListTest {
   public void testBinarySearchLastPositionElement() {    
     System.out.println("binarySearch: elemento non presente - andrebbe inserito"
             + " nell'ultima poszione");
-    SortedArrayList instance = new SortedArrayList(6);
+    SortedArrayList<String> instance = new SortedArrayList<>(6);
     instance.insert("Arianna");
     instance.insert("Norberto");
     instance.insert("Isidoro");
@@ -123,7 +123,7 @@ public class SortedArrayListTest {
   @Test
   public void testSizeEmpty() {
     System.out.println("size: empty array");
-    SortedArrayList instance = new SortedArrayList();
+    SortedArrayList<String> instance = new SortedArrayList<>();
     int expResult = 0;
     int result = instance.size();
     assertEquals(expResult, result);
@@ -132,7 +132,7 @@ public class SortedArrayListTest {
   @Test
   public void testSizeFull() {
     System.out.println("size: array pieno");
-    SortedArrayList instance = new SortedArrayList(6);
+    SortedArrayList<String> instance = new SortedArrayList<>(6);
     instance.insert("Arianna");
     instance.insert("Norberto");
     instance.insert("Isidoro");
@@ -147,7 +147,7 @@ public class SortedArrayListTest {
   @Test
   public void testSizeNotFull() {                   
     System.out.println("size: array parzialmente riempito");
-    SortedArrayList instance = new SortedArrayList(8);
+    SortedArrayList<String> instance = new SortedArrayList<>(8);
     instance.insert("Arianna");
     instance.insert("Norberto");
     instance.insert("Isidoro");
@@ -177,7 +177,7 @@ public class SortedArrayListTest {
   @Test
   public void testInsertFullArrayStart() {
     System.out.println("insert: array pieno - inserimento all'inizio");
-    SortedArrayList instance = new SortedArrayList(7);
+    SortedArrayList<String> instance = new SortedArrayList<>(7);
     instance.insert("Arianna");
     instance.insert("Norberto");
     instance.insert("Isidoro");
@@ -195,7 +195,7 @@ public class SortedArrayListTest {
   @Test
   public void testInsertFullArrayEnd() {
     System.out.println("insert: array pieno - inserimento al fondo");
-    SortedArrayList instance = new SortedArrayList(8);
+    SortedArrayList<String> instance = new SortedArrayList<>(8);
     instance.insert("Arianna");
     instance.insert("Norberto");
     instance.insert("Isidoro");
@@ -213,7 +213,7 @@ public class SortedArrayListTest {
   @Test
   public void testInsertFullArrayMiddle() {
     System.out.println("insert: array pieno - inserimento in mezzo");
-    SortedArrayList instance = new SortedArrayList(3);
+    SortedArrayList<String> instance = new SortedArrayList<>(3);
     instance.insert("Arianna");
     instance.insert("Rebecca");
     instance.insert("Alice");
@@ -227,7 +227,7 @@ public class SortedArrayListTest {
   @Test
   public void testInsertEmptyArray() {    
     System.out.println("insert: array vuoto");
-    SortedArrayList instance = new SortedArrayList(5);
+    SortedArrayList<String> instance = new SortedArrayList<>(5);
     int resultPosition = instance.insert("Lorenza");    
     // test della size di instance
     assertEquals(1, instance.size());
@@ -238,7 +238,7 @@ public class SortedArrayListTest {
   @Test
   public void testInsertElementoPresente() {    
     System.out.println("insert: array parzialmente riempito - elemento già presente");
-    SortedArrayList instance = new SortedArrayList(6);
+    SortedArrayList<String> instance = new SortedArrayList<>(6);
     instance.insert("Arianna");
     instance.insert("Zorro");
     instance.insert("Lorenza");
@@ -253,7 +253,7 @@ public class SortedArrayListTest {
   @Test
   public void testInsertElementoNonPresente() {
     System.out.println("insert: array parzialmente riempito - elemento non presente");
-    SortedArrayList instance = new SortedArrayList(8);
+    SortedArrayList<String> instance = new SortedArrayList<>(8);
     instance.insert("Arianna");
     instance.insert("Zorro");
     instance.insert("Lorenza");
@@ -282,7 +282,7 @@ public class SortedArrayListTest {
   @Test(expected = ArrayIndexOutOfBoundsException.class)  
   public void testGetNegativeIndex() {
     System.out.println("get: indice negativo");
-    SortedArrayList instance = new SortedArrayList(8);
+    SortedArrayList<String> instance = new SortedArrayList<>(8);
     instance.insert("Arianna");
     instance.insert("Norberto");
     instance.insert("Isidoro");
@@ -292,7 +292,7 @@ public class SortedArrayListTest {
   @Test
   public void testGetClassic() {
     System.out.println("get: indice corretto");
-    SortedArrayList instance = new SortedArrayList();
+    SortedArrayList<String> instance = new SortedArrayList<>();
     instance.insert("Arianna");
     instance.insert("Norberto");
     instance.insert("Isidoro");
@@ -304,7 +304,7 @@ public class SortedArrayListTest {
   @Test(expected = ArrayIndexOutOfBoundsException.class)  
   public void testGetIndexBiggerLength() {
     System.out.println("get: indice più grande di size");
-    SortedArrayList instance = new SortedArrayList();
+    SortedArrayList<String> instance = new SortedArrayList<>();
     instance.insert("Arianna");
     instance.insert("Norberto");
     instance.insert("Isidoro");
@@ -327,7 +327,7 @@ public class SortedArrayListTest {
   @Test
   public void testIndexOfElementoPresente() {  
     System.out.println("indexOf - elemento presente");
-    SortedArrayList instance = new SortedArrayList(8);
+    SortedArrayList<String> instance = new SortedArrayList<>(8);
     instance.insert("Arianna");
     instance.insert("Norberto");
     instance.insert("Isidoro");
@@ -340,7 +340,7 @@ public class SortedArrayListTest {
     @Test
   public void testIndexOfElementoNonPresente() {    
     System.out.println("indexOf - elemento non presente");
-    SortedArrayList instance = new SortedArrayList(8);
+    SortedArrayList<String> instance = new SortedArrayList<>(8);
     instance.insert("Arianna");
     instance.insert("Norberto");
     instance.insert("Isidoro");
@@ -368,7 +368,7 @@ public class SortedArrayListTest {
   @Test
   public void testToStringEmptyArray() {
     System.out.println("toString - array vuoto");
-    SortedArrayList instance = new SortedArrayList(8);
+    SortedArrayList<String> instance = new SortedArrayList<>(8);
     String result = instance.toString();
     String expResult = "[]";
     boolean bool = expResult.equals(result);
@@ -378,7 +378,7 @@ public class SortedArrayListTest {
   @Test
   public void testToStringSingleCell() {
     System.out.println("toString - un solo elemento");
-    SortedArrayList instance = new SortedArrayList(8);
+    SortedArrayList<String> instance = new SortedArrayList<>(8);
     instance.insert("Arianna");
     String result = instance.toString();
     String expResult = "[Arianna]";
@@ -389,7 +389,7 @@ public class SortedArrayListTest {
   @Test         
   public void testToStringClassicArray() {        
     System.out.println("toString - versione classica");
-    SortedArrayList instance = new SortedArrayList(8);
+    SortedArrayList<String> instance = new SortedArrayList<>(8);
     instance.insert("Arianna");
     instance.insert("Norberto");
     instance.insert("Isidoro");

@@ -38,7 +38,7 @@ public class PriorityQueueStringDoubleSimpleTest {
   public void testAdd_NullElement() {
     System.out.println("add_NullElement");
     String element = null;
-    Double priority = null;
+    Double priority = Double.NaN;
     PriorityQueueStringDoubleSimple instance = new PriorityQueueStringDoubleSimple();
     boolean expResult = false;
     boolean result = instance.add(element, priority);

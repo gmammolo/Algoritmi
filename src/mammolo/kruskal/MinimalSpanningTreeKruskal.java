@@ -41,17 +41,17 @@ public class MinimalSpanningTreeKruskal<V, E extends DoubleSupplier> {
    * @return L'albero minimo Ricoprente (MAR) sottoforma di Lista di Edge
    * @throws IllegalAccessException -
    */
-  public List<Edge> build ( UndirectedGraph<V, E> g ) throws IllegalAccessException {
-    ArrayList<Edge> priQueue = new ArrayList<>();
+  public List<Edge<V,E>> build ( UndirectedGraph<V, E> g ) throws IllegalAccessException {
+    ArrayList<Edge<V,E>> priQueue = new ArrayList<>();
     for(V u: g.getVertices()) {
       for(V v: g.getNeighbors(u)) {
-        Edge e = new Edge(u,v,g.getData(u, v));
+        Edge<V,E> e = new Edge<>(u,v,g.getData(u, v));
         if(!priQueue.contains(e))
           priQueue.add(e);
       }
     }
     Collections.sort(priQueue,new EdgeComparator());
-    ArrayList<Edge> ris= new ArrayList<>();
+    ArrayList<Edge<V,E>> ris= new ArrayList<>();
     UnionFind<V> union = new UnionFind<>();
     int n = 0;
     for(V ele : g.getVertices())

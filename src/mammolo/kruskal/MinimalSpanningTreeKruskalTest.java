@@ -12,7 +12,6 @@ import mammolo.kruskal.MinimalSpanningTreeKruskal;
 import mammolo.graph.UndirectedGraph;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.DoubleSupplier;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -23,7 +22,7 @@ import static org.junit.Assert.*;
  */
 public class MinimalSpanningTreeKruskalTest {
   
-  UndirectedGraph<String, DoubleSupplier> g;
+  UndirectedGraph<String, DoubleValue> g;
   
   public MinimalSpanningTreeKruskalTest() {
   }
@@ -54,9 +53,9 @@ public class MinimalSpanningTreeKruskalTest {
   @Test
   public void testBuild() throws Exception {
     System.out.println("build");
-    MinimalSpanningTreeKruskal instance = new MinimalSpanningTreeKruskal();
-    List<Edge> result = instance.build(g);
-    ArrayList<Edge> expResult = new ArrayList<>();
+    MinimalSpanningTreeKruskal<String, DoubleValue> instance = new MinimalSpanningTreeKruskal<>();
+    List<Edge<String,DoubleValue>> result = instance.build(g);
+    ArrayList<Edge<String,DoubleValue>> expResult = new ArrayList<>();
     expResult.add(new Edge<String,DoubleValue>("A", "B", new DoubleValue(1)));
     expResult.add(new Edge<String,DoubleValue>("B", "D", new DoubleValue(1)));
     expResult.add(new Edge<String,DoubleValue>("A", "C", new DoubleValue(2)));

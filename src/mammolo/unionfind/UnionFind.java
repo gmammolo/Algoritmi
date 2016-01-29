@@ -37,7 +37,7 @@ public class UnionFind<T> { // esercizio da 10 punti
    * @return il rappresentante dell' insieme
    */
   public T find (T e){
-    Node n = elemMap.get(e);
+    Node<T> n = elemMap.get(e);
     if(n==null)
       throw new IllegalArgumentException();
     if(n.parent == null)

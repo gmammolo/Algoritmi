@@ -14,9 +14,9 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
   protected static class Node <K, V> {
     K key;
     V value;
-    Node left, right;
+    Node<K,V> left, right;
     
-    Node(K k, V v, Node l, Node r){
+    Node(K k, V v, Node<K,V> l, Node<K,V> r){
       this.key    = k;
       this.value  = v;
       this.left   = l;
@@ -35,7 +35,7 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
   }
   
   public SearchTree(K key, V value){
-    root = new Node(key, value, null, null);
+    root = new Node<>(key, value, null, null);
   }
   
   /**
@@ -46,7 +46,7 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
     return "["+printInOrder(root)+"]";
   }
   
-  private String printInOrder(Node node){
+  private String printInOrder(Node<K, V> node){
     String s = "";
     if(node != null) {
       s += printInOrder(node.left);
@@ -61,7 +61,7 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
    * @param node nodo di cui si vuole sapere il peso. La foglia vale 1.
    * @return Peso del nodo
    */
-  protected static int height(Node node){
+  protected static int height(Node<?, ?> node){
     return (node == null) ? -1 : 1 + max(height(node.left), height(node.right));
   }
   
@@ -115,7 +115,7 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
 
   @Override
   public V add(K key, V value) {
-    Node<K,V> node = new Node(key, value, null, null);
+    Node<K,V> node = new Node<>(key, value, null, null);
     if(root == null) {
        root = node;
        return root.value;
@@ -172,7 +172,7 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
   * @param node node di partenza
   * @return nodo minore
   */
-  protected  Node<K,V> getMin(Node node){
+  protected  Node<K,V> getMin(Node<K,V> node){
     if(node.left != null)
       return getMin(node.left);
     return node;
@@ -183,7 +183,7 @@ public class SearchTree <K extends Comparable <K>, V> implements SortedDictionar
    * @param node node di partenza
    * @return nodo maggiore
    */
-  protected Node<K,V> getMax(Node node){
+  protected Node<K,V> getMax(Node<K,V> node){
     if(node.right != null)
       return getMax(node.right);
     return node;

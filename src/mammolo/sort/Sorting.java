@@ -2,7 +2,6 @@ package mammolo.sort;
 
 import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
-import static java.util.concurrent.ForkJoinTask.invokeAll;
 import java.util.concurrent.RecursiveAction;
 
 /**
@@ -715,7 +714,8 @@ public class Sorting {
 
     private static class ParallelMergeSorter extends RecursiveAction {
 
-        int[] a, aux;
+		private static final long serialVersionUID = 1L;
+		int[] a, aux;
         int first, last;
         int numThreads; // numero dei threads ancora disponibili
 
@@ -1040,7 +1040,11 @@ public class Sorting {
 
     private static class ParallelQuickSorter extends RecursiveAction {
 
-        int[] a;
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		int[] a;
         int inf, sup;
         int numThreads; // numero dei threads ancora disponibili
 

@@ -38,7 +38,7 @@ public class SearchTreeTest {
     @Test
     public void testPrintInOrderEmpty() {
         System.out.println("printInOrder");
-        SearchTree instance = new SearchTree();
+        SearchTree<Integer, String> instance = new SearchTree<>();
         String res = instance.printInOrder();
         assertEquals("[]", res);
     }
@@ -60,6 +60,7 @@ public class SearchTreeTest {
         SearchTree<Integer,String> instance = new SearchTree<>();
         boolean expResult = true;
         boolean result = instance.isEmpty();
+        assertEquals(expResult, result);
     }
 
     @Test
@@ -78,7 +79,7 @@ public class SearchTreeTest {
     public void testMinKey() {
         System.out.println("minKey");
         Integer expResult = 1;
-        Comparable result = tree.minKey();
+        Integer result = tree.minKey();
         assertEquals(expResult, result);
     }
 
@@ -89,7 +90,7 @@ public class SearchTreeTest {
     public void testMaxKey() {
         System.out.println("maxKey");
         Integer expResult = 9;
-        Comparable result = tree.maxKey();
+        Integer result = tree.maxKey();
         assertEquals(expResult, result);
     }
 
@@ -131,7 +132,7 @@ public class SearchTreeTest {
     public void testFindVoid() {
         System.out.println("find");
         Integer key = 3;
-        SearchTree instance = new SearchTree();
+        SearchTree<Integer, String> instance = new SearchTree<>();
         String expResult = null;
         Object result = instance.find(key);
         assertEquals(expResult, result);
@@ -186,7 +187,7 @@ public class SearchTreeTest {
     public void testRemoveVoid() {
         System.out.println("remove");
         Integer key = 1;
-        SearchTree instance = new SearchTree();
+        SearchTree<Integer,String> instance = new SearchTree<>();
         instance.remove(key);
         assertEquals(null, instance.find(key));
     }

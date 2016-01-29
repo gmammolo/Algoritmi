@@ -18,14 +18,14 @@ public class UndirectedGraph<V,E> extends SparseGraph<V,E>{
   public boolean addEdge(V vertex1, V vertex2, E data) {
     if(!eleMap.containsKey(vertex1) || !eleMap.containsKey(vertex2))
       return false;
-    Node startNode = eleMap.get(vertex1);
-    Node endNode = new Node(vertex2);
+    Node<V> startNode = eleMap.get(vertex1);
+    Node<V> endNode = new Node<V>(vertex2);
     startNode.neighbors.put(endNode, data);
     startNode.gradeOut++;
     endNode.gradeIn++;
     
     startNode = eleMap.get(vertex2);
-    endNode = new Node(vertex1);
+    endNode = new Node<>(vertex1);
     startNode.neighbors.put(endNode, data);
     startNode.gradeOut++;
     endNode.gradeIn++;

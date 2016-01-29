@@ -50,7 +50,7 @@ public class DepthFirstSearchTest {
   @Test
   public void testSearch() {
     System.out.println("search");
-    DepthFirstSearch instance = new DepthFirstSearch();
+    DepthFirstSearch<String, Integer> instance = new DepthFirstSearch<>();
     instance.search(g,"A",callback);
     ArrayList<String> result = callback.getCoda();
     ArrayList<String> expResult = new ArrayList<>();

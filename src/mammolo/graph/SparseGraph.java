@@ -32,7 +32,7 @@ public class SparseGraph<V,E> implements Graph<V,E> {
   public boolean addVertex(V vertex)  {
     if(eleMap.containsKey(vertex))
       return false;
-    eleMap.put(vertex, new Node(vertex));
+    eleMap.put(vertex, new Node<V>(vertex));
     return true;
   }
 
@@ -40,8 +40,8 @@ public class SparseGraph<V,E> implements Graph<V,E> {
   public boolean addEdge(V vertex1, V vertex2, E data) {
      if(!eleMap.containsKey(vertex1) || !eleMap.containsKey(vertex2))
       return false;
-    Node startNode = eleMap.get(vertex1);
-    Node endNode = new Node(vertex2);
+    Node<V> startNode = eleMap.get(vertex1);
+    Node<V> endNode = new Node<V>(vertex2);
     startNode.neighbors.put(endNode, data);
     startNode.gradeOut++;
     endNode.gradeIn++;
@@ -79,7 +79,7 @@ public class SparseGraph<V,E> implements Graph<V,E> {
     Node<V> n = eleMap.get(vertex);
     if(n==null)
       return res;
-    Iterator it =  n.neighbors.entrySet().iterator();
+    Iterator<?> it =  n.neighbors.entrySet().iterator();
     while (it.hasNext())
     {
       Entry<Node<V>,E> pair = (Entry)it.next();
