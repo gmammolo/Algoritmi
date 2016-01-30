@@ -502,8 +502,9 @@ public class Sorting {
      */
     public static <T extends Comparable<? super T>> void mSortNoGarbage(T[] a) {
         int n = a.length;
-    	@SuppressWarnings("unchecked")
-		T[] aux =  (T[]) new Object[n];
+    	//@SuppressWarnings("unchecked")
+		T[] aux = a.clone();
+    	//T[] aux =  (T[]) new Object[n];
         mSortNoGarbageRic(a, 0, n - 1, aux);
         
 
@@ -529,7 +530,7 @@ public class Sorting {
     }
 
     private static <T extends Comparable<? super T>> void mergeOptimized(T[] a, int first, int middle, int last, T[] aux) {
-        int i = first, j = middle + 1;
+    	int i = first, j = middle + 1;
         int k = first;
         if (a[j - 1].compareTo(a[j]) <= 0) {
             return;
@@ -545,7 +546,7 @@ public class Sorting {
         while (h >= i) {
             a[l--] = a[h--];
         }
-        for (int m = first; m < l; m++) {
+        for (int m = first; m < k; m++) {
             a[m] = aux[m];
         }
     }

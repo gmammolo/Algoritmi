@@ -8,7 +8,7 @@ public interface PriorityQueueStringDouble {
 
   /**
   * Inserisce l'elemento dentro l'array.
-  * Se l'elemento è già presente, il metodo non fa nulla e restituisce false.
+  * Se l'elemento � già presente, il metodo non fa nulla e restituisce false.
   * @param element Elemento da inserire.
   * @param priority Priorità relativa all'elemento da inserire.
   * @return <code>true</code> se l'elemento è stato aggiunto, 

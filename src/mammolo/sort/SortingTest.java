@@ -391,6 +391,39 @@ public class SortingTest {
         assertArrayEquals(int_ord_decrescent, a);
     }
 
+    
+    @Test
+    public void testMSortNoGarbage_OrderArrays() {
+        System.out.println("testMSortNoGarbage_OrderArrays");
+        String[] a = string_order.clone();
+        Sorting.mSortNoGarbage(a);
+        assertArrayEquals(string_order, a);
+    }
+
+    @Test
+    public void testMSortNoGarbage_UnorderArrays() {
+        System.out.println("testMSortNoGarbage_UnorderArrays");
+        String[] a = string_unorder.clone();
+        Sorting.mSortNoGarbage(a);
+        assertArrayEquals(string_order, a);
+    }
+
+    @Test
+    public void testMSortNoGarbage_VoidArrays() {
+        System.out.println("testMSortNoGarbage_VoidArrays");
+        String[] a = string_void.clone();
+        Sorting.mSortNoGarbage(a);
+        assertArrayEquals(string_void, a);
+    }
+
+    @Test
+    public void testMSortNoGarbage_SingleArrays() {
+        System.out.println("testMSortNoGarbage_SingleArrays");
+        String[] a = string_single.clone();
+        Sorting.mSortNoGarbage(a);
+        assertArrayEquals(string_single, a);
+    }
+
     // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc=" QSort">
     @Test
