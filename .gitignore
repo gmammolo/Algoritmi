@@ -1,3 +1,35 @@
+
+#Ignore JAVA
+
+*.class
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+.zip
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+/nbproject/private/
+/build/
+/dist/
+
+#Ignore C
+/build*/
+*.o
+Makefile
+/src/Lezione/LezC/build/
+/src/Lezione/LezC/dist/
+/src/Lezione/Sort/nbproject/private/
+/src/Lezione/Sort/build/
+/src/Lezione/Sort/dist/
+
+#Ignore Eclipse
+
 /bin/
 .project
 .project/*
