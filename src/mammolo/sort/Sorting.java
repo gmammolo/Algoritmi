@@ -502,9 +502,8 @@ public class Sorting {
      */
     public static <T extends Comparable<? super T>> void mSortNoGarbage(T[] a) {
         int n = a.length;
-    	//@SuppressWarnings("unchecked")
-		T[] aux = a.clone();
-    	//T[] aux =  (T[]) new Object[n];
+        @SuppressWarnings("unchecked")
+        T[] aux =  (T[]) new Comparable[n];
         mSortNoGarbageRic(a, 0, n - 1, aux);
         
 
